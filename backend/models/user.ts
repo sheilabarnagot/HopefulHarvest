@@ -1,8 +1,6 @@
 import { Client } from 'pg';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
 import {
   strategy,
   passportSerializeUser,
