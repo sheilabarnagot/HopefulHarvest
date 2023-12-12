@@ -1,6 +1,6 @@
 import DashboardDrawer from '../components/Drawers/DashboardDrawer';
 import { DashboardSoldPerMonthChart } from '../components/Charts/DashboardSoldPerMonthChart';
-import { Button, useDisclosure } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
 
 export default function UserDashboard() {
   const {
