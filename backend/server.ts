@@ -4,8 +4,9 @@ import passport from 'passport';
 import session from 'express-session';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { userTest } from './controllers/user.controller';
-
+import multer from 'multer';
+import { userTest, uploadImage, getImage } from './controllers/user.controller';
+const upload = multer({ dest: 'images/' });
 dotenv.config();
 const PORT = 3000;
 
@@ -28,7 +29,8 @@ app.post('/register', registerUser);
 app.post('/login', passport.authenticate('local'), loginUser);
 
 app.get('/profile', userTest);
-
+app.post('/api/images', upload.single('image'), uploadImage);
+app.get('/images/:imageName', getImage);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

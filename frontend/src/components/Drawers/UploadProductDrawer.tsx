@@ -10,23 +10,12 @@ import {
   Input,
 } from '@chakra-ui/react';
 
-import { useRef, FormEvent, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useRef, FormEvent, useState, useEffect } from 'react';
+
 interface UploadProductDrawerProps {
   isOpenUploadDrawer: boolean;
   onCloseUploadDrawer: () => void;
   onOpenUploadDrawer: () => void;
-}
-
-interface IFormInput {
-  name: string; // required field
-  species: string; // required field
-  breed: string;
-  color: string;
-  age: number;
-  lastSeen: string;
-  description: string;
-  owner_id: number;
 }
 
 export default function UploadProductDrawer({
@@ -37,7 +26,6 @@ export default function UploadProductDrawer({
   const [file, setFile] = useState<File | ''>('');
   const [imageName, setImageName] = useState('');
   const [srcImg, setSrcImg] = useState('');
-  const [closeAndNextAction, setCloseAndNextAction] = useState(false);
   const btnRef = useRef<HTMLButtonElement | null>(null);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -45,7 +33,7 @@ export default function UploadProductDrawer({
     const formData = new FormData();
     formData.append('image', file);
     try {
-      const result = await fetch('http://localhost:8080/api/images', {
+      const result = await fetch('http://localhost:3000/api/images', {
         headers: {
           contentType: 'multipart/form-data',
         },
@@ -57,12 +45,29 @@ export default function UploadProductDrawer({
       }
       const data = await result.json();
       setImageName(data.imageName);
+      console.log(data);
     } catch (error) {
       console.error({ error });
-    } finally {
-      setCloseAndNextAction(true);
     }
   };
+
+  const getImage = async () => {
+    try {
+      const result = await fetch(`http://localhost:3000/images/${imageName}`);
+
+      const blob = await result.blob();
+      const imageUrl = URL.createObjectURL(blob);
+      setSrcImg(imageUrl);
+    } catch (error) {
+      console.error({ error });
+    }
+  };
+
+  console.log(srcImg);
+  useEffect(() => {
+    URL.revokeObjectURL(srcImg);
+    imageName && getImage();
+  }, [imageName]);
   return (
     <>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpenUploadDrawer}>
@@ -95,6 +100,7 @@ export default function UploadProductDrawer({
                 <Button type="submit">Ladda upp bild</Button>
               </div>
             </form>
+            {imageName && <img src={srcImg} />}
           </DrawerBody>
 
           <DrawerFooter>
