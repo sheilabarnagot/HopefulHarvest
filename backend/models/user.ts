@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import {
   strategy,
   passportSerializeUser,
-  passposrtDeserializeUser,
+  passportDeserializeUser,
 } from '../passport/init.passport';
 dotenv.config();
 
@@ -37,7 +37,7 @@ client.connect();
 
 strategy();
 passportSerializeUser();
-passposrtDeserializeUser(client);
+passportDeserializeUser(client);
 
 export const createUser = async (user: User) => {
   const { username, password, name, lastname, email } = user;

@@ -27,7 +27,7 @@ export const passportSerializeUser = () => {
   });
 };
 
-export const passposrtDeserializeUser = (client: Client) => {
+export const passportDeserializeUser = (client: Client) => {
   passport.deserializeUser(async (username, done) => {
     try {
       const query = 'SELECT * FROM users WHERE username = $1';
