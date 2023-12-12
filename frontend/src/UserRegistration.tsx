@@ -97,94 +97,96 @@ const UserRegistration: React.FC = () => {
   };
 
   return (
-    <Box p={8} maxWidth="400px" borderWidth={1} borderRadius={8} boxShadow="lg">
-      <VStack spacing={4}>
-        <Heading as="h2" size="lg">
-          Registration
-        </Heading>
-        <FormControl id="firstName" isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setname(e.target.value)}
-          />
-          {showErrors && !name && (
-            <Text color="red" fontSize="sm">
-              Please enter your name.
-            </Text>
-          )}
-        </FormControl>
-
-        <FormControl id="lastName" isRequired>
-          <FormLabel>Last Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter your last name"
-            value={lastName}
-            onChange={(e) => setlastName(e.target.value)}
-          />
-          {showErrors && !lastName && (
-            <Text color="red" fontSize="sm">
-              Please enter your last name
-            </Text>
-          )}
-        </FormControl>
-
-        <FormControl id="username" isRequired>
-          <FormLabel>Username</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setusername(e.target.value)}
-          />
-          {showErrors && !username && (
-            <Text color="red" fontSize="sm">
-              Please enter your username
-            </Text>
-          )}
-        </FormControl>
-
-        <FormControl id="email" isRequired>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setemail(e.target.value)}
-          />
-          {showErrors && !email && (
-            <Text color="red" fontSize="sm">
-              Please enter your email.
-            </Text>
-          )}
-        </FormControl>
-
-        <FormControl id="password" isRequired>
-          <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setpassword(e.target.value)}
-          />
-          {showErrors && !password && (
-            <Text color="red" fontSize="sm">
-              Please enter your password.
-            </Text>
-          )}
-        </FormControl>
-
-        <Button colorScheme="teal" onClick={handleRegistration}>
-          Register
-        </Button>
-        <Text>
-          Already have an account? <a href="/login">Log in</a>
-        </Text>
-      </VStack>
-    </Box>
+    <div className="flex justify-center items-center h-screen">
+      <Box
+        p={8}
+        maxWidth="400px"
+        borderWidth={1}
+        borderRadius={8}
+        boxShadow="lg">
+        <VStack spacing={4}>
+          <Heading as="h2" size="lg">
+            Registration
+          </Heading>
+          <FormControl id="firstName" isRequired>
+            <FormLabel>Name</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={e => setname(e.target.value)}
+            />
+            {showErrors && !name && (
+              <Text color="red" fontSize="sm">
+                Please enter your name.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="lastName" isRequired>
+            <FormLabel>Last Name</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter your last name"
+              value={lastName}
+              onChange={e => setlastName(e.target.value)}
+            />
+            {showErrors && !lastName && (
+              <Text color="red" fontSize="sm">
+                Please enter your last name
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="username" isRequired>
+            <FormLabel>Username</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={e => setusername(e.target.value)}
+            />
+            {showErrors && !username && (
+              <Text color="red" fontSize="sm">
+                Please enter your username
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="email" isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={e => setemail(e.target.value)}
+            />
+            {showErrors && !email && (
+              <Text color="red" fontSize="sm">
+                Please enter your email.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={e => setpassword(e.target.value)}
+            />
+            {showErrors && !password && (
+              <Text color="red" fontSize="sm">
+                Please enter your password.
+              </Text>
+            )}
+          </FormControl>
+          <Button colorScheme="teal" onClick={handleRegistration}>
+            Register
+          </Button>
+          <Text>
+            Already have an account? <a href="/login">Log in</a>
+          </Text>
+        </VStack>
+      </Box>
+    </div>
   );
 };
 

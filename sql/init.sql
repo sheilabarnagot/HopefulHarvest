@@ -22,6 +22,8 @@ CREATE TABLE Products (
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock_quantity INTEGER NOT NULL,
+    user_id INTEGER REFERENCES Users(user_id)
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
     category_id INTEGER REFERENCES Categories(category_id)
 );
 
