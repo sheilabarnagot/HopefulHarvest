@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Input,
@@ -16,6 +16,8 @@ interface RegistrationData {
   username: string;
   email: string;
   password: string;
+  address: string;
+  phone_number: number;
 }
 
 const UserRegistration: React.FC = () => {
@@ -24,13 +26,16 @@ const UserRegistration: React.FC = () => {
   const [username, setusername] = useState<string>('');
   const [email, setemail] = useState<string>('');
   const [password, setpassword] = useState<string>('');
+  const [address, setaddress] = useState<string>('');
+  const [phone_number, setphone_number] = useState<number>();
   const [showErrors, setShowErrors] = useState<boolean>(false);
+
 
   const handleRegistration = async () => {
     setShowErrors(true);
 
     try {
-      if (!name || !lastName || !username || !email || !password) {
+      if (!name || !lastName || !username || !email || !password || !address || !phone_number) {
         throw new Error('All fields are required');
       }
 
@@ -57,9 +62,11 @@ const UserRegistration: React.FC = () => {
         username,
         email,
         password: hashedPassword,
+        address,
+        phone_number,
       };
 
-      const response = await fetch('/api/users', {
+      const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -97,13 +104,14 @@ const UserRegistration: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen ">
       <Box
         p={8}
         maxWidth="400px"
         borderWidth={1}
         borderRadius={8}
-        boxShadow="lg">
+        boxShadow="lg"
+      >
         <VStack spacing={4}>
           <Heading as="h2" size="lg">
             Registration
@@ -114,7 +122,7 @@ const UserRegistration: React.FC = () => {
               type="text"
               placeholder="Enter your name"
               value={name}
-              onChange={e => setname(e.target.value)}
+              onChange={(e) => setname(e.target.value)}
             />
             {showErrors && !name && (
               <Text color="red" fontSize="sm">
@@ -128,7 +136,7 @@ const UserRegistration: React.FC = () => {
               type="text"
               placeholder="Enter your last name"
               value={lastName}
-              onChange={e => setlastName(e.target.value)}
+              onChange={(e) => setlastName(e.target.value)}
             />
             {showErrors && !lastName && (
               <Text color="red" fontSize="sm">
@@ -142,7 +150,7 @@ const UserRegistration: React.FC = () => {
               type="text"
               placeholder="Enter your username"
               value={username}
-              onChange={e => setusername(e.target.value)}
+              onChange={(e) => setusername(e.target.value)}
             />
             {showErrors && !username && (
               <Text color="red" fontSize="sm">
@@ -156,7 +164,7 @@ const UserRegistration: React.FC = () => {
               type="email"
               placeholder="Enter your email"
               value={email}
-              onChange={e => setemail(e.target.value)}
+              onChange={(e) => setemail(e.target.value)}
             />
             {showErrors && !email && (
               <Text color="red" fontSize="sm">
@@ -170,11 +178,38 @@ const UserRegistration: React.FC = () => {
               type="password"
               placeholder="Enter your password"
               value={password}
-              onChange={e => setpassword(e.target.value)}
+              onChange={(e) => setpassword(e.target.value)}
             />
             {showErrors && !password && (
               <Text color="red" fontSize="sm">
                 Please enter your password.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="address" isRequired>
+            <FormLabel>Address</FormLabel>
+            <Input
+              type="address"
+              placeholder="Enter your address"
+              value={address}
+              onChange={(e) => setaddress(e.target.value)}
+            />
+            {showErrors && !address && (
+              <Text color="red" fontSize="sm">
+                Please enter your address.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="passphone_numberword" isRequired>
+            <FormLabel>phone_number</FormLabel>
+            <Input
+              type="tel"
+              placeholder="Enter your phone number"
+              value={phone_number}
+              onChange={(e) => setphone_number(parseInt(e.target.value, 10))}/>
+            {showErrors && !phone_number && (
+              <Text color="red" fontSize="sm">
+                Please enter your phone_number.
               </Text>
             )}
           </FormControl>
