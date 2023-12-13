@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Input,
@@ -16,6 +16,8 @@ interface RegistrationData {
   username: string;
   email: string;
   password: string;
+  address: string;
+  phone_number: number;
 }
 
 const UserRegistration: React.FC = () => {
@@ -24,13 +26,16 @@ const UserRegistration: React.FC = () => {
   const [username, setusername] = useState<string>('');
   const [email, setemail] = useState<string>('');
   const [password, setpassword] = useState<string>('');
+  const [address, setaddress] = useState<string>('');
+  const [phone_number, setphone_number] = useState<number>();
   const [showErrors, setShowErrors] = useState<boolean>(false);
+
 
   const handleRegistration = async () => {
     setShowErrors(true);
 
     try {
-      if (!name || !lastName || !username || !email || !password) {
+      if (!name || !lastName || !username || !email || !password || !address || !phone_number) {
         throw new Error('All fields are required');
       }
 
@@ -57,9 +62,11 @@ const UserRegistration: React.FC = () => {
         username,
         email,
         password: hashedPassword,
+        address,
+        phone_number,
       };
 
-      const response = await fetch('/api/users', {
+      const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -176,6 +183,33 @@ const UserRegistration: React.FC = () => {
             {showErrors && !password && (
               <Text color="red" fontSize="sm">
                 Please enter your password.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="address" isRequired>
+            <FormLabel>Address</FormLabel>
+            <Input
+              type="address"
+              placeholder="Enter your address"
+              value={address}
+              onChange={(e) => setaddress(e.target.value)}
+            />
+            {showErrors && !address && (
+              <Text color="red" fontSize="sm">
+                Please enter your address.
+              </Text>
+            )}
+          </FormControl>
+          <FormControl id="passphone_numberword" isRequired>
+            <FormLabel>phone_number</FormLabel>
+            <Input
+              type="tel"
+              placeholder="Enter your phone number"
+              value={phone_number}
+              onChange={(e) => setphone_number(parseInt(e.target.value, 10))}/>
+            {showErrors && !phone_number && (
+              <Text color="red" fontSize="sm">
+                Please enter your phone_number.
               </Text>
             )}
           </FormControl>
