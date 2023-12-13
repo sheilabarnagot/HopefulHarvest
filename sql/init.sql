@@ -3,6 +3,8 @@ CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
+    name VARCHAR(50),
+    lastname VARCHAR(50),
     password VARCHAR(100) NOT NULL,
     address TEXT,
     phone_number VARCHAR(20)
@@ -22,8 +24,8 @@ CREATE TABLE Products (
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock_quantity INTEGER NOT NULL,
-    user_id INTEGER REFERENCES Users(user_id)
-    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    user_id INTEGER REFERENCES Users(user_id),
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     category_id INTEGER REFERENCES Categories(category_id)
 );
 
