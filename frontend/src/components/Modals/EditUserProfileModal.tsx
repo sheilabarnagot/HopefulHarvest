@@ -52,8 +52,8 @@ export default function EditUserProfileModal({
       theme: 'light',
     });
   const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
-    console.log(values);
-    console.log(errors);
+    console.log({ values });
+
     // const respons = await fetch('http://localhost:8080/api/auth/signin', {
     //   method: 'POST',
     //   headers: {

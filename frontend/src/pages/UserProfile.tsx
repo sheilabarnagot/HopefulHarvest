@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 export default function UserProfile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const token = Cookies.get('token');
 
   const handleGetUser = async () => {
     const response = await fetch('http://localhost:3000/protected', {
