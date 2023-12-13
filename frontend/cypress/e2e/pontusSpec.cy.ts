@@ -21,3 +21,13 @@ describe('Testing if drawers open and closes', () => {
     cy.get('#open-dashboard-drawer').click();
   });
 });
+
+describe('Testing if the upload button works', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:5173/profile');
+  });
+  it('Upload button works', () => {
+    cy.get('.upload-product-button').click();
+    cy.get('.cancel-upload-button').click();
+  });
+});
