@@ -7,11 +7,13 @@ import './index.css';
 import UserRegistration from './UserRegistration.tsx';
 import UserDashboard from './pages/UserDashboard.tsx';
 import Login from './login.tsx';
+import UserProfile from './pages/UserProfile.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <h2>Not Found</h2>,
     children: [
       {
         path: 'dashboard',
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'profile/users/:userId',
+        element: <UserProfile />,
       },
     ],
   },
