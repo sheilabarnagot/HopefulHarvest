@@ -15,7 +15,7 @@ function classNames(...classes: (string | undefined)[]): string {
 
 const Navbar: React.FC = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800 p-4 fixed top-0 w-2/4 z-50">
+    <Disclosure as="nav" className="bg-gray-800 p-4 sticky top-0 w-full z-50 pb-[2rem]">
       {({ open }) => (
         <div className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-center">
@@ -33,7 +33,9 @@ const Navbar: React.FC = () => {
                     key={item.name}
                     to={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      item.current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
@@ -61,7 +63,9 @@ const Navbar: React.FC = () => {
                   key={item.name}
                   to={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
@@ -78,10 +82,6 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
-
-
-
 
 // import { Fragment, ReactNode } from 'react';
 // import { Disclosure, Menu, Transition } from '@headlessui/react';
