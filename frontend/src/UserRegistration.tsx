@@ -12,7 +12,7 @@ import {
 
 interface RegistrationData {
   name: string;
-  lastName: string;
+  lastname: string;
   username: string;
   email: string;
   password: string;
@@ -22,7 +22,7 @@ interface RegistrationData {
 
 const UserRegistration: React.FC = () => {
   const [name, setname] = useState<string>('');
-  const [lastName, setlastName] = useState<string>('');
+  const [lastname, setlastName] = useState<string>('');
   const [username, setusername] = useState<string>('');
   const [email, setemail] = useState<string>('');
   const [password, setpassword] = useState<string>('');
@@ -30,12 +30,20 @@ const UserRegistration: React.FC = () => {
   const [phone_number, setphone_number] = useState<number>();
   const [showErrors, setShowErrors] = useState<boolean>(false);
 
-
-  const handleRegistration = async () => {
+  const handleRegistration = async e => {
+    e.preventDefault();
     setShowErrors(true);
 
     try {
-      if (!name || !lastName || !username || !email || !password || !address || !phone_number) {
+      if (
+        !name ||
+        !lastname ||
+        !username ||
+        !email ||
+        !password ||
+        !address ||
+        !phone_number
+      ) {
         throw new Error('All fields are required');
       }
 
@@ -58,14 +66,14 @@ const UserRegistration: React.FC = () => {
       // fake
       const registrationData: RegistrationData = {
         name,
-        lastName,
+        lastname,
         username,
         email,
         password: hashedPassword,
         address,
         phone_number,
       };
-
+      console.log(registrationData);
       const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: {
@@ -110,112 +118,114 @@ const UserRegistration: React.FC = () => {
         maxWidth="400px"
         borderWidth={1}
         borderRadius={8}
-        boxShadow="lg"
-      >
+        boxShadow="lg">
         <VStack spacing={4}>
           <Heading as="h2" size="lg">
             Registration
           </Heading>
-          <FormControl id="firstName" isRequired>
-            <FormLabel>Name</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-            />
-            {showErrors && !name && (
-              <Text color="red" fontSize="sm">
-                Please enter your name.
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="lastName" isRequired>
-            <FormLabel>Last Name</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter your last name"
-              value={lastName}
-              onChange={(e) => setlastName(e.target.value)}
-            />
-            {showErrors && !lastName && (
-              <Text color="red" fontSize="sm">
-                Please enter your last name
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="username" isRequired>
-            <FormLabel>Username</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setusername(e.target.value)}
-            />
-            {showErrors && !username && (
-              <Text color="red" fontSize="sm">
-                Please enter your username
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="email" isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
-            />
-            {showErrors && !email && (
-              <Text color="red" fontSize="sm">
-                Please enter your email.
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="password" isRequired>
-            <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
-            />
-            {showErrors && !password && (
-              <Text color="red" fontSize="sm">
-                Please enter your password.
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="address" isRequired>
-            <FormLabel>Address</FormLabel>
-            <Input
-              type="address"
-              placeholder="Enter your address"
-              value={address}
-              onChange={(e) => setaddress(e.target.value)}
-            />
-            {showErrors && !address && (
-              <Text color="red" fontSize="sm">
-                Please enter your address.
-              </Text>
-            )}
-          </FormControl>
-          <FormControl id="passphone_numberword" isRequired>
-            <FormLabel>phone_number</FormLabel>
-            <Input
-              type="tel"
-              placeholder="Enter your phone number"
-              value={phone_number}
-              onChange={(e) => setphone_number(parseInt(e.target.value, 10))}/>
-            {showErrors && !phone_number && (
-              <Text color="red" fontSize="sm">
-                Please enter your phone_number.
-              </Text>
-            )}
-          </FormControl>
-          <Button colorScheme="teal" onClick={handleRegistration}>
-            Register
-          </Button>
+          <form onSubmit={handleRegistration}>
+            <FormControl id="firstName" isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={e => setname(e.target.value)}
+              />
+              {showErrors && !name && (
+                <Text color="red" fontSize="sm">
+                  Please enter your name.
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="lastname" isRequired>
+              <FormLabel>Last Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter your last name"
+                value={lastname}
+                onChange={e => setlastName(e.target.value)}
+              />
+              {showErrors && !lastname && (
+                <Text color="red" fontSize="sm">
+                  Please enter your last name
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="username" isRequired>
+              <FormLabel>Username</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={e => setusername(e.target.value)}
+              />
+              {showErrors && !username && (
+                <Text color="red" fontSize="sm">
+                  Please enter your username
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="email" isRequired>
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={e => setemail(e.target.value)}
+              />
+              {showErrors && !email && (
+                <Text color="red" fontSize="sm">
+                  Please enter your email.
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={e => setpassword(e.target.value)}
+              />
+              {showErrors && !password && (
+                <Text color="red" fontSize="sm">
+                  Please enter your password.
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="address" isRequired>
+              <FormLabel>Address</FormLabel>
+              <Input
+                type="address"
+                placeholder="Enter your address"
+                value={address}
+                onChange={e => setaddress(e.target.value)}
+              />
+              {showErrors && !address && (
+                <Text color="red" fontSize="sm">
+                  Please enter your address.
+                </Text>
+              )}
+            </FormControl>
+            <FormControl id="passphone_numberword" isRequired>
+              <FormLabel>phone_number</FormLabel>
+              <Input
+                type="tel"
+                placeholder="Enter your phone number"
+                value={phone_number}
+                onChange={e => setphone_number(parseInt(e.target.value, 10))}
+              />
+              {showErrors && !phone_number && (
+                <Text color="red" fontSize="sm">
+                  Please enter your phone_number.
+                </Text>
+              )}
+            </FormControl>
+            <Button colorScheme="teal" type="submit">
+              Register
+            </Button>
+          </form>
           <Text>
             Already have an account? <a href="/login">Log in</a>
           </Text>

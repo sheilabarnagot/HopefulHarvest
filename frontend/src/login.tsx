@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async e => {
+    e.preventDefault();
     try {
-      const response = await axios.post('/api/login', {
-        email,
-        password,
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.status === 200) {
@@ -32,17 +35,17 @@ const Login: React.FC = () => {
       <div className="bg-gray-700 p-8 rounded shadow-md w-96">
         <h1 className="text-2xl font-bold mb-4">Login Page</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email:
+            <label htmlFor="username" className="block text-sm font-medium">
+              username:
             </label>
             <input
-              type="email"
-              id="email"
+              type="username"
+              id="username"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -54,14 +57,12 @@ const Login: React.FC = () => {
               id="password"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
           <button
-            type="button"
-            onClick={handleLogin}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
             Login
           </button>
         </form>

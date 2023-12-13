@@ -11,10 +11,7 @@ dotenv.config();
 const PORT = 3000;
 
 const app = express();
-app.use(cors({
-  origin: 'http://localhost:3000/register',
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 
 app.use(
@@ -30,7 +27,6 @@ app.use(passport.session());
 
 app.post('/register', registerUser);
 app.post('/login', passport.authenticate('local'), loginUser);
-
 
 app.get('/profile', userTest);
 app.post('/api/images', upload.single('image'), uploadImage);
