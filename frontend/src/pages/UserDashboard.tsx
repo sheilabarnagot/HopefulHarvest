@@ -7,7 +7,9 @@ export default function UserDashboard() {
     isOpen: isOpenDasboardDrawer,
     onOpen: onOpenDashboardDrawer,
     onClose: onCloseDashboardDrawer,
-  } = useDisclosure();
+  } = useDisclosure({
+    defaultIsOpen: true,
+  });
 
   const {
     isOpen: isOpenUploadDrawer,

@@ -10,7 +10,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 
-import { useRef, FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 
 interface UploadProductDrawerProps {
   isOpenUploadDrawer: boolean;
@@ -21,12 +21,10 @@ interface UploadProductDrawerProps {
 export default function UploadProductDrawer({
   onCloseUploadDrawer,
   isOpenUploadDrawer,
-  onOpenUploadDrawer,
 }: UploadProductDrawerProps) {
   const [file, setFile] = useState<File | ''>('');
   const [imageName, setImageName] = useState('');
   const [srcImg, setSrcImg] = useState('');
-  const btnRef = useRef<HTMLButtonElement | null>(null);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,9 +68,6 @@ export default function UploadProductDrawer({
   }, [imageName]);
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpenUploadDrawer}>
-        Open
-      </Button>
       <Drawer
         isOpen={isOpenUploadDrawer}
         placement="left"
