@@ -36,7 +36,11 @@ export default function DashboardDrawer({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpenDashboardDrawer}>
+      <Button
+        id="open-dashboard-drawer"
+        ref={btnRef}
+        colorScheme="teal"
+        onClick={onOpenDashboardDrawer}>
         Open
       </Button>
       <Drawer
@@ -45,7 +49,7 @@ export default function DashboardDrawer({
         onClose={onCloseDashboardDrawer}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton id="drawer-close-button" />
           <DrawerHeader>My Dashboard</DrawerHeader>
 
           <DrawerBody>
@@ -55,6 +59,7 @@ export default function DashboardDrawer({
                 <MenuItem>My Products</MenuItem>
                 <MenuItem>Sold Products</MenuItem>
                 <MenuItem
+                  className="upload-product-button"
                   onClick={() => {
                     onCloseDashboardDrawer();
                     onOpenUploadDrawer();

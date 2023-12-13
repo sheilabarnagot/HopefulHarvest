@@ -99,7 +99,11 @@ export default function UploadProductDrawer({
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onCloseUploadDrawer}>
+            <Button
+              className="cancel-upload-button"
+              variant="outline"
+              mr={3}
+              onClick={onCloseUploadDrawer}>
               Cancel
             </Button>
             <Button colorScheme="blue">Save</Button>
