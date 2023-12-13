@@ -86,7 +86,7 @@ export default function EditUserProfileModal({
               <FormControl isInvalid={!!errors.username}>
                 <FormLabel>Update username</FormLabel>
                 <Input
-                  id="edit-user-usernamel"
+                  id="edit-user-username"
                   placeholder="username"
                   {...register('username', {
                     required: 'This is required',
