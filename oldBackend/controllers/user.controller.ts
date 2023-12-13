@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import fs from 'fs';
 
 export const userTest = async (req: Request, res: Response) => {
+  console.log(req.isAuthenticated());
+  console.log('userTest');
   req.isAuthenticated()
     ? res.send({ message: 'You are logged in' })
     : res.status(401).send({ message: 'You are not logged in' });

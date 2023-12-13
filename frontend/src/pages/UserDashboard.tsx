@@ -1,8 +1,10 @@
 import DashboardDrawer from '../components/Drawers/DashboardDrawer';
 import { DashboardSoldPerMonthChart } from '../components/Charts/DashboardSoldPerMonthChart';
 import { useDisclosure } from '@chakra-ui/react';
+import Cookies from 'js-cookie';
 
 export default function UserDashboard() {
+  const token = Cookies.get('token');
   const {
     isOpen: isOpenDasboardDrawer,
     onOpen: onOpenDashboardDrawer,
@@ -10,7 +12,7 @@ export default function UserDashboard() {
   } = useDisclosure({
     defaultIsOpen: true,
   });
-
+  console.log(token);
   const {
     isOpen: isOpenUploadDrawer,
     onOpen: onOpenDUploadDrawer,

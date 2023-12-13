@@ -1,11 +1,11 @@
-import { Client } from 'pg';
+import { client } from '../server';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-import {
-  strategy,
-  passportSerializeUser,
-  passportDeserializeUser,
-} from '../passport/init.passport';
+// import {
+//   strategy,
+//   passportSerializeUser,
+//   passportDeserializeUser,
+// } from '../passport/init.passport';
 dotenv.config();
 
 interface User {
@@ -27,19 +27,9 @@ declare global {
   }
 }
 
-const client = new Client({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: Number(process.env.PGPORT),
-});
-
-client.connect();
-
-strategy();
-passportSerializeUser();
-passportDeserializeUser(client);
+// strategy();
+// passportSerializeUser();
+// passportDeserializeUser(client);
 
 export const createUser = async (user: User) => {
   const { username, password, name, lastname, email, address, phone_number } =

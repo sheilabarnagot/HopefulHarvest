@@ -70,7 +70,7 @@ export default function DashboardDrawer({
                 <Divider />
                 <Divider />
                 <Divider />
-                <MenuItem to="/" as={NavLink}>
+                <MenuItem to="/profile/users/1" as={NavLink}>
                   Profile
                 </MenuItem>
               </Menu>

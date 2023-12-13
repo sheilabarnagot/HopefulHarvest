@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const handleLogin = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,7 +19,10 @@ const Login: React.FC = () => {
       });
 
       if (response.status === 200) {
-        console.log('Login successful');
+        console.log(response);
+        const result = await response.json();
+        console.log(result);
+        Cookies.set('token', result.token, { expires: 7, secure: true });
         navigate('/dashboard'); //
       } else {
         setError('Error during login');

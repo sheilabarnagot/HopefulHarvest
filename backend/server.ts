@@ -1,36 +1,34 @@
 import express from 'express';
-import { registerUser, loginUser } from './controllers/authController';
+import { router } from './auth';
+import { userProtectedRouter } from './routes/user-protected-routes';
 import passport from 'passport';
-import session from 'express-session';
+import { pass } from './passport.auth';
+import { Client } from 'pg';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import multer from 'multer';
-import { userTest, uploadImage, getImage } from './controllers/user.controller';
-const upload = multer({ dest: 'images/' });
-dotenv.config();
-const PORT = 3000;
 
 const app = express();
-app.use(cors());
+const PORT = 3000;
+
+export const client = new Client({
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: Number(process.env.PGPORT),
+});
+
+client.connect();
+app.use('/', cors());
 app.use(express.json());
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET as string,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-
+app.use('/auth', router);
+app.use(userProtectedRouter);
+pass(passport);
 app.use(passport.initialize());
-app.use(passport.session());
 
-app.post('/register', registerUser);
-app.post('/login', passport.authenticate('local'), loginUser);
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 
-app.get('/profile', userTest);
-app.post('/api/images', upload.single('image'), uploadImage);
-app.get('/images/:imageName', getImage);
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
