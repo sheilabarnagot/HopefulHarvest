@@ -56,5 +56,15 @@ When('I submit invalid information in the modal form', () => {
 Then('an error message should be displayed in a toast', () => {
   cy.get('#toast-error').should('include.text', 'Invalid email format');
 });
+Then('form should display error messages if not validated', () => {
+  cy.get('#edit-user-email-error').should(
+    'include.text',
+    'Invalid email format'
+  );
+  cy.get('#edit-user-username-error').should(
+    'include.text',
+    'You already have a user with that name'
+  );
+});
 
 ////////////////////////////////////////////////////////
