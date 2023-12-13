@@ -69,10 +69,10 @@ export default function EditUserProfileModal({
 
   useEffect(() => {
     console.log(errors);
-    if (errors.email?.message === 'Invalid email format') {
+    if (errors.email && errors.email.message === 'Invalid email format') {
       notify();
     }
-  }, [errors.email?.message]);
+  }, [errors.email && errors.email.message]);
 
   return (
     <>
