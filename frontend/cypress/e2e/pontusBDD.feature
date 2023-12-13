@@ -14,5 +14,6 @@ Scenario: Editing user information on the profile page
 Scenario: Error handling when editing user information
   Given I'm still on the profile page
   Given The modal opens when i click the "Edit User" button
+  Given I enter invalid information in the modal form
   When I submit invalid information in the modal form
-  Then I should see an error message in the modal
+  Then an error message should be displayed in a toast

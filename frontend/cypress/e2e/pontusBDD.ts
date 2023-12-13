@@ -46,7 +46,7 @@ Given('The modal opens when i click the "Edit User" button', () => {
 
 Given('I enter invalid information in the modal form', () => {
   cy.get('#edit-user-email').type('invalid email'); // email format is wrong.
-  cy.get('#edit-user-name').type('test'); // name cant be the same that already exist.
+  cy.get('#edit-user-username').type('test'); // name cant be the same that already exist.
 });
 
 When('I submit invalid information in the modal form', () => {
