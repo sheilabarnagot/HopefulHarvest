@@ -1,8 +1,15 @@
 import DashboardDrawer from '../components/Drawers/DashboardDrawer';
-import { DashboardSoldPerMonthChart } from '../components/Charts/DashboardSoldPerMonthChart';
 import { useDisclosure } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
-
+import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+export interface UserInfo {
+  user: {
+    user_id: number;
+    username: string;
+    email: string;
+  };
+}
 export default function UserDashboard() {
   const token = Cookies.get('token');
   const {
@@ -18,9 +25,33 @@ export default function UserDashboard() {
     onOpen: onOpenDUploadDrawer,
     onClose: onCloseDUploadDrawer,
   } = useDisclosure();
+
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
+  const getUserInformation = async () => {
+    const response = await fetch('http://localhost:3000/protected', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    Cookies.set('userId', result.user.user_id, {
+      expires: 7,
+      secure: true,
+    });
+    setUserInfo(result);
+  };
+  console.log(userInfo);
+  useEffect(() => {
+    getUserInformation();
+  }, []);
   return (
     <>
+      hi {userInfo && userInfo.user && userInfo.user.username}
       <DashboardDrawer
+        userInfo={userInfo}
         onOpenDashboardDrawer={onOpenDashboardDrawer}
         isOpenDashboardDrawer={isOpenDasboardDrawer}
         onCloseDashboardDrawer={onCloseDashboardDrawer}
@@ -28,7 +59,7 @@ export default function UserDashboard() {
         isOpenUploadDrawer={isOpenUploadDrawer}
         onCloseUploadDrawer={onCloseDUploadDrawer}
       />
-      <DashboardSoldPerMonthChart />
+      <Outlet />
     </>
   );
 }

@@ -15,7 +15,9 @@ function classNames(...classes: (string | undefined)[]): string {
 
 const Navbar: React.FC = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800 p-4 sticky top-0 w-full z-50 pb-[2rem]">
+    <Disclosure
+      as="nav"
+      className="bg-gray-800 p-4 sticky top-0 w-full z-50 pb-[2rem]">
       {({ open }) => (
         <div className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-center">
@@ -28,7 +30,7 @@ const Navbar: React.FC = () => {
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigation.map((item) => (
+                {navigation.map(item => (
                   <Link
                     key={item.name}
                     to={item.href}
@@ -38,8 +40,7 @@ const Navbar: React.FC = () => {
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium'
                     )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
+                    aria-current={item.current ? 'page' : undefined}>
                     {item.name}
                   </Link>
                 ))}
@@ -58,7 +59,7 @@ const Navbar: React.FC = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {navigation.map(item => (
                 <Link
                   key={item.name}
                   to={item.href}
@@ -68,8 +69,7 @@ const Navbar: React.FC = () => {
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
+                  aria-current={item.current ? 'page' : undefined}>
                   {item.name}
                 </Link>
               ))}

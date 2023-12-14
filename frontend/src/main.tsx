@@ -8,6 +8,7 @@ import UserRegistration from './UserRegistration.tsx';
 import UserDashboard from './pages/UserDashboard.tsx';
 import Login from './login.tsx';
 import UserProfile from './pages/UserProfile.tsx';
+import { DashboardSoldPerMonthChart } from './components/Charts/DashboardSoldPerMonthChart.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,17 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <UserDashboard />,
+        children: [
+          {
+            path: 'profile/users/:userId',
+            element: <UserProfile />,
+          },
+          {
+            path: 'profile/users/chart',
+            element: <DashboardSoldPerMonthChart />,
+          },
+        ],
       },
-      { path: 'dashboard', element: '<Dashboard /> ' },
       {
         path: 'register',
         element: <UserRegistration />,
@@ -27,10 +37,6 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
-      },
-      {
-        path: 'profile/users/:userId',
-        element: <UserProfile />,
       },
     ],
   },

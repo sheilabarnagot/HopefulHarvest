@@ -12,6 +12,7 @@ import {
   MenuItem,
   Divider,
 } from '@chakra-ui/react';
+import { UserInfo } from '../../pages/UserDashboard';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
@@ -24,6 +25,7 @@ interface DashboardDrawerProps {
   onOpenUploadDrawer: () => void;
   isOpenUploadDrawer: boolean;
   onCloseUploadDrawer: () => void;
+  userInfo: UserInfo | undefined;
 }
 
 export default function DashboardDrawer({
@@ -33,39 +35,21 @@ export default function DashboardDrawer({
   onOpenUploadDrawer,
   isOpenUploadDrawer,
   onCloseUploadDrawer,
+  userInfo,
 }: DashboardDrawerProps) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const [userInfo, setUserInfo] = useState();
-  const getUserInformation = async () => {
-    const response = await fetch('http://localhost:3000/protected', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-    Cookies.set('userId', result.user.user_id, {
-      expires: 7,
-      secure: true,
-    });
-    setUserInfo(result);
-  };
-  console.log(userInfo);
-  useEffect(() => {
-    getUserInformation();
-  }, []);
 
   return (
     <>
-      <Button
-        id="open-dashboard-drawer"
-        ref={btnRef}
-        colorScheme="teal"
-        onClick={onOpenDashboardDrawer}>
-        Open
-      </Button>
+      <div className="flex w-full justify-center">
+        <Button
+          id="open-dashboard-drawer"
+          ref={btnRef}
+          colorScheme="teal"
+          onClick={onOpenDashboardDrawer}>
+          settings
+        </Button>
+      </div>
       <Drawer
         isOpen={isOpenDashboardDrawer}
         placement="left"
@@ -73,14 +57,21 @@ export default function DashboardDrawer({
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton id="drawer-close-button" />
-          <DrawerHeader>My Dashboard</DrawerHeader>
+          <DrawerHeader>
+            Welcome, {userInfo && userInfo.user && userInfo.user.username}!
+          </DrawerHeader>
 
           <DrawerBody>
             <Input placeholder="Type here..." />
             <div className="mt-10">
               <Menu>
                 <MenuItem>My Products</MenuItem>
-                <MenuItem>Sold Products</MenuItem>
+                <MenuItem
+                  onClick={onCloseDashboardDrawer}
+                  as={NavLink}
+                  to="profile/users/chart">
+                  Sold Products
+                </MenuItem>
                 <MenuItem
                   className="upload-product-button"
                   onClick={() => {
@@ -94,7 +85,8 @@ export default function DashboardDrawer({
                 <Divider />
                 <Divider />
                 <MenuItem
-                  to={`/profile/users/${Cookies.get('userId')}`}
+                  onClick={onCloseDashboardDrawer}
+                  to={`profile/users/${Cookies.get('userId')}`}
                   as={NavLink}>
                   Profile
                 </MenuItem>

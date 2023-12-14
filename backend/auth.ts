@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
     const result = await client.query(query, values);
     const user = result.rows[0];
     // const user = users.find(u => u.username === username);
-    console.log(user);
+
     if (!user) {
       return res.status(400).json({ message: 'Invalid username or password' });
     }
