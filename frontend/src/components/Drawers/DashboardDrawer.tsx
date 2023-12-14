@@ -13,7 +13,8 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
 import UploadProductDrawer from './UploadProductDrawer';
 
 interface DashboardDrawerProps {
@@ -34,6 +35,28 @@ export default function DashboardDrawer({
   onCloseUploadDrawer,
 }: DashboardDrawerProps) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
+  const [userInfo, setUserInfo] = useState();
+  const getUserInformation = async () => {
+    const response = await fetch('http://localhost:3000/protected', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    Cookies.set('userId', result.user.user_id, {
+      expires: 7,
+      secure: true,
+    });
+    setUserInfo(result);
+  };
+  console.log(userInfo);
+  useEffect(() => {
+    getUserInformation();
+  }, []);
+
   return (
     <>
       <Button
@@ -70,7 +93,9 @@ export default function DashboardDrawer({
                 <Divider />
                 <Divider />
                 <Divider />
-                <MenuItem to="/profile/users/1" as={NavLink}>
+                <MenuItem
+                  to={`/profile/users/${Cookies.get('userId')}`}
+                  as={NavLink}>
                   Profile
                 </MenuItem>
               </Menu>

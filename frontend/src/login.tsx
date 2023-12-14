@@ -22,7 +22,9 @@ const Login: React.FC = () => {
         console.log(response);
         const result = await response.json();
         console.log(result);
+
         Cookies.set('token', result.token, { expires: 7, secure: true });
+
         navigate('/dashboard'); //
       } else {
         setError('Error during login');

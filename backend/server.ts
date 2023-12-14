@@ -25,7 +25,7 @@ app.use(userProtectedRouter);
 pass(passport);
 app.use(passport.initialize());
 
-app.get('/', (req, res) => {
+app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.send('Hello, World!');
 });
 
