@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { UserInfo } from '../../pages/UserDashboard';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Cookies from 'js-cookie';
 import UploadProductDrawer from './UploadProductDrawer';
 
