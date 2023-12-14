@@ -1,6 +1,13 @@
+Cypress.Commands.add('login', () => {
+  cy.visit('http://localhost:5173/login');
+  cy.get('#username').type('hyperslap');
+  cy.get('#password').type('1234');
+  cy.get('#login-button').click();
+});
+
 describe('Navigate to dashboard', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/dashboard');
+    cy.login();
   });
   it('Url contains dashboard', () => {
     cy.url().should('include', '/dashboard');
@@ -9,7 +16,7 @@ describe('Navigate to dashboard', () => {
 
 describe('Testing if drawers open and closes', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/dashboard');
+    cy.login();
   });
   it('Close & open dashboard drawer', () => {
     cy.get('#drawer-close-button').click();
@@ -24,7 +31,7 @@ describe('Testing if drawers open and closes', () => {
 
 describe('Testing if the upload button works', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/profile');
+    cy.login();
   });
   it('Upload button works', () => {
     cy.get('.upload-product-button').click();

@@ -23,7 +23,7 @@ const Login: React.FC = () => {
         const result = await response.json();
         console.log(result);
 
-        Cookies.set('token', result.token, { expires: 7, secure: true });
+        Cookies.set('token', result.token, { expires: 7, secure: false });
 
         navigate('/dashboard'); //
       } else {
@@ -66,6 +66,7 @@ const Login: React.FC = () => {
             />
           </div>
           <button
+            id="login-button"
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
             Login
