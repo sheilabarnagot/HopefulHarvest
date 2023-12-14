@@ -18,6 +18,6 @@ userProtectedRouter.get(
   async (req, res) => {
     !req.user && res.status(401).json({ message: 'Unauthorized' });
     const user = await userProfile(req, res);
-    req && res.json({ user, message: 'You made it to the secure route' });
+    req && res.json({ user: user, message: 'You made it to the secure route' });
   }
 );

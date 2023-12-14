@@ -15,8 +15,8 @@ export const userProfile = async (req: Request, res: Response) => {
   }
   const sql = `SELECT username, email, user_id FROM users WHERE user_id = $1`;
   const params = [req.user.user_id];
-  console.log('req.user.user_id', req.user.user_id);
   const query = await client.query(sql, params);
   const result = query.rows[0];
+  console.log(result);
   return result;
 };
