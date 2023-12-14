@@ -49,7 +49,7 @@ export default function UserDashboard() {
   }, []);
   return (
     <>
-      hi {userInfo && userInfo.user && userInfo.user.username}
+      <h2>hi {userInfo && userInfo.user && userInfo.user.username}</h2>
       <DashboardDrawer
         userInfo={userInfo}
         onOpenDashboardDrawer={onOpenDashboardDrawer}

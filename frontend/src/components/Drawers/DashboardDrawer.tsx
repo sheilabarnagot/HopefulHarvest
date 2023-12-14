@@ -38,7 +38,7 @@ export default function DashboardDrawer({
   userInfo,
 }: DashboardDrawerProps) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
-
+  const userId = Cookies.get('userId');
   return (
     <>
       <div className="flex w-full justify-center">
@@ -85,8 +85,9 @@ export default function DashboardDrawer({
                 <Divider />
                 <Divider />
                 <MenuItem
+                  className="profile-button"
                   onClick={onCloseDashboardDrawer}
-                  to={`profile/users/${Cookies.get('userId')}`}
+                  to={`profile/users/${userId}`}
                   as={NavLink}>
                   Profile
                 </MenuItem>
