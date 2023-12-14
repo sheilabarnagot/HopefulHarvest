@@ -21,3 +21,14 @@ userProtectedRouter.get(
     req && res.json({ user: user, message: 'You made it to the secure route' });
   }
 );
+
+userProtectedRouter.post('/logout', (req, res) => {
+  try {
+    res.clearCookie('token');
+
+    res.json({ message: 'Logout successful' });
+  } catch (error) {
+    console.error('Error during logout:', (error as Error).message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
