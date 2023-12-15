@@ -1,8 +1,18 @@
 -- Users Table
+DROP TABLE IF EXISTS CartItems;
+DROP TABLE IF EXISTS Cart;
+DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Categories;
+DROP TABLE IF EXISTS Users;
+
+
+
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     name VARCHAR(50),
     lastname VARCHAR(50),
     password VARCHAR(100) NOT NULL,
