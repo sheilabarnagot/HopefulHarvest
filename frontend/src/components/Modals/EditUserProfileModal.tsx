@@ -12,9 +12,11 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import Cookies from 'js-cookie';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useEffect, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface EditUserProfileModalProps {
@@ -25,6 +27,7 @@ interface EditUserProfileModalProps {
 interface IFormInput {
   email: string;
   username: string;
+  user_id: number;
 }
 
 export default function EditUserProfileModal({
@@ -32,15 +35,19 @@ export default function EditUserProfileModal({
   onClose,
 }: EditUserProfileModalProps) {
   const initialRef = useRef(null);
+  const [userInfo, setUserInfo] = useState<IFormInput | undefined>();
+  const [triggerRender, setTriggerRender] = useState<boolean>(false);
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<IFormInput>({
     mode: 'onChange',
   });
+
   const notify = () =>
-    toast('Invalid email format', {
+    toast('email or password is the same, please enter a new one', {
       position: 'top-right',
       autoClose: 5000,
       toastId: 'toast-error',
@@ -51,28 +58,61 @@ export default function EditUserProfileModal({
       progress: undefined,
       theme: 'light',
     });
-  const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
-    console.log({ values });
 
-    // const respons = await fetch('http://localhost:8080/api/auth/signin', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: values.username,
-    //     password: values.email,
-    //   }),
-    // });
-    notify();
+  const notifySuccess = () =>
+    toast('User information updated sucessfully!', {
+      position: 'top-center',
+      autoClose: 5000,
+      toastId: 'toast-success',
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
+    if (
+      values.email === userInfo?.email ||
+      values.username === userInfo?.username
+    ) {
+      notify();
+      return;
+    }
+    await fetch('http://localhost:3000/update-profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+      body: JSON.stringify({
+        username: values.username || userInfo?.username,
+        email: values.email || userInfo?.email,
+        user_id: Cookies.get('userId'),
+      }),
+    });
+    setTriggerRender(!triggerRender);
+    reset();
+    notifySuccess();
+  };
+
+  const getUserInformation = async () => {
+    const response = await fetch('http://localhost:3000/protected', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+    const result = await response.json();
+    setUserInfo(result.user);
+    console.log(result);
   };
 
   useEffect(() => {
-    console.log(errors);
-    if (errors.email && errors.email.message === 'Invalid email format') {
-      notify();
-    }
-  }, [errors.email && errors.email.message]);
+    getUserInformation();
+  }, [triggerRender]);
 
   return (
     <>
@@ -87,9 +127,8 @@ export default function EditUserProfileModal({
                 <FormLabel>Update username</FormLabel>
                 <Input
                   id="edit-user-username"
-                  placeholder="username"
+                  placeholder={userInfo && userInfo.username}
                   {...register('username', {
-                    required: 'This is required',
                     minLength: {
                       value: 2,
                       message: 'Minimum length should be 2',
@@ -104,13 +143,8 @@ export default function EditUserProfileModal({
                 <FormLabel>Update email</FormLabel>
                 <Input
                   id="edit-user-email"
-                  placeholder="email"
+                  placeholder={userInfo && userInfo.email}
                   {...register('email', {
-                    required: 'This is required',
-                    minLength: {
-                      value: 4,
-                      message: 'Minimum length should be 4',
-                    },
                     pattern: {
                       value: /\S+@\S+\.\S+/,
                       message: 'Invalid email format',
