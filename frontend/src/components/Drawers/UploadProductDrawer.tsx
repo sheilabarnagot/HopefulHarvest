@@ -25,11 +25,12 @@ export default function UploadProductDrawer({
   const [file, setFile] = useState<File | ''>('');
   const [imageName, setImageName] = useState('');
   const [srcImg, setSrcImg] = useState('');
-
+  const userId = Cookies.get('userId');
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', file);
+    formData.append('userId', userId || '');
     try {
       const result = await fetch('http://localhost:3000/upload-image', {
         headers: {

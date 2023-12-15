@@ -2,7 +2,11 @@ import express from 'express';
 import passport from 'passport';
 import fs from 'fs';
 export const userProtectedRouter = express.Router();
-import { userProfile, editUserProfile } from '../models/user-models';
+import {
+  userProfile,
+  editUserProfile,
+  uploadImageModel,
+} from '../models/user-models';
 import { Request, Response } from 'express';
 import { upload } from '../server';
 declare global {
@@ -70,5 +74,5 @@ userProtectedRouter.get(
 export const uploadImage = (req: Request, res: Response) => {
   const imageName = req.file && req.file.filename;
   const description: string = req.body.description;
-  res.send({ description, imageName });
+  uploadImageModel(req, res);
 };
