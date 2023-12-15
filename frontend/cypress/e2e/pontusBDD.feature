@@ -17,6 +17,5 @@ Scenario: Error handling when editing user information
   Given The modal opens when i click the "Edit User" button
   Given I enter invalid information in the modal form
   When I submit invalid information in the modal form
-  Then an error message should be displayed in a toast
   Then form should display error messages if not validated
 

@@ -27,7 +27,16 @@ userProtectedRouter.put(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     !req.user && res.status(401).json({ message: 'Unauthorized' });
-    const user = await editUserProfile(req, res);
-    req && res.json({ user: user, message: 'You made it to the secure route' });
+
+    try {
+      const user = await editUserProfile(req, res);
+      req &&
+        res.json({ user: user, message: 'You made it to the secure route' });
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: 'Something went wrong! Please try logging in' });
+    }
   }
 );

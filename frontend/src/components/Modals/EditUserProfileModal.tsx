@@ -41,8 +41,10 @@ export default function EditUserProfileModal({
     handleSubmit,
     register,
     reset,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<IFormInput>({
+    criteriaMode: 'all',
     mode: 'onChange',
   });
 
@@ -73,13 +75,23 @@ export default function EditUserProfileModal({
     });
 
   const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
-    if (
-      values.email === userInfo?.email ||
-      values.username === userInfo?.username
-    ) {
-      notify();
-      return;
+    if (values.username === userInfo?.username) {
+      setError('username', {
+        type: 'validate',
+        message: 'username is the same as before',
+      });
+
+      return null;
     }
+
+    if (values.email === userInfo?.email) {
+      setError('email', {
+        type: 'validate',
+        message: 'Email is the same as before',
+      });
+      return null;
+    }
+
     await fetch('http://localhost:3000/update-profile', {
       method: 'PUT',
       headers: {
@@ -111,8 +123,16 @@ export default function EditUserProfileModal({
   };
 
   useEffect(() => {
+    console.log(errors.email);
+  }, [setError]);
+
+  useEffect(() => {
     getUserInformation();
   }, [triggerRender]);
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors.email?.message, errors.username?.message]);
 
   return (
     <>
@@ -125,6 +145,9 @@ export default function EditUserProfileModal({
             <ModalBody pb={6}>
               <FormControl isInvalid={!!errors.username}>
                 <FormLabel>Update username</FormLabel>
+                <FormErrorMessage id="edit-user-username-error">
+                  {errors.username && errors.username.message}
+                </FormErrorMessage>
                 <Input
                   id="edit-user-username"
                   placeholder={userInfo && userInfo.username}
@@ -135,12 +158,14 @@ export default function EditUserProfileModal({
                     },
                   })}
                 />
-                <FormErrorMessage id="edit-user-username-error">
-                  {errors.username && errors.username.message}
-                </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.email} mt={4}>
                 <FormLabel>Update email</FormLabel>
+                <FormErrorMessage>
+                  <p id="edit-user-email-error">
+                    {errors.email && errors.email.message}
+                  </p>
+                </FormErrorMessage>
                 <Input
                   id="edit-user-email"
                   placeholder={userInfo && userInfo.email}
@@ -151,9 +176,6 @@ export default function EditUserProfileModal({
                     },
                   })}
                 />
-                <FormErrorMessage id="edit-user-email-error">
-                  {errors.email && errors.email.message}
-                </FormErrorMessage>
               </FormControl>
             </ModalBody>
 
@@ -161,6 +183,7 @@ export default function EditUserProfileModal({
               <Button
                 isLoading={isSubmitting}
                 type="submit"
+                className="edit-user-modal-save"
                 colorScheme="blue"
                 mr={3}>
                 Save

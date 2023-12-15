@@ -54,25 +54,26 @@ Given('The modal opens when i click the "Edit User" button', () => {
 
 Given('I enter invalid information in the modal form', () => {
   cy.get('#edit-user-email').type('invalid email'); // email format is wrong.
-  cy.get('#edit-user-username').type('test'); // name cant be the same that already exist.
+  cy.get('#edit-user-email').clear();
+  cy.get('#edit-user-username').type('h'); // name cant be the same that already exist.
+  cy.get('.edit-user-modal-save').click();
 });
 
 When('I submit invalid information in the modal form', () => {
   cy.get('#edit-user-profile-form').submit();
 });
 
-Then('an error message should be displayed in a toast', () => {
-  cy.get('#toast-error').should('include.text', 'Invalid email format');
-});
 Then('form should display error messages if not validated', () => {
-  cy.get('#edit-user-email-error').should(
-    'include.text',
-    'Invalid email format'
-  );
-  cy.get('#edit-user-username-error').should(
-    'include.text',
-    'You already have a user with that name'
-  );
+  cy.get('#edit-user-email').type('invalid email');
+  cy.get('#edit-user-email-error').should('exist');
+  cy.get('#edit-user-username-error').should('exist');
+  cy.get('#edit-user-username').clear();
+  cy.get('#edit-user-email').clear();
+  cy.get('#edit-user-username').type('hyperslap');
+  cy.get('.edit-user-modal-save').click();
+  cy.get('#edit-user-username-error')
+    .should('exist')
+    .contains('username is the same as before');
 });
 
 ////////////////////////////////////////////////////////
