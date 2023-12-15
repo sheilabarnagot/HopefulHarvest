@@ -94,6 +94,7 @@ export default function UploadProductForm({
           Ladda upp bild
         </FormLabel>
         <Input
+          id="file-upload"
           className="text-sm text-stone-500
               file:mr-5 file:py-1 file:px-3 file:border-[1px]
               file:text-xs file:font-medium
@@ -105,7 +106,7 @@ export default function UploadProductForm({
           type="file"
         />
         {imgPreviewJSX}
-        <Button isLoading={isSubmitting} type="submit">
+        <Button id="post-product-form" isLoading={isSubmitting} type="submit">
           Publicera
         </Button>
       </Stack>

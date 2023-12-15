@@ -27,7 +27,7 @@ app.use(express.json());
 app.use('/auth', router);
 app.use('/', cors(), userProtectedRouter);
 app.post(
-  '/upload-product',
+  '/upload-image',
   passport.authenticate('jwt', { session: false }),
   upload.single('image'),
   (req, res) => {
