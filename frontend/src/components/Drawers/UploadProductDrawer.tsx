@@ -9,7 +9,7 @@ import {
   Button,
   Input,
 } from '@chakra-ui/react';
-
+import Cookies from 'js-cookie';
 import { FormEvent, useState, useEffect } from 'react';
 
 interface UploadProductDrawerProps {
@@ -34,6 +34,7 @@ export default function UploadProductDrawer({
       const result = await fetch('http://localhost:3000/upload-image', {
         headers: {
           contentType: 'multipart/form-data',
+          Authorization: `Bearer ${Cookies.get('token')}`,
         },
         method: 'POST',
         body: formData,
@@ -52,7 +53,12 @@ export default function UploadProductDrawer({
   const getImage = async () => {
     try {
       const result = await fetch(
-        `http://localhost:3000/get-image/${imageName}`
+        `http://localhost:3000/get-image/${imageName}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
       );
 
       const blob = await result.blob();

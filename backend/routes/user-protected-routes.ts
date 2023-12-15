@@ -56,22 +56,19 @@ userProtectedRouter.put(
   }
 );
 
-userProtectedRouter.post('/upload-image', (req: Request, res: Response) => {
+userProtectedRouter.get(
+  '/get-image/:imageName',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const imageName = req.params.imageName;
+    console.log(imageName);
+    const readStream = fs.createReadStream(`images/${imageName}`);
+    readStream.pipe(res);
+  }
+);
+
+export const uploadImage = (req: Request, res: Response) => {
   const imageName = req.file && req.file.filename;
-  const description = req.body.description;
+  const description: string = req.body.description;
   res.send({ description, imageName });
-});
-
-userProtectedRouter.get('/get-image/:imageName', (req, res) => {
-  const imageName = req.params.imageName;
-  console.log(imageName);
-  const readStream = fs.createReadStream(`images/${imageName}`);
-  readStream.pipe(res);
-});
-
-// export const getImage = async (req: Request, res: Response) => {
-//   const imageName = req.params.imageName;
-//   console.log(imageName);
-//   const readStream = fs.createReadStream(`images/${imageName}`);
-//   readStream.pipe(res);
-// };
+};

@@ -1,6 +1,10 @@
 import express from 'express';
 import { router } from './auth';
-import { userProtectedRouter } from './routes/user-protected-routes';
+import {
+  userProtectedRouter,
+  uploadImage,
+} from './routes/user-protected-routes';
+
 import passport from 'passport';
 import { pass } from './passport.auth';
 import { Client } from 'pg';
@@ -21,7 +25,15 @@ client.connect();
 app.use('/', cors());
 app.use(express.json());
 app.use('/auth', router);
-app.use('/', cors(), upload.single('image'), userProtectedRouter);
+app.use('/', cors(), userProtectedRouter);
+app.post(
+  '/upload-image',
+  passport.authenticate('jwt', { session: false }),
+  upload.single('image'),
+  (req, res) => {
+    uploadImage(req, res);
+  }
+);
 
 pass(passport);
 app.use(passport.initialize());
