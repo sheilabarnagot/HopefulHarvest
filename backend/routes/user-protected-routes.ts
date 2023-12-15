@@ -22,6 +22,17 @@ userProtectedRouter.get(
   }
 );
 
+userProtectedRouter.post('/logout', (req, res) => {
+  try {
+    res.clearCookie('token');
+
+    res.json({ message: 'Logout successful' });
+  } catch (error) {
+    console.error('Error during logout:', (error as Error).message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 userProtectedRouter.put(
   '/update-profile',
   passport.authenticate('jwt', { session: false }),

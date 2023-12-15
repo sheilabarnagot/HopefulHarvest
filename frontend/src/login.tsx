@@ -7,7 +7,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async e => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
               id="username"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
               value={username}
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -62,13 +62,14 @@ const Login: React.FC = () => {
               id="password"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button
             id="login-button"
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
             Login
           </button>
         </form>

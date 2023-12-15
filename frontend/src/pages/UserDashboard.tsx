@@ -3,6 +3,8 @@ import { useDisclosure } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import Logout from "../logout";
+
 export interface UserInfo {
   user: {
     user_id: number;
@@ -60,6 +62,8 @@ export default function UserDashboard() {
         onCloseUploadDrawer={onCloseDUploadDrawer}
       />
       <Outlet />
+      <Logout />
+    
     </>
   );
 }
