@@ -3,12 +3,19 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotnenv from 'dotenv';
 import { client } from './server';
+import { QueryResult } from 'pg';
 
 dotnenv.config();
 
-interface User {
+export interface User {
   username: string;
   password: string;
+  user_id: string;
+  email: string;
+  name: string;
+  lastname: string;
+  address: string;
+  phone_number: string;
 }
 export const router = express.Router();
 export const users: User[] = [];
@@ -44,8 +51,8 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     const query = 'SELECT * FROM users WHERE username = $1';
-    const values = [username];
-    const result = await client.query(query, values);
+    const values: string[] = [username];
+    const result: QueryResult<User> = await client.query(query, values);
     const user = result.rows[0];
     // const user = users.find(u => u.username === username);
 

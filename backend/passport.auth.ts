@@ -1,7 +1,6 @@
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import { PassportStatic } from 'passport';
 import { users } from './auth';
-import { client } from './server';
 
 //I have delete user from line 19 after null, it was like this: if (user) {
 //   return done(null, user);
