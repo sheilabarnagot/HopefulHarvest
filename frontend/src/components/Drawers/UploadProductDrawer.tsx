@@ -7,10 +7,20 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
 } from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import UploadProductForm from '../Forms/UploadProductForm';
 import Cookies from 'js-cookie';
 import { FormEvent, useState, useEffect } from 'react';
+
+export interface IFormInput {
+  product_name: string;
+  description: string;
+  price: number;
+  stock_quantity: number;
+  user_id: number;
+  category_id: number;
+}
 
 interface UploadProductDrawerProps {
   isOpenUploadDrawer: boolean;
@@ -26,6 +36,21 @@ export default function UploadProductDrawer({
   const [imageName, setImageName] = useState('');
   const [srcImg, setSrcImg] = useState('');
   const userId = Cookies.get('userId');
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<IFormInput>({
+    criteriaMode: 'all',
+    mode: 'onChange',
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
+    console.log(values);
+  };
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
@@ -87,9 +112,18 @@ export default function UploadProductDrawer({
           <DrawerHeader>Upload</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <UploadProductForm
+              handleSubmit={handleSubmit}
+              onSubmit={onSubmit}
+              register={register}
+              reset={reset}
+              setError={setError}
+              errors={errors}
+              isSubmitting={isSubmitting}
+            />
             <form onSubmit={submit}>
               <div className="flex flex-col">
+                <label htmlFor="image">Ladda upp en bild av produkten</label>
                 <input
                   className="text-sm text-stone-500
             file:mr-5 file:py-1 file:px-3 file:border-[1px]
