@@ -15,7 +15,6 @@ import {
 import { UserInfo } from '../../pages/UserDashboard';
 import { NavLink } from 'react-router-dom';
 import { useRef } from 'react';
-import Cookies from 'js-cookie';
 import UploadProductDrawer from './UploadProductDrawer';
 
 interface DashboardDrawerProps {
