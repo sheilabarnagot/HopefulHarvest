@@ -8,6 +8,7 @@ const Logout: React.FC = () => {
   const handleLogout = async () => {
     try {
       Cookies.remove('token', { path: '/' });
+      Cookies.remove('userId', { path: '/' });
 
       navigate('/');
     } catch (error) {
