@@ -7,6 +7,7 @@ Feature: Profile page
 Scenario: Editing user information on the profile page
   Given No error is present
   And A heading with the text "hello" is displayed
+  And I am on the profile page
   When I click the "Edit User Information" button
   Then a modal should open for editing user information
   Then the modal should close

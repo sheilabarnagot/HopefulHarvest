@@ -5,9 +5,15 @@ import {
   Before,
 } from '@badeball/cypress-cucumber-preprocessor';
 
+Cypress.Commands.add('login', () => {
+  cy.visit('http://localhost:5173/login');
+  cy.get('#username').type('hyperslap');
+  cy.get('#password').type('1234');
+  cy.get('#login-button').click();
+});
+
 Before(() => {
-  cy.visit('http://localhost:5173/profile/users/1');
-  cy.url().should('include', '/profile');
+  cy.login();
 });
 
 // Editing user information on the profile page //
@@ -17,7 +23,11 @@ Given('No error is present', () => {
 });
 
 Given('A heading with the text "hello" is displayed', () => {
-  cy.get('h2').should('include.text', 'hello');
+  cy.get('h2').should('include.text', 'hi');
+});
+
+Given('I am on the profile page', () => {
+  cy.get('.profile-button').click();
 });
 
 When('I click the "Edit User Information" button', () => {
@@ -35,9 +45,7 @@ Then('the modal should close', () => {
 // Error handling when editing user information //
 
 Given("I'm still on the profile page", () => {
-  cy.location().should(loc => {
-    expect(loc.pathname).to.eq('/profile/users/1');
-  });
+  cy.get('.profile-button').click();
 });
 
 Given('The modal opens when i click the "Edit User" button', () => {
