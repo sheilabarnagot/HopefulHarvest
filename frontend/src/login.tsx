@@ -34,7 +34,7 @@ const Login: React.FC = () => {
       console.error('Error during login', error);
     }
   };
-
+  console.log(Cookies.get('token'));
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-800 text-white">
       <div className="bg-gray-700 p-8 rounded shadow-md w-96">
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
               id="username"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={e => setUsername(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -62,14 +62,13 @@ const Login: React.FC = () => {
               id="password"
               className="mt-1 p-2 w-full border rounded-md bg-gray-600 text-gray-800"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
           <button
             id="login-button"
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
             Login
           </button>
         </form>

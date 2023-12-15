@@ -15,10 +15,10 @@ const opts = {
 export const pass = (passport: PassportStatic) => {
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
-      const user = users.find((u) => u.username === jwt_payload.username);
+      const user = users.find(u => u.username === jwt_payload.username);
 
       if (user) {
-        return done(null);
+        return done(null, user);
       }
 
       return done(null, false);

@@ -16,7 +16,8 @@ userProtectedRouter.get(
   '/protected',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    !req.user && res.status(401).json({ message: 'Unauthorized' });
+    console.log(req.isAuthenticated());
+    !req.isAuthenticated() && res.status(401).json({ message: 'Unauthorized' });
     const user = await userProfile(req, res);
     req && res.json({ user: user, message: 'You made it to the secure route' });
   }

@@ -3,7 +3,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import Logout from "../logout";
+import Logout from '../logout';
 
 export interface UserInfo {
   user: {
@@ -13,7 +13,7 @@ export interface UserInfo {
   };
 }
 export default function UserDashboard() {
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
   const {
     isOpen: isOpenDasboardDrawer,
     onOpen: onOpenDashboardDrawer,
@@ -21,7 +21,7 @@ export default function UserDashboard() {
   } = useDisclosure({
     defaultIsOpen: true,
   });
-  console.log(token);
+  console.log(Cookies.get('token'));
   const {
     isOpen: isOpenUploadDrawer,
     onOpen: onOpenDUploadDrawer,
@@ -31,19 +31,23 @@ export default function UserDashboard() {
 
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const getUserInformation = async () => {
-    const response = await fetch('http://localhost:3000/protected', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-    Cookies.set('userId', result.user.user_id, { expires: 7, secure: false });
-    setUserInfo(result);
+    try {
+      const response = await fetch('http://localhost:3000/protected', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      });
+      const result = await response.json();
+      console.log(result);
+      Cookies.set('userId', result.user.user_id, { expires: 7, secure: false });
+      setUserInfo(result);
+    } catch (error) {
+      console.error('Error during login', error);
+    }
   };
-  console.log(userInfo);
+
   useEffect(() => {
     getUserInformation();
   }, []);
@@ -63,7 +67,6 @@ export default function UserDashboard() {
       />
       <Outlet />
       <Logout />
-    
     </>
   );
 }
