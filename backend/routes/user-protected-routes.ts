@@ -6,6 +6,7 @@ import {
   userProfile,
   editUserProfile,
   uploadImageModel,
+  getUserProducts,
 } from '../models/user-models';
 import { Request, Response } from 'express';
 import { upload } from '../server';
@@ -65,6 +66,14 @@ userProtectedRouter.get(
     const imageName = req.params.imageName;
     const readStream = fs.createReadStream(`images/${imageName}`);
     readStream.pipe(res);
+  }
+);
+
+userProtectedRouter.post(
+  '/get-products',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    getUserProducts(req, res);
   }
 );
 
