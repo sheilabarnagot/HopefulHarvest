@@ -43,7 +43,7 @@ export default function UploadProductDrawer({
       }
       const data = await result.json();
       setImageName(data.imageName);
-      console.log(data);
+      data;
     } catch (error) {
       console.error({ error });
     }
@@ -61,7 +61,7 @@ export default function UploadProductDrawer({
     }
   };
 
-  console.log(srcImg);
+  srcImg;
   useEffect(() => {
     URL.revokeObjectURL(srcImg);
     imageName && getImage();

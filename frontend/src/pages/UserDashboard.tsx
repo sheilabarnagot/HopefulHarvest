@@ -25,6 +25,7 @@ export default function UserDashboard() {
     onOpen: onOpenDUploadDrawer,
     onClose: onCloseDUploadDrawer,
   } = useDisclosure();
+  const userId = Cookies.get('userId');
 
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const getUserInformation = async () => {
@@ -37,21 +38,20 @@ export default function UserDashboard() {
     });
     const result = await response.json();
     console.log(result);
-    Cookies.set('userId', result.user.user_id, {
-      expires: 7,
-      secure: true,
-    });
+    Cookies.set('userId', result.user.user_id, { expires: 7, secure: false });
     setUserInfo(result);
   };
   console.log(userInfo);
   useEffect(() => {
     getUserInformation();
   }, []);
+
   return (
     <>
       <h2>hi {userInfo && userInfo.user && userInfo.user.username}</h2>
       <DashboardDrawer
         userInfo={userInfo}
+        userId={userId}
         onOpenDashboardDrawer={onOpenDashboardDrawer}
         isOpenDashboardDrawer={isOpenDasboardDrawer}
         onCloseDashboardDrawer={onCloseDashboardDrawer}

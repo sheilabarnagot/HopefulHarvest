@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
       }
     );
     users.push(user);
-    res.json({ message: 'Logged in successfully', token });
+    res.json({ message: 'Logged in successfully', token, user: user.user_id });
   } catch (e: any) {
     console.log(e.message);
   }

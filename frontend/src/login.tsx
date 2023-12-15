@@ -19,9 +19,9 @@ const Login: React.FC = () => {
       });
 
       if (response.status === 200) {
-        console.log(response);
+        response;
         const result = await response.json();
-        console.log(result);
+        result;
 
         Cookies.set('token', result.token, { expires: 7, secure: false });
 

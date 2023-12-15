@@ -73,7 +73,7 @@ const UserRegistration: React.FC = () => {
         address,
         phone_number,
       };
-      console.log(registrationData);
+      registrationData;
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
@@ -83,7 +83,7 @@ const UserRegistration: React.FC = () => {
       });
 
       if (response.ok) {
-        console.log('User registered successfully.');
+        ('User registered successfully.');
       } else {
         const errorData = await response.json();
         throw new Error(`Error during registration: ${errorData.message}`);
@@ -99,14 +99,14 @@ const UserRegistration: React.FC = () => {
 
   //stulen -.- by Sheila.
   const sendVerificationEmail = async (email: string): Promise<boolean> => {
-    console.log(`Sending verification email to ${email}`);
+    `Sending verification email to ${email}`;
     // (SendGrid o Nodemailer)
 
     return true;
   };
 
   const hashPassword = async (password: string): Promise<string> => {
-    console.log('Hashing password...');
+    ('Hashing password...');
     return password;
     // Vet du om  bcrypt Pontus?
   };

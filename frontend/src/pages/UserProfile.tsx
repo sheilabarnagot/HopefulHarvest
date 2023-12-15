@@ -16,7 +16,7 @@ export default function UserProfile() {
     });
 
     const data = await response.json();
-    console.log(data);
+    data;
   };
 
   useEffect(() => {

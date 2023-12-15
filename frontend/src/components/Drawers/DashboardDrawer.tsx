@@ -20,6 +20,7 @@ import UploadProductDrawer from './UploadProductDrawer';
 
 interface DashboardDrawerProps {
   isOpenDashboardDrawer: boolean;
+  userId: string | undefined;
   onCloseDashboardDrawer: () => void;
   onOpenDashboardDrawer: () => void;
   onOpenUploadDrawer: () => void;
@@ -36,9 +37,10 @@ export default function DashboardDrawer({
   isOpenUploadDrawer,
   onCloseUploadDrawer,
   userInfo,
+  userId,
 }: DashboardDrawerProps) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const userId = Cookies.get('userId');
+
   return (
     <>
       <div className="flex w-full justify-center">

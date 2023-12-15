@@ -119,11 +119,11 @@ export default function EditUserProfileModal({
     });
     const result = await response.json();
     setUserInfo(result.user);
-    console.log(result);
+    result;
   };
 
   useEffect(() => {
-    console.log(errors.email);
+    errors.email;
   }, [setError]);
 
   useEffect(() => {
@@ -131,7 +131,7 @@ export default function EditUserProfileModal({
   }, [triggerRender]);
 
   useEffect(() => {
-    console.log(errors);
+    errors;
   }, [errors.email?.message, errors.username?.message]);
 
   return (
