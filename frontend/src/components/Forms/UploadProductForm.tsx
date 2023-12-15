@@ -24,6 +24,7 @@ interface Props {
   isSubmitting: boolean;
   onSubmit: (values: IFormInput) => void;
   setFile: React.Dispatch<React.SetStateAction<File | ''>>;
+  imgPreviewJSX: JSX.Element | false;
 }
 
 export default function UploadProductForm({
@@ -31,6 +32,7 @@ export default function UploadProductForm({
   register,
   onSubmit,
   errors,
+  imgPreviewJSX,
   reset,
   setError,
   isSubmitting,
@@ -106,10 +108,9 @@ export default function UploadProductForm({
           placeholder="Here is a sample placeholder"
           type="file"
         />
-        <div className="flex flex-col">
-          <Button type="submit">Ladda upp bild</Button>
-          <Button type="submit">Spara</Button>
-        </div>
+        {imgPreviewJSX}
+
+        <Button type="submit">Spara</Button>
       </form>
     </>
   );

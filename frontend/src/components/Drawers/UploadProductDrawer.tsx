@@ -122,6 +122,7 @@ export default function UploadProductDrawer({
   srcImg;
   useEffect(() => {
     URL.revokeObjectURL(srcImg);
+    URL.revokeObjectURL(file as string);
     imageName && getImage();
   }, [imageName]);
   return (
@@ -145,6 +146,9 @@ export default function UploadProductDrawer({
               errors={errors}
               isSubmitting={isSubmitting}
               setFile={setFile}
+              imgPreviewJSX={
+                file !== '' && <img src={URL.createObjectURL(file as Blob)} />
+              }
             />
             {/* <form onSubmit={submit}>
               <div className="flex flex-col">
