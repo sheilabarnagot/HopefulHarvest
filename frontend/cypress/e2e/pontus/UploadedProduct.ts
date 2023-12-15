@@ -41,6 +41,8 @@ Given('a user has uploaded products', () => {
   cy.get('#post-product-form').click();
 });
 When('the user navigates to their product page', () => {
+  cy.get('.cancel-upload-button').click();
+  cy.get('#open-dashboard-drawer').click();
   cy.get('.nav-upload-menu-item').click();
 });
 Then('the user should see their uploaded products', () => {

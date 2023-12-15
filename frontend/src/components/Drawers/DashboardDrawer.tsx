@@ -66,7 +66,13 @@ export default function DashboardDrawer({
             <Input placeholder="Type here..." />
             <div className="mt-10">
               <Menu>
-                <MenuItem>My Products</MenuItem>
+                <MenuItem
+                  as={NavLink}
+                  onClick={onCloseDashboardDrawer}
+                  to="profile/users/product-page"
+                  className="nav-upload-menu-item">
+                  My Products
+                </MenuItem>
                 <MenuItem
                   onClick={onCloseDashboardDrawer}
                   as={NavLink}
