@@ -34,7 +34,6 @@ const Login: React.FC = () => {
       console.error('Error during login', error);
     }
   };
-  console.log(Cookies.get('token'));
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-800 text-white">
       <div className="bg-gray-700 p-8 rounded shadow-md w-96">

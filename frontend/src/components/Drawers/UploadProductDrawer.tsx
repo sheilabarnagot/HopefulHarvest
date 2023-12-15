@@ -34,7 +34,6 @@ export default function UploadProductDrawer({
   isOpenUploadDrawer,
 }: UploadProductDrawerProps) {
   const [file, setFile] = useState<File | ''>('');
-  const [imageName, setImageName] = useState('');
   const [srcImg, setSrcImg] = useState('');
   const userId = Cookies.get('userId');
 
@@ -58,7 +57,7 @@ export default function UploadProductDrawer({
     formData.append('price', values.price.toString());
     formData.append('stock_quantity', values.stock_quantity.toString());
     try {
-      const result = await fetch('http://localhost:3000/upload-image', {
+      const result = await fetch('http://localhost:3000/upload-product', {
         headers: {
           contentType: 'multipart/form-data',
           Authorization: `Bearer ${Cookies.get('token')}`,
@@ -75,56 +74,12 @@ export default function UploadProductDrawer({
       console.error({ error });
     }
   };
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append('image', file);
-    formData.append('userId', userId || '');
-    try {
-      const result = await fetch('http://localhost:3000/upload-image', {
-        headers: {
-          contentType: 'multipart/form-data',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-        method: 'POST',
-        body: formData,
-      });
-      if (!result.ok) {
-        throw new Error('Error uploading image');
-      }
-      const data = await result.json();
-      setImageName(data.imageName);
-      data;
-    } catch (error) {
-      console.error({ error });
-    }
-  };
 
-  const getImage = async () => {
-    try {
-      const result = await fetch(
-        `http://localhost:3000/get-image/${imageName}`,
-        {
-          headers: {
-            Authorization: `Bearer ${Cookies.get('token')}`,
-          },
-        }
-      );
-
-      const blob = await result.blob();
-      const imageUrl = URL.createObjectURL(blob);
-      setSrcImg(imageUrl);
-    } catch (error) {
-      console.error({ error });
-    }
-  };
-
-  srcImg;
   useEffect(() => {
+    file !== '' && setSrcImg(URL.createObjectURL(file as Blob));
     URL.revokeObjectURL(srcImg);
-    URL.revokeObjectURL(file as string);
-    imageName && getImage();
-  }, [imageName]);
+  }, [file]);
+
   return (
     <>
       <Drawer
@@ -150,24 +105,6 @@ export default function UploadProductDrawer({
                 file !== '' && <img src={URL.createObjectURL(file as Blob)} />
               }
             />
-            {/* <form onSubmit={submit}>
-              <div className="flex flex-col">
-                <label htmlFor="image">Ladda upp en bild av produkten</label>
-                <Input
-                  className="text-sm text-stone-500
-            file:mr-5 file:py-1 file:px-3 file:border-[1px]
-            file:text-xs file:font-medium
-            file:bg-stone-50 file:text-stone-700
-            hover:file:cursor-pointer hover:file:bg-blue-50
-            hover:file:text-blue-700 border-0"
-                  onChange={e => e.target.files && setFile(e.target.files[0])}
-                  placeholder="Here is a sample placeholder"
-                  type="file"
-                />
-                <Button type="submit">Ladda upp bild</Button>
-              </div>
-            </form> */}
-            {imageName && <img src={srcImg} />}
           </DrawerBody>
 
           <DrawerFooter>

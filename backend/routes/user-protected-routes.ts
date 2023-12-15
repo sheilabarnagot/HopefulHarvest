@@ -23,7 +23,6 @@ userProtectedRouter.get(
   '/protected',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    console.log(req.isAuthenticated());
     !req.isAuthenticated() && res.status(401).json({ message: 'Unauthorized' });
     const user = await userProfile(req, res);
     req && res.json({ user: user, message: 'You made it to the secure route' });
@@ -52,7 +51,6 @@ userProtectedRouter.put(
       req &&
         res.json({ user: user, message: 'You made it to the secure route' });
     } catch (err) {
-      console.log(err);
       return res
         .status(500)
         .json({ message: 'Something went wrong! Please try logging in' });
@@ -65,7 +63,6 @@ userProtectedRouter.get(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const imageName = req.params.imageName;
-    console.log(imageName);
     const readStream = fs.createReadStream(`images/${imageName}`);
     readStream.pipe(res);
   }

@@ -21,7 +21,6 @@ export default function UserDashboard() {
   } = useDisclosure({
     defaultIsOpen: true,
   });
-  console.log(Cookies.get('token'));
   const {
     isOpen: isOpenUploadDrawer,
     onOpen: onOpenDUploadDrawer,
@@ -40,7 +39,7 @@ export default function UserDashboard() {
         },
       });
       const result = await response.json();
-      console.log(result);
+
       Cookies.set('userId', result.user.user_id, {
         expires: 7,
         secure: false,

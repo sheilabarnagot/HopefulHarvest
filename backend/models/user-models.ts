@@ -17,7 +17,7 @@ export const userProfile = async (req: Request, res: Response) => {
   const params = [req.user.user_id];
   const query = await client.query(sql, params);
   const result = query.rows[0];
-  console.log(result);
+
   return result;
 };
 
@@ -32,39 +32,20 @@ export const editUserProfile = async (req: Request, res: Response) => {
     const params = [req.body.username, req.body.email, req.user.user_id];
     const query = await client.query(sql, params);
     const result = query.rows[0];
-    console.log(result);
+
     return result;
   } catch (err) {
-    console.log(err);
     return res
       .status(500)
       .json({ message: 'Something went wrong! Please try logging in' });
   }
 };
 
-// export const uploadImageModel = async (req: Request, res: Response) => {
-//   req.isUnauthenticated() && res.status(401).json({ message: 'Unauthorized' });
-
-//   const imageName = req.file && req.file.filename;
-//   const product_id = req.body.product_id;
-//   console.log(req.user);
-//   const sql = `INSERT INTO images (image_ref, user_id, product_id) VALUES ($1, $2, $3) RETURNING *`;
-//   const params = [imageName, req.user?.user_id, product_id];
-//   const query = await client.query(sql, params);
-//   const result = query.rows[0];
-//   console.log(result);
-
-//   res.send({ imageName });
-// };
-
 export const uploadImageModel = async (req: Request, res: Response) => {
   req.isUnauthenticated() && res.status(401).json({ message: 'Unauthorized' });
 
   const imageName = req.file && req.file.filename;
 
-  console.log(req.body.product_name);
-
-  console.log(req.user);
   try {
     await client.query('BEGIN');
     const productQuery = `INSERT INTO products (product_name, description, price, stock_quantity, user_id)
@@ -77,7 +58,6 @@ export const uploadImageModel = async (req: Request, res: Response) => {
       req.user?.user_id,
     ];
     const productQueryRes = await client.query(productQuery, productParams);
-    console.log({ prodyct: productQueryRes.rows });
     const sql = `INSERT INTO images (image_ref, user_id, product_id) VALUES ($1, $2, $3) RETURNING *`;
     const params = [
       imageName,
