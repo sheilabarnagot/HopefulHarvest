@@ -52,7 +52,7 @@ CREATE TABLE Orders (
 CREATE TABLE Images (
     image_id SERIAL PRIMARY KEY,
     image_ref TEXT NOT NULL,
-    user_id INTEGER UNIQUE REFERENCES Users(user_id) UNIQUE,
+    user_id INTEGER  REFERENCES Users(user_id),
     product_id INTEGER UNIQUE REFERENCES Products(product_id)
 );
 
