@@ -48,19 +48,6 @@ export default function EditUserProfileModal({
     mode: 'onChange',
   });
 
-  const notify = () =>
-    toast('email or password is the same, please enter a new one', {
-      position: 'top-right',
-      autoClose: 5000,
-      toastId: 'toast-error',
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-
   const notifySuccess = () =>
     toast('User information updated sucessfully!', {
       position: 'top-center',
