@@ -7,6 +7,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
+  Input,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UploadProductForm from '../Forms/UploadProductForm';
@@ -49,7 +50,31 @@ export default function UploadProductDrawer({
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (values: IFormInput) => {
-    console.log(values);
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('userId', userId || '');
+    formData.append('product_name', values.product_name);
+    formData.append('description', values.description);
+    formData.append('price', values.price.toString());
+    formData.append('stock_quantity', values.stock_quantity.toString());
+    formData.append('category_id', values.category_id.toString());
+    try {
+      const result = await fetch('http://localhost:3000/upload-product', {
+        headers: {
+          contentType: 'multipart/form-data',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+        method: 'POST',
+        body: formData,
+      });
+      if (!result.ok) {
+        throw new Error('Error uploading product');
+      }
+      const data = await result.json();
+      data;
+    } catch (error) {
+      console.error({ error });
+    }
   };
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -120,11 +145,12 @@ export default function UploadProductDrawer({
               setError={setError}
               errors={errors}
               isSubmitting={isSubmitting}
+              setFile={setFile}
             />
-            <form onSubmit={submit}>
+            {/* <form onSubmit={submit}>
               <div className="flex flex-col">
                 <label htmlFor="image">Ladda upp en bild av produkten</label>
-                <input
+                <Input
                   className="text-sm text-stone-500
             file:mr-5 file:py-1 file:px-3 file:border-[1px]
             file:text-xs file:font-medium
@@ -137,7 +163,7 @@ export default function UploadProductDrawer({
                 />
                 <Button type="submit">Ladda upp bild</Button>
               </div>
-            </form>
+            </form> */}
             {imageName && <img src={srcImg} />}
           </DrawerBody>
 

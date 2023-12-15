@@ -4,6 +4,7 @@ import {
   FormLabel,
   FormErrorMessage,
   Textarea,
+  Button,
 } from '@chakra-ui/react';
 import { IFormInput } from '../Drawers/UploadProductDrawer';
 import {
@@ -22,6 +23,7 @@ interface Props {
   setError: UseFormSetError<IFormInput>;
   isSubmitting: boolean;
   onSubmit: (values: IFormInput) => void;
+  setFile: React.Dispatch<React.SetStateAction<File | ''>>;
 }
 
 export default function UploadProductForm({
@@ -32,10 +34,11 @@ export default function UploadProductForm({
   reset,
   setError,
   isSubmitting,
+  setFile,
 }: Props) {
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={!!errors.product_name}>
           <FormLabel>Produkt namn</FormLabel>
           <FormErrorMessage id="edit-user-product_name-error">
@@ -80,6 +83,7 @@ export default function UploadProductForm({
           <FormErrorMessage id="edit-user-description-error">
             {errors.description && errors.description.message}
           </FormErrorMessage>
+
           <Textarea
             id="edit-user-description"
             placeholder="Beskrivning"
@@ -91,6 +95,21 @@ export default function UploadProductForm({
             })}
           />
         </FormControl>
+        <Input
+          className="text-sm text-stone-500
+            file:mr-5 file:py-1 file:px-3 file:border-[1px]
+            file:text-xs file:font-medium
+            file:bg-stone-50 file:text-stone-700
+            hover:file:cursor-pointer hover:file:bg-blue-50
+            hover:file:text-blue-700 border-0"
+          onChange={e => e.target.files && setFile(e.target.files[0])}
+          placeholder="Here is a sample placeholder"
+          type="file"
+        />
+        <div className="flex flex-col">
+          <Button type="submit">Ladda upp bild</Button>
+          <Button type="submit">Spara</Button>
+        </div>
       </form>
     </>
   );
