@@ -5,10 +5,10 @@ import passport from 'passport';
 import { pass } from './passport.auth';
 import { Client } from 'pg';
 import cors from 'cors';
-//hello
+import multer from 'multer';
+export const upload = multer({ dest: 'images/' });
 const app = express();
 const PORT = 3000;
-
 export const client = new Client({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
@@ -21,7 +21,8 @@ client.connect();
 app.use('/', cors());
 app.use(express.json());
 app.use('/auth', router);
-app.use('/', cors(), userProtectedRouter);
+app.use('/', cors(), upload.single('image'), userProtectedRouter);
+
 pass(passport);
 app.use(passport.initialize());
 

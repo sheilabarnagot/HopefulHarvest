@@ -1,7 +1,10 @@
 import express from 'express';
 import passport from 'passport';
+import fs from 'fs';
 export const userProtectedRouter = express.Router();
 import { userProfile, editUserProfile } from '../models/user-models';
+import { Request, Response } from 'express';
+import { upload } from '../server';
 declare global {
   namespace Express {
     interface User {
@@ -52,3 +55,23 @@ userProtectedRouter.put(
     }
   }
 );
+
+userProtectedRouter.post('/upload-image', (req: Request, res: Response) => {
+  const imageName = req.file && req.file.filename;
+  const description = req.body.description;
+  res.send({ description, imageName });
+});
+
+userProtectedRouter.get('/get-image/:imageName', (req, res) => {
+  const imageName = req.params.imageName;
+  console.log(imageName);
+  const readStream = fs.createReadStream(`images/${imageName}`);
+  readStream.pipe(res);
+});
+
+// export const getImage = async (req: Request, res: Response) => {
+//   const imageName = req.params.imageName;
+//   console.log(imageName);
+//   const readStream = fs.createReadStream(`images/${imageName}`);
+//   readStream.pipe(res);
+// };

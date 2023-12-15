@@ -31,7 +31,7 @@ export default function UploadProductDrawer({
     const formData = new FormData();
     formData.append('image', file);
     try {
-      const result = await fetch('http://localhost:3000/api/images', {
+      const result = await fetch('http://localhost:3000/upload-image', {
         headers: {
           contentType: 'multipart/form-data',
         },
@@ -51,7 +51,9 @@ export default function UploadProductDrawer({
 
   const getImage = async () => {
     try {
-      const result = await fetch(`http://localhost:3000/images/${imageName}`);
+      const result = await fetch(
+        `http://localhost:3000/get-image/${imageName}`
+      );
 
       const blob = await result.blob();
       const imageUrl = URL.createObjectURL(blob);
