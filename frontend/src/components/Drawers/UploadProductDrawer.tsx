@@ -7,12 +7,11 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UploadProductForm from '../Forms/UploadProductForm';
 import Cookies from 'js-cookie';
-import { FormEvent, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export interface IFormInput {
   product_name: string;
@@ -41,7 +40,6 @@ export default function UploadProductDrawer({
     handleSubmit,
     register,
     reset,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<IFormInput>({
     criteriaMode: 'all',
@@ -72,6 +70,8 @@ export default function UploadProductDrawer({
       data;
     } catch (error) {
       console.error({ error });
+    } finally {
+      reset();
     }
   };
 
@@ -96,14 +96,10 @@ export default function UploadProductDrawer({
               handleSubmit={handleSubmit}
               onSubmit={onSubmit}
               register={register}
-              reset={reset}
-              setError={setError}
               errors={errors}
               isSubmitting={isSubmitting}
               setFile={setFile}
-              imgPreviewJSX={
-                file !== '' && <img src={URL.createObjectURL(file as Blob)} />
-              }
+              imgPreviewJSX={<img src={srcImg} />}
             />
           </DrawerBody>
 

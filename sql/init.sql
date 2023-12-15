@@ -1,3 +1,8 @@
+-- This SQL script initializes the database schema for the Hopeful Harvest application.
+-- It creates several tables including Users, Categories, Products, Orders, Images, OrderItems, Cart, and CartItems.
+-- Each table has its own set of columns and constraints to store and manage data related to users, products, orders, and cart items.
+-- The script also defines foreign key constraints to establish relationships between tables.
+-- This script should be executed to set up the initial database structure before running the application.
 -- Users Table
 DROP TABLE IF EXISTS CartItems;
 DROP TABLE IF EXISTS Cart;
