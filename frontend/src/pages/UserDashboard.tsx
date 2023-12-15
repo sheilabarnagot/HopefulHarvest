@@ -41,7 +41,11 @@ export default function UserDashboard() {
       });
       const result = await response.json();
       console.log(result);
-      Cookies.set('userId', result.user.user_id, { expires: 7, secure: false });
+      Cookies.set('userId', result.user.user_id, {
+        expires: 7,
+        secure: false,
+        sameSite: 'strict',
+      });
       setUserInfo(result);
     } catch (error) {
       console.error('Error during login', error);
