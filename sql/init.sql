@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS CartItems;
 DROP TABLE IF EXISTS Cart;
 DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS Images;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Categories;
@@ -46,6 +47,13 @@ CREATE TABLE Orders (
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total_amount DECIMAL(10, 2) NOT NULL,
     order_status VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Images (
+    image_id SERIAL PRIMARY KEY,
+    image_ref TEXT NOT NULL,
+    user_id INTEGER UNIQUE REFERENCES Users(user_id) UNIQUE,
+    product_id INTEGER UNIQUE REFERENCES Products(product_id)
 );
 
 -- OrderItems Table
