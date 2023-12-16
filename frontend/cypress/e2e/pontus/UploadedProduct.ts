@@ -17,11 +17,11 @@ Before(() => {
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
-  // let sessionCookie;
-  // // Get the session cookie after login
-  // cy.getCookie('token').then(cookie => {
-  //   sessionCookie = cookie;
-  // });
+  let sessionCookie;
+  // Get the session cookie after login
+  cy.getCookie('token').then(cookie => {
+    sessionCookie = cookie;
+  });
 });
 
 Given('a user has uploaded products', () => {
@@ -45,6 +45,8 @@ When('the user navigates to their product page', () => {
   cy.get('#open-dashboard-drawer').click();
   cy.get('.nav-upload-menu-item').click();
 });
-Then('the user should see their uploaded products', () => {
-  return 'pending';
+
+Then('the user should see a list of their uploaded products', () => {
+  cy.get('#h2').should('contain', 'My products');
+  cy.get('.product-card').should('min.have.length', 1);
 });
