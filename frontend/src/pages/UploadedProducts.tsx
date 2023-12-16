@@ -5,16 +5,18 @@ interface Result {
   username: string;
   email: string;
   image_ref: string;
+  description: string;
+  price: number;
 }
 
 interface StateGeneric {
   data: Result;
-  image: Blob;
+  image: string;
 }
 
 export default function UploadedProducts() {
-  const [images, setImages] = useState<StateGeneric[]>([]);
-
+  const [product, setProduct] = useState<StateGeneric[]>([]);
+  const [objectURLs, setObjectURLs] = useState<string[]>([]);
   const getProducts = async () => {
     const res = await fetch('http://localhost:3000/get-products', {
       method: 'POST',
@@ -29,32 +31,50 @@ export default function UploadedProducts() {
   };
 
   useEffect(() => {
-    getProducts().then(resultPromise => {
-      resultPromise.map(async (item: Result) => {
-        console.log(item);
-        const res = await fetch(
-          `http://localhost:3000/get-image/${item.image_ref}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${Cookies.get('token')}`,
-            },
-          }
-        );
-        const result = await res.blob();
+    getProducts().then(async resultPromise => {
+      const products = await Promise.all(
+        resultPromise.map(async (item: Result) => {
+          const res = await fetch(
+            `http://localhost:3000/get-image/${item.image_ref}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${Cookies.get('token')}`,
+              },
+            }
+          );
+          const result = await res.blob();
+          const objectURL = URL.createObjectURL(result);
 
-        setImages(oldProducts => [
-          ...oldProducts,
-          { data: item, image: result },
-        ]);
-      });
+          setObjectURLs([objectURL]);
+
+          return { data: item, image: objectURL };
+        })
+      );
+
+      setProduct(products);
     });
   }, []);
-  console.log(images);
+  console.log(product);
+  useEffect(() => {
+    return () => {
+      // Revoke all object URLs when the component unmounts
+      objectURLs.forEach(URL.revokeObjectURL);
+    };
+    console.log(product);
+  }, [objectURLs]);
   return (
-    <div>
-      <h1>UploadedProducts</h1>
+    <div className="flex flex-col items-center">
+      <h2>My products</h2>
+      {product.map((item, index) => (
+        <div className="product-card mb-4" key={item.data.image_ref + index}>
+          <p>{item.data.username}</p>
+          <img src={item.image} alt="product" />
+          <p className="text-left">Pris: {item.data.price}</p>
+          <p className="text-center">{item.data.description}</p>
+        </div>
+      ))}
     </div>
   );
 }

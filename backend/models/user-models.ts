@@ -73,18 +73,14 @@ export const uploadImageModel = async (req: Request, res: Response) => {
 };
 
 export const getUserProducts = async (req: Request, res: Response) => {
-  const query = `SELECT
-  Users.username,
-  Users.email,
-  Images.image_ref
-FROM
-  Users
-INNER JOIN
-  Products ON Users.user_id = Products.user_id
-LEFT JOIN
-  Images ON Products.product_id = Images.product_id
-WHERE
-  Users.username = $1;`;
+  const query = `SELECT * FROM
+                    Users INNER JOIN
+                  Products ON Users.user_id = Products.user_id
+                    LEFT JOIN
+                  Images ON Products.product_id = Images.product_id
+                    WHERE
+                  Users.username = $1
+                  ORDER BY Products.upload_date DESC;`;
   try {
     const params = [req.user?.username];
     const result = await client.query(query, params);
@@ -92,6 +88,6 @@ WHERE
     res.status(200).json(result.rows);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({ message: 'Something went wrong', err });
   }
 };

@@ -47,6 +47,7 @@ When('the user navigates to their product page', () => {
 });
 
 Then('the user should see a list of their uploaded products', () => {
-  cy.get('#h2').should('contain', 'My products');
-  cy.get('.product-card').should('min.have.length', 1);
+  cy.get('h2').should('contain', 'My products');
+  cy.get('#open-dashboard-drawer').click();
+  cy.get('.product-card').should('exist');
 });

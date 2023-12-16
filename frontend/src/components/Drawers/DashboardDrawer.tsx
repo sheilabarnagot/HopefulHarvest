@@ -48,7 +48,7 @@ export default function DashboardDrawer({
           ref={btnRef}
           colorScheme="teal"
           onClick={onOpenDashboardDrawer}>
-          settings
+          Drawer
         </Button>
       </div>
       <Drawer
