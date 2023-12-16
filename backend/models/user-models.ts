@@ -1,12 +1,6 @@
 import { client } from '../server';
 import { Request, Response } from 'express';
 
-interface User {
-  username: string;
-  email: string;
-  user_id: string;
-}
-
 export const userProfile = async (req: Request, res: Response) => {
   if (!req.user) {
     return res
@@ -91,8 +85,13 @@ LEFT JOIN
   Images ON Products.product_id = Images.product_id
 WHERE
   Users.username = $1;`;
-  const params = [req.user?.username];
-  const result = await client.query(query, params);
+  try {
+    const params = [req.user?.username];
+    const result = await client.query(query, params);
 
-  res.send(result.rows);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
 };
