@@ -219,7 +219,7 @@ const UserRegistration: React.FC = () => {
               />
               {showErrors && !phone_number && (
                 <Text color="red" fontSize="sm">
-                  Please enter your phone_number.
+                  Please enter your phone number.
                 </Text>
               )}
             </FormControl>
