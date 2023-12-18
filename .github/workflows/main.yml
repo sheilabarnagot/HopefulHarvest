@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     defaults:
       run:
-        working-directory: /home/runner/work/HopefulHarvest/HopefulHarvest/frontend
+        working-directory: frontend
 
     steps:
       - name: Checkout
