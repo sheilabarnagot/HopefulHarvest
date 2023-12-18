@@ -10,6 +10,10 @@ describe('Navigate to dashboard', () => {
     cy.login();
   });
   it('Url contains dashboard', () => {
+    cy.visit('/login');
+    cy.get('#username').type('hyperslap');
+    cy.get('#password').type('1234');
+    cy.get('#login-button').click();
     cy.url().should('include', '/dashboard');
   });
 });
