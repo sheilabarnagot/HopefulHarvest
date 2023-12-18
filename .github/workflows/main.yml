@@ -5,9 +5,6 @@ on: push
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: ./frontend/
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -16,7 +13,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          cache: 'npm'
-          cache-dependency-path: 'frontend/package-lock.json'
+          working-directory: ./frontend/
           build: npm run build
           start: npm start
