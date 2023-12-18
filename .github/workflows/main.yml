@@ -16,8 +16,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
           build: npm run build
           start: npm start
-          path: frontend
-          cache: 'npm'
-          cache-dependency-path: './frontend/package-lock.json'
