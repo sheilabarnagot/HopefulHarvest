@@ -17,11 +17,11 @@ Before(() => {
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
-  let sessionCookie;
-  // Get the session cookie after login
-  cy.getCookie('token').then(cookie => {
-    sessionCookie = cookie;
-  });
+  // let sessionCookie;
+  // // Get the session cookie after login
+  // cy.getCookie('token').then(cookie => {
+  //   sessionCookie = cookie;
+  // });
 });
 
 Given('a user has uploaded products', () => {
