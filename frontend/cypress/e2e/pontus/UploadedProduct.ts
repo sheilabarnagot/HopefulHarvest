@@ -6,14 +6,14 @@ import {
 } from '@badeball/cypress-cucumber-preprocessor';
 import 'cypress-file-upload';
 // Cypress.Commands.add('login', () => {
-//   cy.visit('http://localhost:5173/login');
+//   cy.visit('/login');
 //   cy.get('#username').type('hyperslap');
 //   cy.get('#password').type('1234');
 //   cy.get('#login-button').click();
 // });
 
 Before(() => {
-  cy.visit('http://localhost:5173/login');
+  cy.visit('/login');
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
@@ -25,11 +25,11 @@ Before(() => {
 });
 
 Given('a user has uploaded products', () => {
-  cy.visit('http://localhost:5173/login');
+  cy.visit('/login');
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
-  cy.visit('http://localhost:5173/dashboard');
+  cy.visit('/dashboard');
 
   cy.get('.upload-product-button').click();
 

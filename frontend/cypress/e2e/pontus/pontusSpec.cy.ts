@@ -1,5 +1,5 @@
 Cypress.Commands.add('login', () => {
-  cy.visit('http://localhost:5173/login');
+  cy.visit('/login');
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
