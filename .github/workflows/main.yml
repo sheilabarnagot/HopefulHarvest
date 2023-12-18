@@ -7,6 +7,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install PostgreSQL and setup database
+        run: |
+          sudo apt-get -yqq install postgresql
+          sudo service postgresql start
+          sudo -u postgres ./sql/psql -f init.sql
+        shell: bash
+
       - name: Install backend dependencies and start server
         run: |
           cd backend
@@ -18,7 +25,6 @@ jobs:
           PGUSER: ${{ secrets.PGUSER }}
           PGHOST: ${{ secrets.PGHOST }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-
         shell: bash
 
       - name: Cypress run
@@ -26,14 +32,3 @@ jobs:
         with:
           working-directory: ./frontend/
           build: npm run build
-          start: npm run preview
-          config: baseUrl=http://localhost:4173/
-          wait-on: 'http://localhost:8080'
-          browser: firefox
-
-      - name: Upload Cypress screenshots
-        uses: cypress-io/github-action@v6
-        with:
-          name: Cypress screenshots
-          working-directory: ./backend/
-          start: npm run dev

@@ -4,6 +4,7 @@
 -- The script also defines foreign key constraints to establish relationships between tables.
 -- This script should be executed to set up the initial database structure before running the application.
 -- Users Table
+
 DROP TABLE IF EXISTS CartItems;
 DROP TABLE IF EXISTS Cart;
 DROP TABLE IF EXISTS OrderItems;
@@ -12,8 +13,6 @@ DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Categories;
 DROP TABLE IF EXISTS Users;
-
-
 
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,

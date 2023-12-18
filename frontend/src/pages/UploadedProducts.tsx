@@ -29,7 +29,7 @@ export default function UploadedProducts() {
 
     return data;
   };
-
+  console.log(objectURLs);
   useEffect(() => {
     getProducts().then(async resultPromise => {
       const products = await Promise.all(
