@@ -17,7 +17,7 @@ jobs:
           PGPASSWORD: ${{ secrets.PGPASSWORD }}
           PGUSER: ${{ secrets.PGUSER }}
           PGHOST: ${{ secrets.PGHOST }}
-          JWT_SECRET: ${{ secrets.MY_JWT_SECRET }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
         shell: bash
 
