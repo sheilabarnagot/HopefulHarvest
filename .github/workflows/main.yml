@@ -17,4 +17,11 @@ jobs:
           build: npm run build
           start: npm run preview
           config: baseUrl=http://localhost:4173/
+          wait-on: 'http://localhost:8080'
           browser: firefox
+      - name: Upload Cypress screenshots
+        uses: cypress-io/github-action@v6
+        with:
+          name: Cypress screenshots
+          working-directory: ./backend/
+          start: npm run dev
