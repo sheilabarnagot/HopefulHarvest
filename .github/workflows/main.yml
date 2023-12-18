@@ -12,6 +12,8 @@ jobs:
           cd backend
           npm install
           npm run dev &
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         shell: bash
 
       - name: Cypress run
