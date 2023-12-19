@@ -29,6 +29,7 @@ export default function UploadedProducts() {
 
     return data;
   };
+
   console.log(objectURLs);
   useEffect(() => {
     getProducts().then(async resultPromise => {
@@ -56,25 +57,27 @@ export default function UploadedProducts() {
       setProduct(products);
     });
   }, []);
-  console.log(product);
-  useEffect(() => {
-    return () => {
-      // Revoke all object URLs when the component unmounts
-      objectURLs.forEach(URL.revokeObjectURL);
-    };
-    console.log(product);
-  }, [objectURLs]);
+
   return (
     <div className="flex flex-col items-center">
       <h2>My products</h2>
-      {product.map((item, index) => (
-        <div className="product-card mb-4" key={item.data.image_ref + index}>
-          <p>{item.data.username}</p>
-          <img src={item.image} alt="product" />
-          <p className="text-left">Pris: {item.data.price}</p>
-          <p className="text-center">{item.data.description}</p>
-        </div>
-      ))}
+      {product.map((item, index) => {
+        // Create a Blob URL for the image
+        // const imageBlobUrl = URL.createObjectURL(item.image);
+        console.log(item.image);
+        return (
+          <div className="product-card mb-4" key={item.data.image_ref + index}>
+            <p>{item.data.username}</p>
+            <img
+              src={item.image}
+              alt="product"
+              onLoad={() => URL.revokeObjectURL(item.image)}
+            />
+            <p className="text-left">Pris: {item.data.price}</p>
+            <p className="text-center">{item.data.description}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
