@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-
+import { useShoppingCartItems } from '../zustand/customHooks';
 interface Product {
   data: {
     category_id: string;
@@ -21,7 +21,12 @@ interface Product {
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[] | undefined>([]);
-  const [cartItems, setCartItems] = useState<Product[] | undefined>([]);
+
+  const setTest = useShoppingCartItems(
+    (state: any) => state.updateShoppingCart
+  );
+  const getTest = useShoppingCartItems((state: any) => state.data);
+  const removeTest = useShoppingCartItems((state: any) => state.removeFromCart);
   const getProducts = async () => {
     try {
       const response = await fetch('http://localhost:3000/get-all-products', {
@@ -41,6 +46,8 @@ export default function ProductPage() {
       );
     }
   };
+
+  console.log(getTest);
 
   useEffect(() => {
     getProducts().then(async result => {
@@ -65,14 +72,17 @@ export default function ProductPage() {
       setProducts(products);
     });
   }, []);
-  console.log(cartItems);
+  // console.log(cartItems);
+
   return (
     <>
       {products &&
         products.map(product => {
           return (
-            <div className="my-5 flex flex-col items-center">
-              <div key={product.data.product_id}>
+            <div
+              key={product.data.product_id}
+              className="my-5 flex flex-col items-center">
+              <div>
                 <h1 className="text-2xl">{product.data.product_name}</h1>
                 <img
                   src={product.image}
@@ -98,10 +108,11 @@ export default function ProductPage() {
                     </p>
                   </div>
                   <Button
-                    onClick={() =>
-                      setCartItems(items => [product, ...(items || [])])
-                    }
+                    onClick={() => removeTest(product.data.product_id)}
                     colorScheme="blue">
+                    Remove from cart
+                  </Button>
+                  <Button onClick={() => setTest(product)} colorScheme="blue">
                     Add to cart
                   </Button>
                 </div>
