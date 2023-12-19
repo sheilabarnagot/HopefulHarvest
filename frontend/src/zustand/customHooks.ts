@@ -34,7 +34,7 @@ interface TaskListArray {
   updateTaskListArray: (tasks: Task[]) => void;
 }
 
-interface ShoppingCartItems {
+export interface ShoppingCartItems {
   data: {
     category_id: string;
     description: string;
@@ -51,7 +51,7 @@ interface ShoppingCartItems {
   image: string;
 }
 
-interface ShoppingCartState {
+export interface ShoppingCartState {
   data: ShoppingCartItems[];
   updateShoppingCart: (product: ShoppingCartItems) => void;
   removeFromCart: (productId: string) => void;

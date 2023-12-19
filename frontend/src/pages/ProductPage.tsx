@@ -2,6 +2,7 @@ import { Button } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useShoppingCartItems } from '../zustand/customHooks';
+
 interface Product {
   data: {
     category_id: string;
@@ -22,11 +23,10 @@ interface Product {
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[] | undefined>([]);
 
-  const setTest = useShoppingCartItems(
-    (state: any) => state.updateShoppingCart
-  );
-  const getTest = useShoppingCartItems((state: any) => state.data);
-  const removeTest = useShoppingCartItems((state: any) => state.removeFromCart);
+  const setTest = useShoppingCartItems(state => state.updateShoppingCart);
+
+  const getTest = useShoppingCartItems(state => state.data);
+  const removeTest = useShoppingCartItems(state => state.removeFromCart);
   const getProducts = async () => {
     try {
       const response = await fetch('http://localhost:3000/get-all-products', {
