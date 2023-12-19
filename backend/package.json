@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsx server.ts && tsc server.ts",
+    "build": "tsc",
     "dev": "npx tsx --watch server.ts"
   },
   "keywords": [],
