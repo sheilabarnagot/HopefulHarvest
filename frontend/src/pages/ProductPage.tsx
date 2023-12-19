@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +9,7 @@ interface Product {
     image_id: number;
     image_ref: number;
     product_id: number;
+    price: number;
     product_name: string;
     stock_quantity: number;
     upload_date: string;
@@ -19,7 +21,7 @@ interface Product {
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[] | undefined>([]);
-
+  const [cartItems, setCartItems] = useState<Product[] | undefined>([]);
   const getProducts = async () => {
     try {
       const response = await fetch('http://localhost:3000/get-all-products', {
@@ -63,22 +65,47 @@ export default function ProductPage() {
       setProducts(products);
     });
   }, []);
-
+  console.log(cartItems);
   return (
     <>
-      <h1>Product Page</h1>
       {products &&
         products.map(product => {
           return (
-            <div className="mb-5" key={product.data.product_id}>
-              <h2>{product.data.product_name}</h2>
-              <img
-                src={product.image}
-                onLoad={() => URL.revokeObjectURL(product.image)}
-              />
-              <p>{product.data.description}</p>
-              <p>{product.data.username}</p>
-              <p>{product.data.upload_date}</p>
+            <div className="my-5 flex flex-col items-center">
+              <div key={product.data.product_id}>
+                <h1 className="text-2xl">{product.data.product_name}</h1>
+                <img
+                  src={product.image}
+                  width={300}
+                  onLoad={() => URL.revokeObjectURL(product.image)}
+                />
+                <div>
+                  <div className="flex my-3 justify-between">
+                    <p>{product.data.username}</p>
+                    <p>{product.data.upload_date.split('T')[0]}</p>
+                  </div>
+                  <div className="w-80 text-justify">
+                    <p>Description</p>
+                    <p className="font-serif">{product.data.description}</p>
+                  </div>
+                  <div className="flex mt-3 justify-between">
+                    <p>Price: €{product.data.price}</p>
+                    <p>
+                      In stock:{' '}
+                      <span className="font-bold">
+                        {product.data.stock_quantity}
+                      </span>
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() =>
+                      setCartItems(items => [product, ...(items || [])])
+                    }
+                    colorScheme="blue">
+                    Add to cart
+                  </Button>
+                </div>
+              </div>
             </div>
           );
         })}
