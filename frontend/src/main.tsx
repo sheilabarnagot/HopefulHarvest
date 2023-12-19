@@ -11,6 +11,7 @@ import UserProfile from './pages/UserProfile.tsx';
 import { DashboardSoldPerMonthChart } from './components/Charts/DashboardSoldPerMonthChart.tsx';
 import UploadedProducts from './pages/UploadedProducts.tsx';
 import CartCheckout from './pages/CartCheckout.tsx';
+import ProductPage from './pages/ProductPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,11 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: 'test',
+        path: 'shop',
+        element: <ProductPage />,
+      },
+      {
+        path: 'checkout',
         element: <CartCheckout />,
       },
     ],
