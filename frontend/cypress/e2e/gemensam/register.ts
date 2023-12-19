@@ -28,8 +28,8 @@ When('form is submitted', () => {
 });
 
 Then('I should be register', () => {
-  cy.url().should('include', '/register');
-  cy.get('success-message').should('contain', 'Registration successful');
+  cy.url().should('not.include', '/register');
+  cy.get('.success-message').should('contain', 'Registration successful');
 });
 
 Then('I should be redirected to login page', () => {
