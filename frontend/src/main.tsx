@@ -10,6 +10,7 @@ import Login from './login.tsx';
 import UserProfile from './pages/UserProfile.tsx';
 import { DashboardSoldPerMonthChart } from './components/Charts/DashboardSoldPerMonthChart.tsx';
 import UploadedProducts from './pages/UploadedProducts.tsx';
+import CartCheckout from './pages/CartCheckout.tsx';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'test',
+        element: <CartCheckout />,
       },
     ],
   },
