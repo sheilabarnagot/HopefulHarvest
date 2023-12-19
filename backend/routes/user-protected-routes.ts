@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import fs from 'fs';
-export const userProtectedRouter = express.Router();
+
 import {
   userProfile,
   editUserProfile,
@@ -21,6 +21,8 @@ declare global {
     }
   }
 }
+
+export const userProtectedRouter = express.Router();
 
 userProtectedRouter.get(
   '/protected',
