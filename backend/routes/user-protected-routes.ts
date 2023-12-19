@@ -7,9 +7,11 @@ import {
   editUserProfile,
   uploadImageModel,
   getUserProducts,
+  getAllProducts,
 } from '../models/user-models';
 import { Request, Response } from 'express';
 import { upload } from '../server';
+import { pass } from '../passport.auth';
 declare global {
   namespace Express {
     interface User {
@@ -74,6 +76,14 @@ userProtectedRouter.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     getUserProducts(req, res);
+  }
+);
+
+userProtectedRouter.get(
+  '/get-all-products',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    getAllProducts(req, res);
   }
 );
 

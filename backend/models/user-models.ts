@@ -91,3 +91,20 @@ export const getUserProducts = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Something went wrong', err });
   }
 };
+
+export const getAllProducts = async (req: Request, res: Response) => {
+  const query = `SELECT * FROM
+                    Users INNER JOIN
+                  Products ON Users.user_id = Products.user_id
+                    LEFT JOIN
+                  Images ON Products.product_id = Images.product_id
+                  ORDER BY Products.upload_date DESC;`;
+  try {
+    const result = await client.query(query);
+
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Something went wrong', err });
+  }
+};
