@@ -27,6 +27,7 @@ export default function ProductPage() {
 
   const getTest = useShoppingCartItems(state => state.data);
   const removeTest = useShoppingCartItems(state => state.removeFromCart);
+
   const getProducts = async () => {
     try {
       const response = await fetch('http://localhost:3000/get-all-products', {
