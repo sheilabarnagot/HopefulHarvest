@@ -1,38 +1,5 @@
-import { StoreApi, create, useStore } from 'zustand';
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-interface TaskListState {
-  activeTaskCreation: boolean;
-  activeTaskCreationChange: () => void;
-}
-
-type UserId = {
-  userid: number | null;
-  updateUserId: (userid: number | null) => void;
-  removeUserId: () => void;
-};
-
-type TaskList = {
-  taskList: boolean;
-  updateTaskListState: () => void;
-};
-
-interface Task {
-  taskname: string;
-  taskdescription: string;
-  category: string;
-  createdby: string;
-  taskcreateddate: string;
-  taskid: number;
-  taskpriority: string;
-  taskstatus: string;
-}
-
-interface TaskListArray {
-  tasks: Task[];
-
-  updateTaskListArray: (tasks: Task[]) => void;
-}
 
 export interface ShoppingCartItems {
   data: {
