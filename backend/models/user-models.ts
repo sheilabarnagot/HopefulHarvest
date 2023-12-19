@@ -93,7 +93,7 @@ export const getUserProducts = async (req: Request, res: Response) => {
 };
 
 export const getAllProducts = async (req: Request, res: Response) => {
-  const query = `SELECT * FROM
+  const query = `SELECT Products.*, Images.*, Users.username, Users.user_id FROM
                     Users INNER JOIN
                   Products ON Users.user_id = Products.user_id
                     LEFT JOIN
