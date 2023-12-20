@@ -109,11 +109,15 @@ export default function ProductPage() {
                     </p>
                   </div>
                   <Button
+                    id="remove-item"
                     onClick={() => removeTest(product.data.product_id)}
                     colorScheme="blue">
                     Remove from cart
                   </Button>
-                  <Button onClick={() => setTest(product)} colorScheme="blue">
+                  <Button
+                    id="add-item"
+                    onClick={() => setTest(product)}
+                    colorScheme="blue">
                     Add to cart
                   </Button>
                 </div>

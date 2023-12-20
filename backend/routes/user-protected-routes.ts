@@ -65,7 +65,7 @@ userProtectedRouter.put(
 
 userProtectedRouter.get(
   '/get-image/:imageName',
-  passport.authenticate('jwt', { session: false }),
+  // passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const imageName = req.params.imageName;
     const readStream = fs.createReadStream(`images/${imageName}`);
@@ -83,7 +83,7 @@ userProtectedRouter.post(
 
 userProtectedRouter.get(
   '/get-all-products',
-  passport.authenticate('jwt', { session: false }),
+  // passport.authenticate('jwt', { session: false }),
   (req, res) => {
     getAllProducts(req, res);
   }
