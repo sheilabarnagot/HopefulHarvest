@@ -19,9 +19,14 @@ const fs_1 = __importDefault(require("fs"));
 const user_models_1 = require("../models/user-models");
 exports.userProtectedRouter = express_1.default.Router();
 exports.userProtectedRouter.get('/protected', passport_1.default.authenticate('jwt', { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    !req.isAuthenticated() && res.status(401).json({ message: 'Unauthorized' });
-    const user = yield (0, user_models_1.userProfile)(req, res);
-    req && res.json({ user: user, message: 'You made it to the secure route' });
+    if (!req.isAuthenticated()) {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+    else {
+        const user = yield (0, user_models_1.userProfile)(req, res);
+        req &&
+            res.json({ user: user, message: 'You made it to the secure route' });
+    }
 }));
 exports.userProtectedRouter.post('/logout', (req, res) => {
     try {
@@ -46,7 +51,9 @@ exports.userProtectedRouter.put('/update-profile', passport_1.default.authentica
             .json({ message: 'Something went wrong! Please try logging in' });
     }
 }));
-exports.userProtectedRouter.get('/get-image/:imageName', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
+exports.userProtectedRouter.get('/get-image/:imageName', 
+// passport.authenticate('jwt', { session: false }),
+(req, res) => {
     const imageName = req.params.imageName;
     const readStream = fs_1.default.createReadStream(`images/${imageName}`);
     readStream.pipe(res);
@@ -54,7 +61,9 @@ exports.userProtectedRouter.get('/get-image/:imageName', passport_1.default.auth
 exports.userProtectedRouter.post('/get-products', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
     (0, user_models_1.getUserProducts)(req, res);
 });
-exports.userProtectedRouter.get('/get-all-products', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
+exports.userProtectedRouter.get('/get-all-products', 
+// passport.authenticate('jwt', { session: false }),
+(req, res) => {
     (0, user_models_1.getAllProducts)(req, res);
 });
 const uploadImage = (req, res) => {
