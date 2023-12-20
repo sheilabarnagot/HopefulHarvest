@@ -21,7 +21,6 @@ const Login: React.FC = () => {
       if (response.status === 200) {
         response;
         const result = await response.json();
-        result;
 
         Cookies.set('token', result.token, { expires: 7, secure: false });
 
@@ -39,7 +38,7 @@ const Login: React.FC = () => {
       <div className="bg-gray-700 p-8 rounded shadow-md w-96">
         <h1 className="text-2xl font-bold mb-4">Login Page</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleLogin}>
+        <form id="login" onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="username" className="block text-sm font-medium">
               username:
