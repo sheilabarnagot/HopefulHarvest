@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import { router } from './auth';
 import {
   userProtectedRouter,
@@ -24,6 +25,7 @@ export const client = new Client({
 client.connect();
 app.use('/', cors());
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/auth', router);
 app.use('/', cors(), userProtectedRouter);
 app.post(

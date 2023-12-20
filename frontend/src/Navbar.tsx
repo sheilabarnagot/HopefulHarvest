@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useShoppingCartItems } from './zustand/customHooks';
-
+import { useNavigate } from 'react-router-dom';
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Register', href: '/register', current: false },
@@ -15,9 +15,9 @@ const navigation = [
 function classNames(...classes: (string | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
 }
-
 const Navbar: React.FC = () => {
-  const shoppingCartItems = useShoppingCartItems(state => state.data);
+  const navigate = useNavigate();
+  const shoppingCartItems = useShoppingCartItems((state: any) => state.data);
   console.log(shoppingCartItems);
   return (
     <Disclosure as="nav" className="bg-gray-800 p-4 sticky top-0 w-full z-50">
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="flex">
+            <div onClick={() => navigate('/checkout')} className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -4,7 +4,6 @@ import {
   Then,
   Before,
 } from '@badeball/cypress-cucumber-preprocessor';
-import cypress from 'cypress';
 
 Cypress.Commands.add('login', () => {
   cy.visit('/login');

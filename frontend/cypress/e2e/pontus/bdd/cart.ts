@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
 Given('Given I have items in my cart', () => {
-  cy.visit('/');
+  cy.visit('/checkout');
   cy.get('[data-test=cart]').should('contain', 'Cart (empty)');
 });
 

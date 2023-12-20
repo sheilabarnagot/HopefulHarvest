@@ -1,6 +1,29 @@
 import { Box, Flex, Heading, HStack, Link, Stack } from '@chakra-ui/react';
 import CartOrderSummary from '../components/Cart/CartOrderSummary';
+import { useShoppingCartItems } from '../zustand/customHooks';
+import { CartItem } from '../components/Cart/CartItem';
+
+type CartItemProps = {
+  id: string;
+  data: {
+    isGiftWrapping?: boolean;
+    product_id: number;
+    name: string;
+    description: string;
+    quantity: number;
+    price: number;
+    currency: string;
+    image_ref: string;
+    imageUrl: string;
+  };
+
+  onChangeQuantity?: (quantity: number) => void;
+  onClickGiftWrapping?: () => void;
+  onClickDelete?: () => void;
+};
 export default function CartCheckout() {
+  const cartData = useShoppingCartItems((state: any) => state.data);
+
   return (
     <>
       <Box
@@ -18,12 +41,17 @@ export default function CartCheckout() {
             </Heading>
 
             <Stack spacing="6">
-              {/* {cartData.map(item => (
-              <CartItem key={item.id} {...item} />
-            ))} */}
+              {cartData &&
+                cartData.map((item: CartItemProps) => (
+                  <CartItem
+                    key={item.id}
+                    {...item}
+                    productId={item.data.product_id}
+                    imageUrl={`http://localhost:3000/images/${item.data.image_ref}`}
+                  />
+                ))}
             </Stack>
           </Stack>
-
           <Flex direction="column" align="center" flex="1">
             <CartOrderSummary />
             <HStack mt="6" fontWeight="semibold">
