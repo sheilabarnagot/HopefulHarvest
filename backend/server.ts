@@ -38,10 +38,6 @@ app.post(
 pass(passport);
 app.use(passport.initialize());
 
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.send('Hello, World!');
-});
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
