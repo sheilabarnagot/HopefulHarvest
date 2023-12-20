@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 text-center">
+    <footer className="bg-gray-800 text-white p-4 text-center fixed bottom-0 w-full">
       <div className="flex justify-center space-x-4">
         <a href="/about" className="hover:text-gray-500">
           About
@@ -23,11 +23,22 @@ const Footer: React.FC = () => {
           Privacy
         </a>
       </div>
-      <p className="mt-4">
-        &copy; 2023 Your Company Name. All rights reserved.
-      </p>
+      <p className="mt-4">&copy; 2023 Hopeful Harvest. All rights reserved.</p>
     </footer>
   );
 };
 
 export default Footer;
+
+// import React from 'react';
+// import { Box, Text } from '@chakra-ui/react';
+
+// const Footer: React.FC = () => {
+//   return (
+//     <Box p={4} bg="gray.200">
+//       <Text>Copyright © 2023. All rights reserved.</Text>
+//     </Box>
+//   );
+// };
+
+// export default Footer;

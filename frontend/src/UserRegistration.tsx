@@ -115,6 +115,7 @@ const UserRegistration: React.FC = () => {
     <div className="flex justify-center items-center h-screen ">
       <Box
         p={8}
+        m={{ base: 4, md: 8 }} 
         maxWidth="400px"
         borderWidth={1}
         borderRadius={8}
