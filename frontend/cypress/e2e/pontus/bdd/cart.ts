@@ -21,7 +21,7 @@ Given('I have items in my cart', () => {
   cy.visit('/shop');
   cy.get('#add-item').click();
   cy.visit('/checkout');
-  cy.get('#items-in-cart');
+  cy.get('#items-in-cart').should('contain', '1');
 });
 
 Given('I am on the checkout page', () => {
@@ -39,30 +39,3 @@ Then('my items should be purchased', () => {
 Then('my cart should be empty', () => {
   cy.get('#items-in-cart').should('contain', '0');
 });
-
-// --------------------------------------------------------
-
-// Given('I have items in my cart', () => {
-//   cy.wait(500);
-//   cy.visit('/shop');
-//   cy.get('#add-item').click();
-//   cy.visit('/checkout');
-//   cy.get('#items-in-cart');
-// });
-
-// Given('I am on the checkout page', () => {
-//   cy.visit('/checkout');
-// });
-
-// When('I click the "Checkout" button', () => {
-//   cy.get('#checkout-button').click();
-// });
-
-// Then('I should see an error message indicating insufficient funds', () => {
-//   cy.get('[data-test=cart]').should('contain', 'Cart (1)');
-// });
-
-// Then('my items should remain in the cart', () => {
-//   cy.get('[data-test=cart]').click();
-//   cy.get('[data-test=cart-product-1]').should('contain', 'Product 1');
-// });
