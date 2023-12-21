@@ -31,7 +31,7 @@ export default function UserDashboard() {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const getUserInformation = async () => {
     try {
-      const response = await fetch('http://localhost:3000/protected', {
+      const response = await fetch('http://185.112.144.228:8000/protected', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
