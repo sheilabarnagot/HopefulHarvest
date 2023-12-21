@@ -37,8 +37,7 @@ Then('my items should be purchased', () => {
 });
 
 Then('my cart should be empty', () => {
-  cy.get('[data-test=cart]').click();
-  cy.get('[data-test=cart-product-1]').should('contain', 'Product 1');
+  cy.get('#items-in-cart').should('contain', '0');
 });
 
 // --------------------------------------------------------
