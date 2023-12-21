@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { router } from './auth';
+import { router, createDefaultUser } from './auth';
 import {
   userProtectedRouter,
   uploadImage,
@@ -26,6 +26,10 @@ client.connect();
 app.use('/', cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
+// creates a default user if not exists
+createDefaultUser();
+
 app.use('/auth', router);
 app.use('/', cors(), userProtectedRouter);
 app.post(
