@@ -11,6 +11,8 @@ services:
       - PGHOST=172.24.0.2
       - PGDATABASE=postgres
       - PGPASSWORD=${PASSWORD}
+    volumes:
+      - ./images:/app/images
   database:
     image: postgres
     restart: always

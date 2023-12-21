@@ -72,7 +72,18 @@ userProtectedRouter.get(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const imageName = req.params.imageName;
+
+    if (!imageName) {
+      res.status(400).json({ error: 'Image name is required' });
+      return;
+    }
+
     const readStream = fs.createReadStream(`images/${imageName}`);
+
+    readStream.on('error', function (err) {
+      res.status(500).json({ error: 'Error reading file' });
+    });
+
     readStream.pipe(res);
   }
 );

@@ -21,7 +21,7 @@ interface Product {
 }
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<Product[] | undefined>([]);
+  const [products, setProducts] = useState<Product[] | undefined>(undefined);
 
   const setTest = useShoppingCartItems(
     (state: any) => state.updateShoppingCart
