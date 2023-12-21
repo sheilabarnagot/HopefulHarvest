@@ -1,3 +1,4 @@
+/*eslint-disable */
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
 const {
   addCucumberPreprocessorPlugin,

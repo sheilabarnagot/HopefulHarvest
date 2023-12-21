@@ -12,6 +12,7 @@ import { DashboardSoldPerMonthChart } from './components/Charts/DashboardSoldPer
 import UploadedProducts from './pages/UploadedProducts.tsx';
 import CartCheckout from './pages/CartCheckout.tsx';
 import ProductPage from './pages/ProductPage.tsx';
+// import Footer from "./Footer.tsx";
 
 const router = createBrowserRouter([
   {
