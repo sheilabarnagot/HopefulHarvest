@@ -31,4 +31,5 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./frontend/
+          start: npm run dev
           config: baseUrl=http://localhost:5173
