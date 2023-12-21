@@ -20,7 +20,7 @@ export default function CartOrderSummary() {
   const cartDataPrice = useShoppingCartItems((state: any) => state.data);
 
   const priceArray = cartDataPrice.map((item: any) => Number(item.data.price));
-
+  const clearCart = useShoppingCartItems((state: any) => state.clear);
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
       <Heading size="md">Order Summary</Heading>
@@ -51,6 +51,7 @@ export default function CartOrderSummary() {
       <Button
         id="checkout-button"
         colorScheme="blue"
+        onClick={() => clearCart()}
         size="lg"
         fontSize="md"
         // rightIcon={<FaArrowRight />}
