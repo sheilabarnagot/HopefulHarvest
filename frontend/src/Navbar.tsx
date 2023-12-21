@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  Bars3Icon,
+  ShoppingBagIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { useShoppingCartItems } from './zustand/customHooks';
 import { useNavigate } from 'react-router-dom';
 interface NavigationItem {
@@ -58,16 +62,7 @@ const Navbar: React.FC = () => {
               </div>
             </div>
             <div onClick={() => navigate('/checkout')} className="flex">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="white"
-                data-slot="icon"
-                className="w-6 h-6">
-                {/* SVG path here */}
-              </svg>
+              <ShoppingBagIcon height={30} color="white" />
               <p id="shopping-icon" className="text-red-400 text-lg">
                 {shoppingCartItems.length}
               </p>
