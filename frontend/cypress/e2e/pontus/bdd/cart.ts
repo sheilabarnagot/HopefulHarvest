@@ -10,6 +10,7 @@ Cypress.Commands.add('login', () => {
   cy.get('#username').type('hyperslap');
   cy.get('#password').type('1234');
   cy.get('#login-button').click();
+  cy.wait(1000);
 });
 
 Before(() => {
@@ -17,7 +18,7 @@ Before(() => {
 });
 
 Given('I have items in my cart', () => {
-  cy.wait(500);
+  cy.wait(1000);
   cy.visit('/shop');
   cy.get('#add-item').click();
   cy.visit('/checkout');
