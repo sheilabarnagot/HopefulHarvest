@@ -10,12 +10,12 @@ services:
       - PGUSER=postgres
       - PGHOST=172.24.0.2
       - PGDATABASE=postgres
-      - PGPASSWORD=supersecret
+      - PGPASSWORD=${PASSWORD}
   database:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_PASSWORD=supersecret
+      - POSTGRES_PASSWORD=${PASSWORD}
     ports:
       - '5433:5432'
     healthcheck:
