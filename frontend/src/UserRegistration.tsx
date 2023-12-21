@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import {
   Box,
   Input,
@@ -115,15 +116,18 @@ const UserRegistration: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen ">
+    // <div className="flex justify-center items-center h-screen ">
+    <VStack spacing={4} align="center" justify="center" minHeight="100vh">
       <Box
         p={8}
-        maxWidth="400px"
+        width={{ base: '90%', md: '50%' }}
         borderWidth={1}
         borderRadius={8}
-        boxShadow="lg">
-        <VStack spacing={4}>
-          <Heading as="h2" size="lg">
+        boxShadow="lg"
+        marginTop={8}
+        marginBottom={8}>
+        <VStack spacing={4} align="stretch">
+          <Heading as="h2" size="lg" textAlign="center">
             Registration
           </Heading>
           <form onSubmit={handleRegistration}>
@@ -234,7 +238,7 @@ const UserRegistration: React.FC = () => {
           </Text>
         </VStack>
       </Box>
-    </div>
+    </VStack>
   );
 };
 
