@@ -61,6 +61,7 @@ export const CartItem = ({ data, imageUrl, productId }: CartItemProps) => {
 
       {/* Desktop */}
       <Flex
+        id="cart-items"
         width="full"
         justify="space-between"
         display={{ base: 'none', md: 'flex' }}>

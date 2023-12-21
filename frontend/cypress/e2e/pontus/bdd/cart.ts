@@ -1,21 +1,39 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import {
+  Given,
+  When,
+  Then,
+  Before,
+} from '@badeball/cypress-cucumber-preprocessor';
 
-Given('Given I have items in my cart', () => {
+Cypress.Commands.add('login', () => {
+  cy.visit('/login');
+  cy.get('#username').type('hyperslap');
+  cy.get('#password').type('1234');
+  cy.get('#login-button').click();
+});
+
+Before(() => {
+  cy.login();
+});
+
+Given('I have items in my cart', () => {
+  cy.wait(500);
+  cy.visit('/shop');
+  cy.get('#add-item').click();
   cy.visit('/checkout');
-  cy.get('[data-test=cart]').should('contain', 'Cart (empty)');
+  cy.get('#items-in-cart');
 });
 
 Given('I am on the checkout page', () => {
-  cy.visit('/');
-  cy.get('[data-test=cart]').should('contain', 'Cart (empty)');
+  cy.visit('/checkout');
 });
 
 When('I click the "Checkout" button', () => {
-  cy.get('[data-test=product-1]').click();
+  cy.get('#checkout-button').click();
 });
 
 Then('my items should be purchased', () => {
-  cy.get('[data-test=cart]').should('contain', 'Cart (1)');
+  cy.get('#cart-item').should('not.exist');
 });
 
 Then('my cart should be empty', () => {
@@ -23,25 +41,29 @@ Then('my cart should be empty', () => {
   cy.get('[data-test=cart-product-1]').should('contain', 'Product 1');
 });
 
-Given('I have items in my cart', () => {
-  cy.visit('/');
-  cy.get('[data-test=cart]').should('contain', 'Cart (empty)');
-});
+// --------------------------------------------------------
 
-Given('I am on the checkout page', () => {
-  cy.visit('/');
-  cy.get('[data-test=cart]').should('contain', 'Cart (empty)');
-});
+// Given('I have items in my cart', () => {
+//   cy.wait(500);
+//   cy.visit('/shop');
+//   cy.get('#add-item').click();
+//   cy.visit('/checkout');
+//   cy.get('#items-in-cart');
+// });
 
-When('I click the "Checkout" button', () => {
-  cy.get('[data-test=product-1]').click();
-});
+// Given('I am on the checkout page', () => {
+//   cy.visit('/checkout');
+// });
 
-Then('I should see an error message indicating insufficient funds', () => {
-  cy.get('[data-test=cart]').should('contain', 'Cart (1)');
-});
+// When('I click the "Checkout" button', () => {
+//   cy.get('#checkout-button').click();
+// });
 
-Then('my items should remain in the cart', () => {
-  cy.get('[data-test=cart]').click();
-  cy.get('[data-test=cart-product-1]').should('contain', 'Product 1');
-});
+// Then('I should see an error message indicating insufficient funds', () => {
+//   cy.get('[data-test=cart]').should('contain', 'Cart (1)');
+// });
+
+// Then('my items should remain in the cart', () => {
+//   cy.get('[data-test=cart]').click();
+//   cy.get('[data-test=cart-product-1]').should('contain', 'Product 1');
+// });

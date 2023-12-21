@@ -49,6 +49,7 @@ export default function CartOrderSummary() {
         </Flex>
       </Stack>
       <Button
+        id="checkout-button"
         colorScheme="blue"
         size="lg"
         fontSize="md"

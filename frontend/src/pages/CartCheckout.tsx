@@ -37,7 +37,8 @@ export default function CartCheckout() {
           spacing={{ base: '8', md: '16' }}>
           <Stack spacing={{ base: '8', md: '10' }} flex="2">
             <Heading fontSize="2xl" fontWeight="extrabold">
-              Shopping Cart (3 items)
+              Shopping Cart (<span id="items-in-cart"> {cartData.length} </span>
+              )
             </Heading>
 
             <Stack spacing="6">
