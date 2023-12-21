@@ -11,7 +11,7 @@ jobs:
         run: |
           sudo apt-get -yqq install postgresql
           sudo service postgresql start
-          sudo -u postgres ./sql/psql -f init.sql
+          sudo -u postgres ./sql psql -f init.sql
         shell: bash
 
       - name: Install backend dependencies and start server
