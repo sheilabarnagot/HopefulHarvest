@@ -1,11 +1,11 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import dotnenv from 'dotenv';
+import dotenv from 'dotenv';
 import { client } from './server';
 import { QueryResult } from 'pg';
 
-dotnenv.config();
+dotenv.config();
 
 export interface User {
   username: string;

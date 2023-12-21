@@ -1,27 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onTermsClick: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onTermsClick }) => {
+  const handleClick = () => {
+    console.log("Terms clicked");
+    onTermsClick();
+  };
+
   return (
     <footer className="bg-gray-800 text-white p-4 text-center fixed bottom-0 w-full">
       <div className="flex justify-center space-x-4">
-        <a href="/about" className="hover:text-gray-500">
+        <Link to="/about" className="hover:text-gray-500">
           About
-        </a>
-        <a href="/shop" className="hover:text-gray-500">
+        </Link>
+        <Link to="/shop" className="hover:text-gray-500">
           Shop
-        </a>
-        <a href="/blog" className="hover:text-gray-500">
+        </Link>
+        <Link to="/blog" className="hover:text-gray-500">
           Blog
-        </a>
-        <a href="/contact" className="hover:text-gray-500">
+        </Link>
+        <Link to="/contact" className="hover:text-gray-500">
           Contact Us
-        </a>
-        <a href="/terms" className="hover:text-gray-500">
+        </Link>
+        <Link to="/terms" className="hover:text-gray-500" onClick={handleClick}>
           Terms
-        </a>
-        <a href="/privacy" className="hover:text-gray-500">
+        </Link>
+        <Link to="/privacy" className="hover:text-gray-500">
           Privacy
-        </a>
+        </Link>
       </div>
       <p className="mt-4">&copy; 2023 Hopeful Harvest. All rights reserved.</p>
     </footer>
@@ -29,16 +39,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
-// import React from 'react';
-// import { Box, Text } from '@chakra-ui/react';
-
-// const Footer: React.FC = () => {
-//   return (
-//     <Box p={4} bg="gray.200">
-//       <Text>Copyright © 2023. All rights reserved.</Text>
-//     </Box>
-//   );
-// };
-
-// export default Footer;

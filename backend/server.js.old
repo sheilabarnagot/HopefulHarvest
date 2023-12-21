@@ -1,0 +1,37 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.client = exports.upload = void 0;
+var express_1 = require("express");
+var auth_1 = require("./auth");
+var user_protected_routes_1 = require("./routes/user-protected-routes");
+var passport_1 = require("passport");
+var passport_auth_1 = require("./passport.auth");
+var pg_1 = require("pg");
+var cors_1 = require("cors");
+var multer_1 = require("multer");
+exports.upload = (0, multer_1.default)({ dest: 'images/' });
+var app = (0, express_1.default)();
+var PORT = 3000;
+exports.client = new pg_1.Client({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: Number(process.env.PGPORT),
+});
+exports.client.connect();
+app.use('/', (0, cors_1.default)());
+app.use(express_1.default.json());
+app.use('/auth', auth_1.router);
+app.use('/', (0, cors_1.default)(), user_protected_routes_1.userProtectedRouter);
+app.post('/upload-image', passport_1.default.authenticate('jwt', { session: false }), exports.upload.single('image'), function (req, res) {
+    (0, user_protected_routes_1.uploadImage)(req, res);
+});
+(0, passport_auth_1.pass)(passport_1.default);
+app.use(passport_1.default.initialize());
+app.get('/', passport_1.default.authenticate('jwt', { session: false }), function (req, res) {
+    res.send('Hello, World!');
+});
+app.listen(PORT, function () {
+    console.log("Server running on port ".concat(PORT));
+});
