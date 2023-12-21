@@ -21,9 +21,10 @@ jobs:
           npm install
           npm run dev &
         env:
-          PGDATABASE: postgres
-          PGUSER: postgres
-          PGHOST: localhost
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGHOST: ${{ secrets.PGHOST }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         shell: bash
 

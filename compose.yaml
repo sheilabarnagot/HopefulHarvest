@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: backend/dist
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - '8000:3000'
+    environment:
+      - PGUSER=postgres
+      - PGHOST=172.24.0.2
+      - PGDATABASE=postgres
+      - PGPASSWORD=supersecret
+  database:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=supersecret
+    ports:
+      - '5433:5432'
+    healthcheck:
+      interval: 1s
+      test: 'pg_isready --username=postgres'
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql

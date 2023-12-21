@@ -15,18 +15,17 @@ export const upload = multer({ dest: 'images/' });
 const app = express();
 const PORT = 3000;
 export const client = new Client({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: Number(process.env.PGPORT),
+  user: process.env.VPSPGUSER,
+  host: 'database',
+  database: process.env.VPSPGDATABASE,
+  password: process.env.VPSPGPASSWORD,
+  port: Number(5432),
 });
 
-client.connect();
+postgres: client.connect();
 app.use('/', cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
-
 // creates a default user if not exists
 createDefaultUser();
 
