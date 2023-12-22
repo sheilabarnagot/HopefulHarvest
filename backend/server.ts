@@ -15,10 +15,10 @@ export const upload = multer({ dest: 'images/' });
 const app = express();
 const PORT = 3000;
 export const client = new Client({
-  user: process.env.VPSPGUSER,
-  host: 'database',
-  database: process.env.VPSPGDATABASE,
-  password: process.env.VPSPGPASSWORD,
+  user: process.env.PGUSER,
+  host: 'localhost',
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
   port: Number(5432),
 });
 
