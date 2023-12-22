@@ -11,6 +11,7 @@ import { pass } from './passport.auth';
 import { Client } from 'pg';
 import cors from 'cors';
 import multer from 'multer';
+
 export const upload = multer({ dest: 'images/' });
 const app = express();
 const PORT = 3000;
@@ -22,7 +23,7 @@ export const client = new Client({
   port: Number(5432),
 });
 
-postgres: client.connect();
+client.connect();
 app.use('/', cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -31,6 +32,7 @@ createDefaultUser();
 
 app.use('/auth', router);
 app.use('/', cors(), userProtectedRouter);
+
 app.post(
   '/upload-image',
   passport.authenticate('jwt', { session: false }),
