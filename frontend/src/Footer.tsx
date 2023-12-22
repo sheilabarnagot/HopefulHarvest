@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import OpenModal from './OpenModal';
+import { useDisclosure } from '@chakra-ui/react';
 
 interface FooterProps {
   onTermsClick: () => void;
@@ -7,9 +9,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onTermsClick }) => {
   const handleClick = () => {
-    console.log("Terms clicked");
+    console.log('Terms clicked');
     onTermsClick();
   };
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <footer className="bg-gray-800 text-white p-4 text-center fixed bottom-0 w-full">
@@ -33,6 +36,7 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick }) => {
           Privacy
         </Link>
       </div>
+      <OpenModal onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
       <p className="mt-4">&copy; 2023 Hopeful Harvest. All rights reserved.</p>
     </footer>
   );
