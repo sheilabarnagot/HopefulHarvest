@@ -7,7 +7,7 @@ export default function UserProfile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const token = Cookies.get('token');
   const handleGetUser = async () => {
-    const response = await fetch('http://185.112.144.228:8000/protected', {
+    const response = await fetch('http://localhost:3000/protected', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -79,7 +79,7 @@ export default function EditUserProfileModal({
       return null;
     }
 
-    await fetch('http://185.112.144.228:8000/update-profile', {
+    await fetch('http://localhost:3000/update-profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export default function EditUserProfileModal({
   };
 
   const getUserInformation = async () => {
-    const response = await fetch('http://185.112.144.228:8000/protected', {
+    const response = await fetch('http://localhost:3000/protected', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

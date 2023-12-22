@@ -32,16 +32,13 @@ export default function ProductPage() {
 
   const getProducts = async () => {
     try {
-      const response = await fetch(
-        'http://185.112.144.228:8000/get-all-products',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${Cookies.get('token')}`,
-          },
-        }
-      );
+      const response = await fetch('http://localhost:3000/get-all-products', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      });
       const result = await response.json();
 
       return result;
@@ -60,7 +57,7 @@ export default function ProductPage() {
       const products = await Promise.all(
         result.map(async (item: any) => {
           const res = await fetch(
-            `http://185.112.144.228:8000/get-image/${item.image_ref}`,
+            `http://localhost:3000/get-image/${item.image_ref}`,
             {
               method: 'GET',
               headers: {

@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://185.112.144.228:8000/auth/login', {
+      const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
         Cookies.set('token', result.token, { expires: 7, secure: false });
 
-        navigate('/dashboard'); //
+        navigate('/dashboard/profile/users/product-page'); //
       } else {
         setError('Error during login');
       }

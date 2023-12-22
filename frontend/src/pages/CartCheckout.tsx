@@ -48,7 +48,7 @@ export default function CartCheckout() {
                     key={item.id}
                     {...item}
                     productId={item.data.product_id}
-                    imageUrl={`http://185.112.144.228:8000/images/${item.data.image_ref}`}
+                    imageUrl={`http://localhost:3000/images/${item.data.image_ref}`}
                   />
                 ))}
             </Stack>

@@ -55,7 +55,7 @@ export default function UploadProductDrawer({
     formData.append('price', values.price.toString());
     formData.append('stock_quantity', values.stock_quantity.toString());
     try {
-      const result = await fetch('http://185.112.144.228:8000/upload-image', {
+      const result = await fetch('http://localhost:3000/upload-image', {
         headers: {
           contentType: 'multipart/form-data',
           Authorization: `Bearer ${Cookies.get('token')}`,
