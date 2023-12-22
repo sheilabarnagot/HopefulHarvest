@@ -22,11 +22,11 @@ const Footer: React.FC = () => {
           Contact Us
         </Link>
         <span onClick={onOpen} className="hover:text-gray-500" >
-          Terms
+          Terms & privacy
         </span>
-        <Link to="/privacy" className="hover:text-gray-500">
+        {/* <Link to="/privacy" className="hover:text-gray-500">
           Privacy
-        </Link>
+        </Link> */}
         <Modal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       </div>
       <p className="mt-4">&copy; 2023 Hopeful Harvest. All rights reserved.</p>

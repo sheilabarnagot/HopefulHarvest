@@ -9,36 +9,49 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 
-function BasicUsage({ isOpen, onOpen, onClose }) {
+interface BasicUsageProps {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+}
+
+function BasicUsage({ isOpen, onClose }: BasicUsageProps) {
   console.log('isOpen:', isOpen);
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      {/* <Button onClick={onOpen}>Open Modal</Button> */}
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Terms and Conditions</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <p>
-              This is some sample text for the modal body. You can replace it
-              with your own content.
+              Welcome to our website. By registering, logging in, and making
+              purchases on this site, you agree to the following terms and
+              conditions.
             </p>
-            <p>More content goes here...</p>
+            <p>
+              {' '}
+              Registration and Login: By registering on our website, you agree
+              to provide accurate and complete information. You are responsible
+              for maintaining the confidentiality of your account and password.
+              You must not share your login credentials with third parties.
+              Notify us immediately if you suspect that your account has been
+              compromised.
+            </p>
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button onClick={onClose} variant="ghost">Accept</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-      {/* <Footer onTermsClick={onOpen} /> */}
     </>
   );
 }
