@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
-                <Menu.Items static>
+                <Menu.Items>
                   {navigation.map(item => (
                     <Menu.Item key={item.name}>
                       {({ active, close }) => (
