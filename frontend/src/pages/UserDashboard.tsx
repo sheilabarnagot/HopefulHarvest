@@ -18,9 +18,7 @@ export default function UserDashboard() {
     isOpen: isOpenDasboardDrawer,
     onOpen: onOpenDashboardDrawer,
     onClose: onCloseDashboardDrawer,
-  } = useDisclosure({
-    defaultIsOpen: true,
-  });
+  } = useDisclosure();
   const {
     isOpen: isOpenUploadDrawer,
     onOpen: onOpenDUploadDrawer,
@@ -57,7 +55,9 @@ export default function UserDashboard() {
 
   return (
     <>
-      <h2>hi {userInfo && userInfo.user && userInfo.user.username}</h2>
+      <h2 className="text-center text-2xl my-4">
+        hi {userInfo && userInfo.user && userInfo.user.username}
+      </h2>
       <DashboardDrawer
         userInfo={userInfo}
         userId={userId}

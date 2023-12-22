@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
         Cookies.set('token', result.token, { expires: 7, secure: false });
 
-        navigate('/dashboard'); //
+        navigate('/dashboard/profile/users/product-page'); //
       } else {
         setError('Error during login');
       }

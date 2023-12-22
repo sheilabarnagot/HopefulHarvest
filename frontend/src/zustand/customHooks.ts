@@ -45,6 +45,7 @@ export const useShoppingCartItems = create(
           }
           return state;
         }),
+      clear: () => set(() => ({ data: [] })),
     }),
     {
       name: 'shoppingCartItems', // unique name

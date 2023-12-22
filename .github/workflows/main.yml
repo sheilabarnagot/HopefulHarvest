@@ -1,0 +1,14 @@
+on: pull_request
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./frontend/
+          start: npm run dev
+          config: baseUrl=http://localhost:5173

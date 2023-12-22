@@ -78,3 +78,42 @@ router.post('/login', async (req, res) => {
     res.json({ message: 'Logged in successfully', token, user: user.user_id });
   } catch (e: any) {}
 });
+
+export async function createDefaultUser() {
+  // Hardcoded values
+  const username = 'hyperslap';
+  const password = '1234';
+  const name = 'Pontus';
+  const lastname = 'Abrahamsson';
+  const email = 'defaultUser@example.com';
+  const address = '123 Gatan Någonstans';
+  const phone_number = '1234567890';
+
+  const checkQuery = 'SELECT * FROM users WHERE username = $1';
+  const checkValues: string[] = [username];
+  const checkResult: QueryResult<User> = await client.query(
+    checkQuery,
+    checkValues
+  );
+
+  if (checkResult.rows.length === 0) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const createQuery =
+      'INSERT INTO users(username, password, email, name, lastname, address, phone_number) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+    const createValues = [
+      username,
+      hashedPassword,
+      email,
+      name,
+      lastname,
+      address,
+      phone_number,
+    ];
+    const createResult = await client.query(createQuery, createValues);
+    console.log('User created successfully');
+  } else {
+    console.log('User already exists');
+  }
+}
+
+// Call the function

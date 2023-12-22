@@ -17,7 +17,7 @@ Before(() => {
 });
 
 Given('I am on the product page', () => {
-  Cypress.config('defaultCommandTimeout', 100000);
+  cy.wait(500);
   cy.visit('/shop');
 });
 
@@ -33,6 +33,7 @@ Then(
 );
 
 Given('I have items in my cart', () => {
+  cy.wait(500);
   cy.visit('/shop');
   cy.get('#add-item').click();
 });

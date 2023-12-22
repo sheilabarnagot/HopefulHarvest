@@ -8,15 +8,20 @@ import {
 } from '@chakra-ui/react';
 import { PriceTag } from './PriceTag';
 import { CartProductMeta } from './CartProductMeta';
+import { useShoppingCartItems } from '../../zustand/customHooks';
 
 type CartItemProps = {
-  isGiftWrapping?: boolean;
-  name: string;
-  description: string;
-  quantity: number;
-  price: number;
-  currency: string;
+  data: {
+    isGiftWrapping?: boolean;
+    name: string;
+    description: string;
+    quantity: number;
+    price: number;
+    currency: string;
+    imageUrl: string;
+  };
   imageUrl: string;
+  productId: number;
   onChangeQuantity?: (quantity: number) => void;
   onClickGiftWrapping?: () => void;
   onClickDelete?: () => void;
@@ -37,18 +42,10 @@ const QuantitySelect = (props: SelectProps) => {
   );
 };
 
-export const CartItem = (props: CartItemProps) => {
-  const {
-    isGiftWrapping,
-    name,
-    description,
-    quantity,
-    imageUrl,
-    currency,
-    price,
-    onChangeQuantity,
-    onClickDelete,
-  } = props;
+export const CartItem = ({ data, imageUrl, productId }: CartItemProps) => {
+  const cartDataDelete = useShoppingCartItems(
+    (state: any) => state.removeFromCart
+  );
 
   return (
     <Flex
@@ -56,27 +53,22 @@ export const CartItem = (props: CartItemProps) => {
       justify="space-between"
       align="center">
       <CartProductMeta
-        name={name}
-        description={description}
+        name={data.name}
+        description={data.description}
         image={imageUrl}
-        isGiftWrapping={isGiftWrapping}
+        isGiftWrapping={false}
       />
 
       {/* Desktop */}
       <Flex
+        id="cart-items"
         width="full"
         justify="space-between"
         display={{ base: 'none', md: 'flex' }}>
-        <QuantitySelect
-          value={quantity}
-          onChange={e => {
-            onChangeQuantity?.(+e.currentTarget.value);
-          }}
-        />
-        <PriceTag price={price} currency={currency} />
+        <PriceTag price={data.price} currency={data.currency} />
         <CloseButton
-          aria-label={`Delete ${name} from cart`}
-          onClick={onClickDelete}
+          aria-label={`Delete ${data.name} from cart`}
+          onClick={() => cartDataDelete(productId)}
         />
       </Flex>
 
@@ -91,12 +83,12 @@ export const CartItem = (props: CartItemProps) => {
           Delete
         </Link>
         <QuantitySelect
-          value={quantity}
-          onChange={e => {
-            onChangeQuantity?.(+e.currentTarget.value);
-          }}
+          value={data.quantity}
+          // onChange={e => {
+          //   // onChangeQuantity?.(+e.currentTarget.value);
+          // }}
         />
-        <PriceTag price={price} currency={currency} />
+        <PriceTag price={data.price} currency={data.currency} />
       </Flex>
     </Flex>
   );

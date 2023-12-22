@@ -1,5 +1,6 @@
 import express from 'express';
-import { router } from './auth';
+import path from 'path';
+import { router, createDefaultUser } from './auth';
 import {
   userProtectedRouter,
   uploadImage,
@@ -10,22 +11,28 @@ import { pass } from './passport.auth';
 import { Client } from 'pg';
 import cors from 'cors';
 import multer from 'multer';
+
 export const upload = multer({ dest: 'images/' });
 const app = express();
 const PORT = 3000;
 export const client = new Client({
   user: process.env.PGUSER,
-  host: process.env.PGHOST,
+  host: 'localhost',
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
-  port: Number(process.env.PGPORT),
+  port: Number(5432),
 });
 
 client.connect();
 app.use('/', cors());
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
+// creates a default user if not exists
+createDefaultUser();
+
 app.use('/auth', router);
 app.use('/', cors(), userProtectedRouter);
+
 app.post(
   '/upload-image',
   passport.authenticate('jwt', { session: false }),
@@ -37,10 +44,6 @@ app.post(
 
 pass(passport);
 app.use(passport.initialize());
-
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.send('Hello, World!');
-});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -74,7 +74,7 @@ const UserRegistration: React.FC = () => {
         address,
         phone_number,
       };
-      registrationData;
+      // http://localhost:3000/auth/register
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
@@ -115,15 +115,14 @@ const UserRegistration: React.FC = () => {
   return (
     // <div className="flex justify-center items-center h-screen ">
     <VStack spacing={4} align="center" justify="center" minHeight="100vh">
-    <Box
-      p={8}
-      width={{ base: '90%', md: '50%' }}
-      borderWidth={1}
-      borderRadius={8}
-      boxShadow="lg"
-      marginTop={8}
-      marginBottom={8}
-    >
+      <Box
+        p={8}
+        width={{ base: '90%', md: '50%' }}
+        borderWidth={1}
+        borderRadius={8}
+        boxShadow="lg"
+        marginTop={8}
+        marginBottom={8}>
         <VStack spacing={4} align="stretch">
           <Heading as="h2" size="lg" textAlign="center">
             Registration
@@ -135,7 +134,7 @@ const UserRegistration: React.FC = () => {
                 type="text"
                 placeholder="Enter your name"
                 value={name}
-                onChange={(e) => setname(e.target.value)}
+                onChange={e => setname(e.target.value)}
               />
               {showErrors && !name && (
                 <Text color="red" fontSize="sm">
@@ -149,7 +148,7 @@ const UserRegistration: React.FC = () => {
                 type="text"
                 placeholder="Enter your last name"
                 value={lastname}
-                onChange={(e) => setlastName(e.target.value)}
+                onChange={e => setlastName(e.target.value)}
               />
               {showErrors && !lastname && (
                 <Text color="red" fontSize="sm">
@@ -163,7 +162,7 @@ const UserRegistration: React.FC = () => {
                 type="text"
                 placeholder="Enter your username"
                 value={username}
-                onChange={(e) => setusername(e.target.value)}
+                onChange={e => setusername(e.target.value)}
               />
               {showErrors && !username && (
                 <Text color="red" fontSize="sm">
@@ -177,7 +176,7 @@ const UserRegistration: React.FC = () => {
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) => setemail(e.target.value)}
+                onChange={e => setemail(e.target.value)}
               />
               {showErrors && !email && (
                 <Text color="red" fontSize="sm">
@@ -191,7 +190,7 @@ const UserRegistration: React.FC = () => {
                 type="password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setpassword(e.target.value)}
+                onChange={e => setpassword(e.target.value)}
               />
               {showErrors && !password && (
                 <Text color="red" fontSize="sm">
@@ -205,7 +204,7 @@ const UserRegistration: React.FC = () => {
                 type="address"
                 placeholder="Enter your address"
                 value={address}
-                onChange={(e) => setaddress(e.target.value)}
+                onChange={e => setaddress(e.target.value)}
               />
               {showErrors && !address && (
                 <Text color="red" fontSize="sm">
@@ -219,7 +218,7 @@ const UserRegistration: React.FC = () => {
                 type="tel"
                 placeholder="Enter your phone number"
                 value={phone_number}
-                onChange={(e) => setphone_number(parseInt(e.target.value, 10))}
+                onChange={e => setphone_number(parseInt(e.target.value, 10))}
               />
               {showErrors && !phone_number && (
                 <Text color="red" fontSize="sm">

@@ -60,7 +60,7 @@ export default function UploadedProducts() {
 
   return (
     <div className="flex flex-col items-center">
-      <h2>My products</h2>
+      <h2 className="my-4 text-xl">My products</h2>
       {product.map((item, index) => {
         // Create a Blob URL for the image
         // const imageBlobUrl = URL.createObjectURL(item.image);
