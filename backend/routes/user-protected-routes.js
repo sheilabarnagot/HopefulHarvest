@@ -51,19 +51,22 @@ exports.userProtectedRouter.put('/update-profile', passport_1.default.authentica
             .json({ message: 'Something went wrong! Please try logging in' });
     }
 }));
-exports.userProtectedRouter.get('/get-image/:imageName', 
-// passport.authenticate('jwt', { session: false }),
-(req, res) => {
+exports.userProtectedRouter.get('/get-image/:imageName', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
     const imageName = req.params.imageName;
+    if (!imageName) {
+        res.status(400).json({ error: 'Image name is required' });
+        return;
+    }
     const readStream = fs_1.default.createReadStream(`images/${imageName}`);
+    readStream.on('error', function (err) {
+        res.status(500).json({ error: 'Error reading file' });
+    });
     readStream.pipe(res);
 });
 exports.userProtectedRouter.post('/get-products', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
     (0, user_models_1.getUserProducts)(req, res);
 });
-exports.userProtectedRouter.get('/get-all-products', 
-// passport.authenticate('jwt', { session: false }),
-(req, res) => {
+exports.userProtectedRouter.get('/get-all-products', passport_1.default.authenticate('jwt', { session: false }), (req, res) => {
     (0, user_models_1.getAllProducts)(req, res);
 });
 const uploadImage = (req, res) => {

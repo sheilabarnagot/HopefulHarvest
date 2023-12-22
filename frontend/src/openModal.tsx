@@ -1,10 +1,16 @@
-import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from '@chakra-ui/react';
-import Footer from "./Footer";
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 
-function BasicUsage() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  console.log("isOpen:", isOpen);
+function BasicUsage({ isOpen, onOpen, onClose }) {
+  console.log('isOpen:', isOpen);
 
   return (
     <>
@@ -16,21 +22,23 @@ function BasicUsage() {
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* <Lorem count={2} /> */}
-            <p>This is some sample text for the modal body. You can replace it with your own content.</p>
+            <p>
+              This is some sample text for the modal body. You can replace it
+              with your own content.
+            </p>
             <p>More content goes here...</p>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost'>Secondary Action</Button>
+            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
-      <Footer onTermsClick={onOpen} />
+      {/* <Footer onTermsClick={onOpen} /> */}
     </>
   );
 }

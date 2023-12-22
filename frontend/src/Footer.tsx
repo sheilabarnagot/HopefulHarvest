@@ -1,15 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from './openModal';
+import { useDisclosure } from '@chakra-ui/react';
 
-interface FooterProps {
-  onTermsClick: () => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ onTermsClick }) => {
-  const handleClick = () => {
-    console.log("Terms clicked");
-    onTermsClick();
-  };
+const Footer: React.FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <footer className="bg-gray-800 text-white p-4 text-center fixed bottom-0 w-full">
@@ -26,12 +21,13 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick }) => {
         <Link to="/contact" className="hover:text-gray-500">
           Contact Us
         </Link>
-        <Link to="/terms" className="hover:text-gray-500" onClick={handleClick}>
+        <span onClick={onOpen} className="hover:text-gray-500" >
           Terms
-        </Link>
+        </span>
         <Link to="/privacy" className="hover:text-gray-500">
           Privacy
         </Link>
+        <Modal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       </div>
       <p className="mt-4">&copy; 2023 Hopeful Harvest. All rights reserved.</p>
     </footer>

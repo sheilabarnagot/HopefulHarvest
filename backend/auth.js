@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.users = exports.router = void 0;
+exports.createDefaultUser = exports.users = exports.router = void 0;
 const express_1 = __importDefault(require("express"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
@@ -68,4 +68,39 @@ exports.router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
     catch (e) { }
 }));
+function createDefaultUser() {
+    return __awaiter(this, void 0, void 0, function* () {
+        // Hardcoded values
+        const username = 'hyperslap';
+        const password = '1234';
+        const name = 'Pontus';
+        const lastname = 'Abrahamsson';
+        const email = 'defaultUser@example.com';
+        const address = '123 Gatan Någonstans';
+        const phone_number = '1234567890';
+        const checkQuery = 'SELECT * FROM users WHERE username = $1';
+        const checkValues = [username];
+        const checkResult = yield server_1.client.query(checkQuery, checkValues);
+        if (checkResult.rows.length === 0) {
+            const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
+            const createQuery = 'INSERT INTO users(username, password, email, name, lastname, address, phone_number) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+            const createValues = [
+                username,
+                hashedPassword,
+                email,
+                name,
+                lastname,
+                address,
+                phone_number,
+            ];
+            const createResult = yield server_1.client.query(createQuery, createValues);
+            console.log('User created successfully');
+        }
+        else {
+            console.log('User already exists');
+        }
+    });
+}
+exports.createDefaultUser = createDefaultUser;
+// Call the function
 //# sourceMappingURL=auth.js.map
