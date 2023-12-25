@@ -5,17 +5,16 @@ import { CartItem } from '../components/Cart/CartItem';
 
 type CartItemProps = {
   id: string;
-  data: {
-    isGiftWrapping?: boolean;
-    product_id: number;
-    name: string;
-    description: string;
-    quantity: number;
-    price: number;
-    currency: string;
-    image_ref: string;
-    imageUrl: string;
-  };
+
+  isGiftWrapping?: boolean;
+  product_id: number;
+  name: string;
+  description: string;
+  quantity: number;
+  price: number;
+  currency: string;
+  image_ref: string;
+  imageUrl: string;
 
   onChangeQuantity?: (quantity: number) => void;
   onClickGiftWrapping?: () => void;
@@ -23,7 +22,7 @@ type CartItemProps = {
 };
 export default function CartCheckout() {
   const cartData = useShoppingCartItems((state: any) => state.data);
-
+  console.log(cartData);
   return (
     <>
       <Box
@@ -46,9 +45,9 @@ export default function CartCheckout() {
                 cartData.map((item: CartItemProps) => (
                   <CartItem
                     key={item.id}
-                    {...item}
-                    productId={item.data.product_id}
-                    imageUrl={`http://localhost:3000/images/${item.data.image_ref}`}
+                    data={item}
+                    productId={item.product_id}
+                    imageUrl={`http://localhost:3000/images/${item.image_ref}`}
                   />
                 ))}
             </Stack>

@@ -2,19 +2,18 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface ShoppingCartItems {
-  data: {
-    category_id: string;
-    description: string;
-    image_id: number;
-    image_ref: number;
-    product_id: number;
-    price: number;
-    product_name: string;
-    stock_quantity: number;
-    upload_date: string;
-    user_id: number;
-    username: string;
-  };
+  category_id: string;
+  description: string;
+  image_id: number;
+  image_ref: number;
+  product_id: number;
+  price: number;
+  product_name: string;
+  stock_quantity: number;
+  upload_date: string;
+  user_id: number;
+  username: string;
+
   image: string;
 }
 
@@ -36,7 +35,7 @@ export const useShoppingCartItems = create(
       removeFromCart: (productId: number) =>
         set((state: ShoppingCartState) => {
           const index = state.data.findIndex(
-            item => item.data.product_id === productId
+            item => item.product_id === productId
           );
           if (index !== -1) {
             const newData = [...state.data];

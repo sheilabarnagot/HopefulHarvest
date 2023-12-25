@@ -19,7 +19,7 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 export default function CartOrderSummary() {
   const cartDataPrice = useShoppingCartItems((state: any) => state.data);
 
-  const priceArray = cartDataPrice.map((item: any) => Number(item.data.price));
+  // const priceArray = cartDataPrice.map((item: any) => Number(item.data.price));
   const clearCart = useShoppingCartItems((state: any) => state.clear);
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
@@ -42,9 +42,9 @@ export default function CartOrderSummary() {
             Total
           </Text>
           <Text fontSize="xl" fontWeight="extrabold">
-            {priceArray.length > 0
+            {/* {priceArray.length > 0
               ? priceArray.reduce((a: number, b: number) => a + b)
-              : 0}
+              : 0} */}
           </Text>
         </Flex>
       </Stack>
