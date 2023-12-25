@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Disclosure, Menu } from '@headlessui/react';
 import {
   Bars3Icon,
