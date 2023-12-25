@@ -30,7 +30,6 @@ export default function UploadedProducts() {
     return data;
   };
 
-  console.log(objectURLs);
   useEffect(() => {
     getProducts().then(async resultPromise => {
       const products = await Promise.all(
@@ -64,7 +63,7 @@ export default function UploadedProducts() {
       {product.map((item, index) => {
         // Create a Blob URL for the image
         // const imageBlobUrl = URL.createObjectURL(item.image);
-        console.log(item.image);
+
         return (
           <div className="product-card mb-4" key={item.data.image_ref + index}>
             <p>{item.data.username}</p>

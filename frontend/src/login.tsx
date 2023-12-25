@@ -21,7 +21,8 @@ const Login: React.FC = () => {
       if (response.status === 200) {
         response;
         const result = await response.json();
-
+        console.log(result.user);
+        Cookies.set('userId', result.user);
         Cookies.set('token', result.token, { expires: 7, secure: false });
 
         navigate('/dashboard/profile/users/product-page'); //

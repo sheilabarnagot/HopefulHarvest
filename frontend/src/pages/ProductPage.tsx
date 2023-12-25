@@ -50,8 +50,6 @@ export default function ProductPage() {
     }
   };
 
-  console.log(getTest);
-
   useEffect(() => {
     getProducts().then(async result => {
       const products = await Promise.all(
@@ -75,7 +73,6 @@ export default function ProductPage() {
       setProducts(products);
     });
   }, []);
-  // console.log(cartItems);
 
   return (
     <>

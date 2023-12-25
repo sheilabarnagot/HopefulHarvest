@@ -16,8 +16,6 @@ interface BasicUsageProps {
 }
 
 function BasicUsage({ isOpen, onClose }: BasicUsageProps) {
-  console.log('isOpen:', isOpen);
-
   return (
     <>
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
@@ -48,7 +46,9 @@ function BasicUsage({ isOpen, onClose }: BasicUsageProps) {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button onClick={onClose} variant="ghost">Accept</Button>
+            <Button onClick={onClose} variant="ghost">
+              Accept
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
