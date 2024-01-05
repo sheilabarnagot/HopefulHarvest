@@ -16,7 +16,7 @@ module.exports = defineConfig({
         plugins: [createEsbuildPlugin(config)],
       });
       on('file:preprocessor', bundler);
-
+      require('@cypress/code-coverage/task')(on, config);
       await addCucumberPreprocessorPlugin(on, config);
 
       return config;
