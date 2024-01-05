@@ -27,6 +27,7 @@ Given('A heading with the text "hello" is displayed', () => {
 });
 
 Given('I am on the profile page', () => {
+  cy.get('#open-dashboard-drawer').click();
   cy.get('.profile-button').click();
 });
 
@@ -45,6 +46,7 @@ Then('the modal should close', () => {
 // Error handling when editing user information //
 
 Given("I'm still on the profile page", () => {
+  cy.get('#open-dashboard-drawer').click();
   cy.get('.profile-button').click();
 });
 
