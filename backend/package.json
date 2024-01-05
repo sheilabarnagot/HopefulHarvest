@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "dev": "concurrently \"nodemon ./dist/server.js\" \"npx tsc --watch\"",
+    "devs": "npx tsx --watch server.ts",
     "start": "node server.js"
   },
   "keywords": [],
