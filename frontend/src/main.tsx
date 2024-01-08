@@ -13,7 +13,7 @@ import UploadedProducts from './pages/UploadedProducts.tsx';
 import CartCheckout from './pages/CartCheckout.tsx';
 import ProductPage from './pages/ProductPage.tsx';
 import About from './About.tsx';
-import Shop from "./Shop.tsx";
+import Home from "./Home.tsx";
 
 const router = createBrowserRouter([
   {
@@ -60,8 +60,8 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: 'shop',
-        element: <Shop />,
+        path: '/',
+        element: <Home />,
       },
     ],
   },
