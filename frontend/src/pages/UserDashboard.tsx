@@ -55,9 +55,11 @@ export default function UserDashboard() {
 
   return (
     <>
-      <h2 className="text-center text-2xl my-4">
-        hi {userInfo && userInfo.user && userInfo.user.username}
-      </h2>
+      <div className="text-center text-2xl my-4">
+        {userInfo && userInfo.user && (
+          <p id="dashboard-welcome">hi {userInfo.user.username}</p>
+        )}
+      </div>
       <DashboardDrawer
         userInfo={userInfo}
         userId={userId}

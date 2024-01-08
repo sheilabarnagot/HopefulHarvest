@@ -55,60 +55,65 @@ export default function DashboardDrawer({
         isOpen={isOpenDashboardDrawer}
         placement="left"
         onClose={onCloseDashboardDrawer}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton id="drawer-close-button" />
-          <DrawerHeader>
-            Welcome, {userInfo && userInfo.user && userInfo.user.username}!
-          </DrawerHeader>
-
-          <DrawerBody>
-            <Input placeholder="Type here..." />
-            <div className="mt-10">
-              <Menu>
-                <MenuItem
-                  as={NavLink}
-                  onClick={onCloseDashboardDrawer}
-                  to="profile/users/product-page"
-                  className="nav-upload-menu-item">
-                  My Products
-                </MenuItem>
-                <MenuItem
-                  onClick={onCloseDashboardDrawer}
-                  as={NavLink}
-                  to="profile/users/chart">
-                  Sold Products
-                </MenuItem>
-                <MenuItem
-                  className="upload-product-button"
-                  onClick={() => {
-                    onCloseDashboardDrawer();
-                    onOpenUploadDrawer();
-                  }}>
-                  Upload Product
-                </MenuItem>
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <MenuItem
-                  className="profile-button"
-                  onClick={onCloseDashboardDrawer}
-                  to={`profile/users/${userId}`}
-                  as={NavLink}>
-                  Profile
-                </MenuItem>
-              </Menu>
-            </div>
-          </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onCloseDashboardDrawer}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
-          </DrawerFooter>
-        </DrawerContent>
+        <div
+          style={{
+            width: '100px',
+            height: '100px',
+          }}
+          id="dashboard-drawer">
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton id="drawer-close-button" />
+            <DrawerHeader>
+              Welcome, {userInfo && userInfo.user && userInfo.user.username}!
+            </DrawerHeader>
+            <DrawerBody>
+              <Input placeholder="Type here..." />
+              <div className="mt-10">
+                <Menu>
+                  <MenuItem
+                    as={NavLink}
+                    onClick={onCloseDashboardDrawer}
+                    to="profile/users/product-page"
+                    className="nav-upload-menu-item">
+                    My Products
+                  </MenuItem>
+                  <MenuItem
+                    onClick={onCloseDashboardDrawer}
+                    as={NavLink}
+                    to="profile/users/chart">
+                    Sold Products
+                  </MenuItem>
+                  <MenuItem
+                    className="upload-product-button"
+                    onClick={() => {
+                      onCloseDashboardDrawer();
+                      onOpenUploadDrawer();
+                    }}>
+                    Upload Product
+                  </MenuItem>
+                  <Divider />
+                  <Divider />
+                  <Divider />
+                  <Divider />
+                  <MenuItem
+                    className="profile-button"
+                    onClick={onCloseDashboardDrawer}
+                    to={`profile/users/${userId}`}
+                    as={NavLink}>
+                    Profile
+                  </MenuItem>
+                </Menu>
+              </div>
+            </DrawerBody>
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onCloseDashboardDrawer}>
+                Cancel
+              </Button>
+              <Button colorScheme="blue">Save</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </div>
       </Drawer>
       <UploadProductDrawer
         onOpenUploadDrawer={onOpenUploadDrawer}
