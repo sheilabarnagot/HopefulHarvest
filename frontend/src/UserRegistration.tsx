@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Box,
@@ -30,7 +31,7 @@ const UserRegistration: React.FC = () => {
   const [address, setaddress] = useState<string>('');
   const [phone_number, setphone_number] = useState<number>();
   const [showErrors, setShowErrors] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowErrors(true);
@@ -85,7 +86,9 @@ const UserRegistration: React.FC = () => {
 
       if (response.ok) {
         ('User registered successfully.');
+        navigate('/');
       } else {
+        navigate('/');
         const errorData = await response.json();
         throw new Error(`Error during registration: ${errorData.message}`);
       }
