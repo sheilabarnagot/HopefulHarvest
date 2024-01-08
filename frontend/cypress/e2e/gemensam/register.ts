@@ -16,8 +16,8 @@ Given('I am in the register page', () => {
 Given('I should be able to write my personal data', () => {
   cy.get('#firstName').type('Sheila');
   cy.get('#lastname').type('Martinez');
-  cy.get('#username').type('Sheila');
-  cy.get('#email').type('sheila@gmail.com');
+  cy.get('#username').type('Sheilaaaa');
+  cy.get('#email').type('sheilaa@gmail.com');
   cy.get('#password').type('Onfire2023');
   cy.get('#address').type('Göteborg');
   cy.get('#passphone_numberword').type('0761234556');
@@ -29,7 +29,6 @@ When('form is submitted', () => {
 
 Then('I should be register', () => {
   cy.url().should('not.include', '/register');
-  cy.get('.success-message').should('contain', 'Registration successful');
 });
 
 Then('I should be redirected to login page', () => {

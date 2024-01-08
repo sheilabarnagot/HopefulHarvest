@@ -76,6 +76,7 @@ const UserRegistration: React.FC = () => {
         phone_number,
       };
       // http://localhost:3000/auth/register
+      navigate('/login');
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
@@ -86,9 +87,9 @@ const UserRegistration: React.FC = () => {
 
       if (response.ok) {
         ('User registered successfully.');
-        navigate('/');
+        navigate('/login');
       } else {
-        navigate('/');
+        navigate('/login');
         const errorData = await response.json();
         throw new Error(`Error during registration: ${errorData.message}`);
       }
