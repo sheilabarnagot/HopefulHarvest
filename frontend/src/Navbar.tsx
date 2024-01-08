@@ -35,7 +35,11 @@ const Navbar: React.FC = () => {
       href: '/login',
       current: false,
     },
-    { name: 'Dashboard', href: '/dashboard', current: false },
+    {
+      name: 'Dashboard',
+      href: '/dashboard/profile/users/product-page',
+      current: false,
+    },
     { name: 'Shop', href: '/shop', current: false },
   ].filter(Boolean);
 
