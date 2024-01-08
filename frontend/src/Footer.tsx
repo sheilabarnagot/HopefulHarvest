@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <footer className="bg-gray-800 text-white p-4 text-center fixed bottom-0 w-full">
+    <footer className="bg-gray-800 text-white p-4 text-center">
       <div className="flex justify-center space-x-4">
         <Link to="/about" className="hover:text-gray-500">
           About
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
         <Link to="/contact" className="hover:text-gray-500">
           Contact Us
         </Link>
-        <span onClick={onOpen} className="hover:text-gray-500" >
+        <span onClick={onOpen} className="hover:text-gray-500">
           Terms & privacy
         </span>
         {/* <Link to="/privacy" className="hover:text-gray-500">
