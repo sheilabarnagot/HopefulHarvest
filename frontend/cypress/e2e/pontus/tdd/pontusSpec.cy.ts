@@ -23,13 +23,13 @@ describe('Testing if drawers open and closes', () => {
     cy.login();
   });
   it('Close & open dashboard drawer', () => {
-    cy.get('#drawer-close-button').click();
     cy.get('#open-dashboard-drawer').click();
+    cy.get('#drawer-close-button').click();
   });
   it('Open & close upload drawer', () => {
+    cy.get('#open-dashboard-drawer').click();
     cy.get('.upload-product-button').click();
     cy.get('.cancel-upload-button').click();
-    cy.get('#open-dashboard-drawer').click();
   });
 });
 
@@ -38,6 +38,7 @@ describe('Testing if the upload button works', () => {
     cy.login();
   });
   it('Upload button works', () => {
+    cy.get('#open-dashboard-drawer').click();
     cy.get('.upload-product-button').click();
     cy.get('.cancel-upload-button').click();
   });
