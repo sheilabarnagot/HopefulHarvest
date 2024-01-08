@@ -22,7 +22,7 @@ Before(() => {
 Given('a user has uploaded products', () => {
   cy.wait(500); // utan detta kraschar testet
   cy.visit('/dashboard');
-
+  cy.get('#open-dashboard-drawer').click();
   cy.get('.upload-product-button').click();
 
   cy.get('#edit-user-product_name').type('Test Product');
@@ -42,6 +42,7 @@ When('the user navigates to their product page', () => {
 Then('the user should see a list of their uploaded products', () => {
   cy.wait(500); // utan detta kraschar testet
   cy.visit('/dashboard');
+  cy.get('#open-dashboard-drawer').click();
   cy.get('.nav-upload-menu-item').click();
   cy.get('h2').should('contain', 'My products');
   cy.get('.product-card').should('exist');

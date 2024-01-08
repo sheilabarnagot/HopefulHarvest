@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "dev": "concurrently \"nodemon server.js\" \"npx tsc --watch\"",
-    "start": "node index.js"
+    "dev": "concurrently \"nodemon ./dist/server.js\" \"npx tsc --watch\"",
+    "devs": "npx tsx --watch server.ts",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

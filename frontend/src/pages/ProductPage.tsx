@@ -4,30 +4,27 @@ import { useEffect, useState } from 'react';
 import { useShoppingCartItems } from '../zustand/customHooks';
 
 interface Product {
-  data: {
-    category_id: string;
-    description: string;
-    image_id: number;
-    image_ref: number;
-    product_id: number;
-    price: number;
-    product_name: string;
-    stock_quantity: number;
-    upload_date: string;
-    user_id: number;
-    username: string;
-  };
+  category_id: string;
+  description: string;
+  image_id: number;
+  image_ref: number;
+  product_id: number;
+  price: number;
+  product_name: string;
+  stock_quantity: number;
+  upload_date: string;
+  user_id: number;
+  username: string;
+
   image: string;
 }
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<Product[] | undefined>(undefined);
-
+  const [result, setResult] = useState<Product[] | undefined>(undefined);
   const setTest = useShoppingCartItems(
     (state: any) => state.updateShoppingCart
   );
 
-  const getTest = useShoppingCartItems((state: any) => state.data);
   const removeTest = useShoppingCartItems((state: any) => state.removeFromCart);
 
   const getProducts = async () => {
@@ -40,7 +37,7 @@ export default function ProductPage() {
         },
       });
       const result = await response.json();
-
+      setResult(result);
       return result;
     } catch (error) {
       console.error(
@@ -50,69 +47,46 @@ export default function ProductPage() {
     }
   };
 
-  console.log(getTest);
-
   useEffect(() => {
-    getProducts().then(async result => {
-      const products = await Promise.all(
-        result.map(async (item: any) => {
-          const res = await fetch(
-            `http://localhost:3000/get-image/${item.image_ref}`,
-            {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${Cookies.get('token')}`,
-              },
-            }
-          );
-          const result = await res.blob();
-          const objectURL = URL.createObjectURL(result);
-
-          return { data: item, image: objectURL };
-        })
-      );
-      setProducts(products);
-    });
+    getProducts();
   }, []);
-  // console.log(cartItems);
 
   return (
     <>
-      {products &&
-        products.map(product => {
+      {result &&
+        result.map(product => {
           return (
             <div
-              key={product.data.product_id}
+              key={product.product_id}
               className="my-5 flex flex-col items-center">
               <div>
-                <h1 className="text-2xl">{product.data.product_name}</h1>
+                <h1 className="text-2xl">{product.product_name}</h1>
                 <img
-                  src={product.image}
+                  src={`http://localhost:3000/images/${product.image_ref}`}
                   width={300}
                   onLoad={() => URL.revokeObjectURL(product.image)}
                 />
                 <div>
                   <div className="flex my-3 justify-between">
-                    <p>{product.data.username}</p>
-                    <p>{product.data.upload_date.split('T')[0]}</p>
+                    <p>{product.username}</p>
+                    <p>{product.upload_date.split('T')[0]}</p>
                   </div>
                   <div className="w-80 text-justify">
                     <p>Description</p>
-                    <p className="font-serif">{product.data.description}</p>
+                    <p className="font-serif">{product.description}</p>
                   </div>
                   <div className="flex mt-3 justify-between">
-                    <p>Price: €{product.data.price}</p>
+                    <p>Price: €{product.price}</p>
                     <p>
                       In stock:{' '}
                       <span className="font-bold">
-                        {product.data.stock_quantity}
+                        {product.stock_quantity}
                       </span>
                     </p>
                   </div>
                   <Button
                     id="remove-item"
-                    onClick={() => removeTest(product.data.product_id)}
+                    onClick={() => removeTest(product.product_id)}
                     colorScheme="blue">
                     Remove from cart
                   </Button>

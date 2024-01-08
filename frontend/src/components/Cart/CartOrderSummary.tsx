@@ -19,14 +19,21 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 export default function CartOrderSummary() {
   const cartDataPrice = useShoppingCartItems((state: any) => state.data);
 
-  const priceArray = cartDataPrice.map((item: any) => Number(item.data.price));
+  const priceArray = cartDataPrice.map((item: any) => Number(item.price));
   const clearCart = useShoppingCartItems((state: any) => state.clear);
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
       <Heading size="md">Order Summary</Heading>
 
       <Stack spacing="6">
-        <OrderSummaryItem label="Subtotal" value="597" />
+        <OrderSummaryItem
+          label="Subtotal"
+          value={
+            priceArray.length > 0
+              ? priceArray.reduce((a: number, b: number) => a + b)
+              : '0'
+          }
+        />
         <OrderSummaryItem label="Shipping + Tax">
           <Link href="#" textDecor="underline">
             Calculate shipping

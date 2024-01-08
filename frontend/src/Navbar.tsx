@@ -8,19 +8,13 @@ import {
 import { useShoppingCartItems } from './zustand/customHooks';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import Logout from './logout';
 interface NavigationItem {
-  name: string;
+  name: string | JSX.Element;
   href: string;
   current: boolean;
 }
-
-const navigation: NavigationItem[] = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Register', href: '/register', current: false },
-  { name: 'Login', href: '/login', current: false },
-  { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Shop', href: '/shop', current: false },
-];
 
 function classNames(...classes: (string | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -29,6 +23,21 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const shoppingCartItems = useShoppingCartItems((state: any) => state.data);
   console.log(shoppingCartItems);
+
+  const loggedInId = Cookies.get('userId');
+
+  const navigation: (NavigationItem | boolean)[] = [
+    { name: 'Home', href: '/', current: true },
+
+    !loggedInId && { name: 'Register', href: '/register', current: false },
+    {
+      name: loggedInId ? <Logout /> : 'Login',
+      href: '/login',
+      current: false,
+    },
+    { name: 'Dashboard', href: '/dashboard', current: false },
+    { name: 'Shop', href: '/shop', current: false },
+  ].filter(Boolean);
 
   return (
     <Disclosure as="nav" className="bg-gray-800 p-4 sticky top-0 w-full z-50">
@@ -46,31 +55,36 @@ const Navbar: React.FC = () => {
 
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {navigation.map(item => (
-                    <Menu.Item
-                      key={item.name}
-                      as={NavLink}
-                      to={item.href}
-                      className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}>
-                      {({ active }) => (
-                        <span
-                          className={classNames(
-                            active
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'rounded-md px-3 py-2 text-sm font-medium'
-                          )}>
-                          {item.name}
-                        </span>
-                      )}
-                    </Menu.Item>
-                  ))}
+                  {navigation
+                    .filter(
+                      (item): item is NavigationItem =>
+                        typeof item !== 'boolean'
+                    )
+                    .map((item: NavigationItem) => (
+                      <Menu.Item
+                        key={item.href}
+                        as={NavLink}
+                        to={item.href}
+                        className={classNames(
+                          item.current
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}>
+                        {({ active }) => (
+                          <span
+                            className={classNames(
+                              active
+                                ? 'bg-gray-900 text-white'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                              'rounded-md px-3 py-2 text-sm font-medium'
+                            )}>
+                            {item.name}
+                          </span>
+                        )}
+                      </Menu.Item>
+                    ))}
                 </div>
               </div>
               <div onClick={() => navigate('/checkout')} className="flex">
@@ -93,24 +107,29 @@ const Navbar: React.FC = () => {
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
                 <Menu.Items>
-                  {navigation.map(item => (
-                    <Menu.Item key={item.name}>
-                      {({ active, close }) => (
-                        <NavLink
-                          to={item.href}
-                          onClick={close}
-                          className={classNames(
-                            active
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'block rounded-md px-3 py-2 text-base font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}>
-                          {item.name}
-                        </NavLink>
-                      )}
-                    </Menu.Item>
-                  ))}
+                  {navigation
+                    .filter(
+                      (item): item is NavigationItem =>
+                        typeof item !== 'boolean'
+                    )
+                    .map((item: NavigationItem) => (
+                      <Menu.Item key={item.href}>
+                        {({ active, close }) => (
+                          <NavLink
+                            to={item.href}
+                            onClick={close}
+                            className={classNames(
+                              active
+                                ? 'bg-gray-900 text-white'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                              'block rounded-md px-3 py-2 text-base font-medium'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}>
+                            {item.name}
+                          </NavLink>
+                        )}
+                      </Menu.Item>
+                    ))}
                 </Menu.Items>
               </div>
             </Disclosure.Panel>

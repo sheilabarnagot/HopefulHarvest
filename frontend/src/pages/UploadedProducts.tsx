@@ -9,14 +9,8 @@ interface Result {
   price: number;
 }
 
-interface StateGeneric {
-  data: Result;
-  image: string;
-}
-
 export default function UploadedProducts() {
-  const [product, setProduct] = useState<StateGeneric[]>([]);
-  const [objectURLs, setObjectURLs] = useState<string[]>([]);
+  const [result, setResult] = useState<Result[]>([]);
   const getProducts = async () => {
     const res = await fetch('http://localhost:3000/get-products', {
       method: 'POST',
@@ -26,55 +20,27 @@ export default function UploadedProducts() {
       },
     });
     const data = await res.json();
-
+    setResult(data);
     return data;
   };
 
-  console.log(objectURLs);
   useEffect(() => {
-    getProducts().then(async resultPromise => {
-      const products = await Promise.all(
-        resultPromise.map(async (item: Result) => {
-          const res = await fetch(
-            `http://localhost:3000/get-image/${item.image_ref}`,
-            {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${Cookies.get('token')}`,
-              },
-            }
-          );
-          const result = await res.blob();
-          const objectURL = URL.createObjectURL(result);
-
-          setObjectURLs([objectURL]);
-
-          return { data: item, image: objectURL };
-        })
-      );
-
-      setProduct(products);
-    });
+    getProducts();
   }, []);
 
   return (
     <div className="flex flex-col items-center">
       <h2 className="my-4 text-xl">My products</h2>
-      {product.map((item, index) => {
-        // Create a Blob URL for the image
-        // const imageBlobUrl = URL.createObjectURL(item.image);
-        console.log(item.image);
+      {result.map((item, index) => {
         return (
-          <div className="product-card mb-4" key={item.data.image_ref + index}>
-            <p>{item.data.username}</p>
+          <div className="product-card mb-4" key={item.image_ref + index}>
+            <p>{item.username}</p>
             <img
-              src={item.image}
+              src={`http://localhost:3000/images/${item.image_ref}`}
               alt="product"
-              onLoad={() => URL.revokeObjectURL(item.image)}
             />
-            <p className="text-left">Pris: {item.data.price}</p>
-            <p className="text-center">{item.data.description}</p>
+            <p className="text-left">Pris: {item.price}</p>
+            <p className="text-center">{item.description}</p>
           </div>
         );
       })}
