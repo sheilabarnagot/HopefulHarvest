@@ -67,6 +67,7 @@ export default function ProductPage() {
                 <img
                   src={`http:///185.112.144.228:8000/images/${product.image_ref}`}
                   width={300}
+                  height={300}
                   onLoad={() => URL.revokeObjectURL(product.image)}
                 />
                 <div>

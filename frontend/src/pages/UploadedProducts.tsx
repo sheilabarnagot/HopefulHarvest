@@ -36,8 +36,8 @@ export default function UploadedProducts() {
           <div className="product-card mb-4" key={item.image_ref + index}>
             <p>{item.username}</p>
             <img
-              width={500}
-              height={500}
+              width={300}
+              height={300}
               src={`http:///185.112.144.228:8000/images/${item.image_ref}`}
               alt="product"
             />
