@@ -29,13 +29,16 @@ export default function ProductPage() {
 
   const getProducts = async () => {
     try {
-      const response = await fetch('http://localhost:3000/get-all-products', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      });
+      const response = await fetch(
+        'http:///185.112.144.228:8000/get-all-products',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      );
       const result = await response.json();
       setResult(result);
       return result;
@@ -62,7 +65,7 @@ export default function ProductPage() {
               <div>
                 <h1 className="text-2xl">{product.product_name}</h1>
                 <img
-                  src={`http://localhost:3000/images/${product.image_ref}`}
+                  src={`http:///185.112.144.228:8000/images/${product.image_ref}`}
                   width={300}
                   onLoad={() => URL.revokeObjectURL(product.image)}
                 />

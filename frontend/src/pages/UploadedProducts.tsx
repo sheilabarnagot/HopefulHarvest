@@ -12,7 +12,7 @@ interface Result {
 export default function UploadedProducts() {
   const [result, setResult] = useState<Result[]>([]);
   const getProducts = async () => {
-    const res = await fetch('http://localhost:3000/get-products', {
+    const res = await fetch('http:///185.112.144.228:8000/get-products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export default function UploadedProducts() {
           <div className="product-card mb-4" key={item.image_ref + index}>
             <p>{item.username}</p>
             <img
-              src={`http://localhost:3000/images/${item.image_ref}`}
+              src={`http:///185.112.144.228:8000/images/${item.image_ref}`}
               alt="product"
             />
             <p className="text-left">Pris: {item.price}</p>

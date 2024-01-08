@@ -75,15 +75,18 @@ const UserRegistration: React.FC = () => {
         address,
         phone_number,
       };
-      // http://localhost:3000/auth/register
+      // http:///185.112.144.228:8000/auth/register
       navigate('/login');
-      const response = await fetch('http://localhost:3000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registrationData),
-      });
+      const response = await fetch(
+        'http:///185.112.144.228:8000/auth/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(registrationData),
+        }
+      );
 
       if (response.ok) {
         ('User registered successfully.');
