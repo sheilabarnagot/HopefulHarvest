@@ -28,19 +28,18 @@ const Navbar: React.FC = () => {
 
   const navigation: (NavigationItem | boolean)[] = [
     { name: 'Home', href: '/', current: true },
-
     !loggedInId && { name: 'Register', href: '/register', current: false },
-    {
-      name: loggedInId ? <Logout /> : 'Login',
-      href: '/login',
-      current: false,
-    },
     {
       name: 'Dashboard',
       href: '/dashboard/profile/users/product-page',
       current: false,
     },
     { name: 'Shop', href: '/shop', current: false },
+    {
+      name: loggedInId ? <Logout /> : 'Login',
+      href: '/login',
+      current: false,
+    },
   ].filter(Boolean);
 
   return (
