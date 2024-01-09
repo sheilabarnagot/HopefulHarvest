@@ -25,12 +25,15 @@ export default function UserProfile() {
 
   return (
     <>
-      <h1>User Profile</h1>
-      <h2>hello</h2>
-
-      <Button id="edit-user-info-button" colorScheme="blue" onClick={onOpen}>
-        Open Modal
-      </Button>
+      <div className="w-full mt-24 flex flex-col items-center justify-center">
+        <Button
+          className="w-46"
+          id="edit-user-info-button"
+          colorScheme="blue"
+          onClick={onOpen}>
+          Edit user profile
+        </Button>
+      </div>
       <EditUserProfileModal isOpen={isOpen} onClose={onClose} />
     </>
   );
