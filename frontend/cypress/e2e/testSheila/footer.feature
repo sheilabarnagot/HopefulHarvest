@@ -2,7 +2,7 @@ Feature: Footer content
 
 Scenario: Display footer links
   Given I am on the home page
-  Then I should see links to "About", "Shop", "Blog", "Contact Us", "Terms", and "Privacy" in the footer
+  Then I should see links to "About", "Shop", "Blog", "Contact Us", "Terms & privacy" in the footer
   When I navigate in the application
 
 Scenario: Display copyright information

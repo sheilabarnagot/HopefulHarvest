@@ -26,7 +26,7 @@ function BasicUsage({ isOpen, onClose }: BasicUsageProps) {
           <ModalHeader>Terms and Conditions</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>
+            <p id='terms-link'>
               Welcome to our website. By registering, logging in, and making
               purchases on this site, you agree to the following terms and
               conditions.

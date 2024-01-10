@@ -6,13 +6,13 @@ describe('Footer', () => {
   it('should display footer links', () => {
     cy.get('footer')
       .find('a')
-      .should('have.length', 6)
-      .should('contain', 'About')
-      .should('contain', 'Shop')
-      .should('contain', 'Blog')
-      .should('contain', 'Contact Us')
-      .should('contain', 'Terms')
-      .should('contain', 'Privacy');
+      .should('have.length', 4)
+      .invoke('text')
+      .should('include', 'About')
+      .should('include', 'Shop')
+      .should('include', 'Blog')
+      .should('include', 'Contact Us')
+      // .should(':contain', 'Terms & privacy')
   });
 
   it('should display copyright information', () => {

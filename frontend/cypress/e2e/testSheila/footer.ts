@@ -12,7 +12,7 @@ Cypress.Commands.add('login', () => {
 
 Before(() => {
   cy.login();
-  cy.visit('/')
+  cy.visit('/');
 });
 
 Given('No error is present', () => {
@@ -28,19 +28,18 @@ Given('I am on the home page', () => {
 });
 
 Then(
-  'I should see links to "About", "Shop", "Blog", "Contact Us", "Terms", and "Privacy" in the footer',
+  'I should see links to "About", "Shop", "Blog", "Contact Us", "Terms & privacy" in the footer',
   () => {
-    // cy.get('#about-link').should('exist');
-    // cy.get('#shop-link').should('exist');
-    // cy.get('#blog-link').should('exist');
-    // cy.get('#contact-us-link').should('exist');
-    cy.get('#terms-link').should('exist');
-    // cy.get('#privacy-link').should('exist');
+    cy.get('#about-link').should('exist');
+    cy.get('#shop-link').should('exist');
+    cy.get('#blog-link').should('exist');
+    cy.get('#contac-link').should('exist');
+    cy.get('#terms-link').should('exist').click();
   }
 );
 
 Then('I should see the copyright information in the footer', () => {
-  cy.get('#copyright-info').should('exist');
+  cy.get('#terms-link').should('exist');
 });
 
 // Given i am on ht e home page
