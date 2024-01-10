@@ -33,7 +33,7 @@ Then(
     cy.get('#about-link').should('exist');
     cy.get('#shop-link').should('exist');
     cy.get('#blog-link').should('exist');
-    cy.get('#contac-link').should('exist');
+    cy.get('#contact-link').should('exist');
     cy.get('#terms-link').should('exist').click();
   }
 );

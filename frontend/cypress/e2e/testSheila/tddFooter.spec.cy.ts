@@ -12,7 +12,7 @@ describe('Footer', () => {
       .should('include', 'Shop')
       .should('include', 'Blog')
       .should('include', 'Contact Us')
-      // .should(':contain', 'Terms & privacy')
+      cy.get('#terms-link').should('contain', 'Terms & privacy')
   });
 
   it('should display copyright information', () => {
