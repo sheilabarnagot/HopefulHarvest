@@ -14,6 +14,7 @@ Cypress.Commands.add('login', () => {
 
 Before(() => {
   cy.login();
+  cy.wait(1000);
 });
 
 // Editing user information on the profile page //
@@ -23,6 +24,7 @@ Given('No error is present', () => {
 });
 
 Given('A heading with the text "hello" is displayed', () => {
+  cy.visit('/dashboard/profile/users/product-page');
   cy.get('h2').should('include.text', 'My products');
 });
 
@@ -46,6 +48,7 @@ Then('the modal should close', () => {
 // Error handling when editing user information //
 
 Given("I'm still on the profile page", () => {
+  cy.visit('/dashboard/profile/users/product-page');
   cy.get('#open-dashboard-drawer').click();
   cy.get('.profile-button').click();
 });
