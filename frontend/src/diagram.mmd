@@ -1,0 +1,29 @@
+sequenceDiagram
+  participant User as U
+  participant Frontend as F
+  participant Backend as B
+  participant Database as DB
+
+  U->>F: Open the application
+  F->>B: Request registration form
+  B-->>F: Send empty form
+  F->>U: Display registration form
+
+  U->>F: Fill out the form
+  F->>B: Send registration data
+  B-->>DB: Store data in the database
+  DB-->>B: Confirm registration
+  B-->>F: Registration successful response
+  F-->>U: Display success message
+
+  U->>F: Go to the login page
+  F->>B: Request login form
+  B-->>F: Send empty form
+  F->>U: Display login form
+
+  U->>F: Enter credentials
+  F->>B: Send login data
+  B-->>DB: Verify credentials in the database
+  DB-->>B: Valid credentials
+  B-->>F: Successful login response
+  F-->>U: Redirect to the main page
