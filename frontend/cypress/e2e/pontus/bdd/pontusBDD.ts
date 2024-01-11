@@ -23,6 +23,7 @@ Given('No error is present', () => {
 });
 
 Given('A heading with the text "hello" is displayed', () => {
+  cy.visit('/dashboard/profile/users/product-page');
   cy.get('h2').should('include.text', 'My products');
 });
 
