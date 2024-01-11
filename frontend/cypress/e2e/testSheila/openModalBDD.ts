@@ -23,9 +23,15 @@ When('I click on the "Terms & privacy" link in the footer', () => {
 
 Then('a modal should open displaying information about the terms', () => {
   cy.get('#terms-modal').should('exist');
+
   cy.get('#terms-modal-content').should(
-    'contain.text',
-    'Terms and conditions information'
+    'exist',
+    `Registration and Login: By registering on our website, you agree
+    to provide accurate and complete information. You are responsible
+    for maintaining the confidentiality of your account and password.
+    You must not share your login credentials with third parties.
+    Notify us immediately if you suspect that your account has been
+    compromised.`
   );
 });
 

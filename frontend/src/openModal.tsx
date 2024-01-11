@@ -26,13 +26,12 @@ function BasicUsage({ isOpen, onClose }: BasicUsageProps) {
           <ModalHeader>Terms and Conditions</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p id='terms-link'>
+            <p id="terms-modal">
               Welcome to our website. By registering, logging in, and making
               purchases on this site, you agree to the following terms and
               conditions.
             </p>
-            <p>
-              {' '}
+            <p id="terms-modal-content">
               Registration and Login: By registering on our website, you agree
               to provide accurate and complete information. You are responsible
               for maintaining the confidentiality of your account and password.
