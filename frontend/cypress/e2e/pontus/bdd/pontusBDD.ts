@@ -14,6 +14,7 @@ Cypress.Commands.add('login', () => {
 
 Before(() => {
   cy.login();
+  cy.wait(1000);
 });
 
 // Editing user information on the profile page //
@@ -47,6 +48,7 @@ Then('the modal should close', () => {
 // Error handling when editing user information //
 
 Given("I'm still on the profile page", () => {
+  cy.visit('/dashboard/profile/users/product-page');
   cy.get('#open-dashboard-drawer').click();
   cy.get('.profile-button').click();
 });
