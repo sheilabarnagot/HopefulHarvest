@@ -1,10 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { router, createDefaultUser } from './auth';
-import {
-  userProtectedRouter,
-  uploadImage,
-} from './routes/user-protected-routes';
+import { userProtectedRouter, uploadImage } from './user-protected-routes';
 
 import passport from 'passport';
 import { pass } from './passport.auth';
