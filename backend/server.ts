@@ -17,7 +17,7 @@ const app = express();
 const PORT = 3000;
 export const client = new Client({
   user: process.env.PGUSER,
-  host: process.env.HOSt,
+  host: process.env.HOST,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   port: Number(5432),
