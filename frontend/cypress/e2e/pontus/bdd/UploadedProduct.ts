@@ -20,7 +20,7 @@ Before(() => {
 });
 
 Given('a user has uploaded products', () => {
-  cy.wait(500); // utan detta kraschar testet
+  cy.wait(1000); // utan detta kraschar testet
   cy.visit('/dashboard');
   cy.get('#open-dashboard-drawer').click();
   cy.get('.upload-product-button').click();
@@ -32,6 +32,7 @@ Given('a user has uploaded products', () => {
   cy.get('input[type="file"]').attachFile('fixtures/musical_elephant.jpeg');
 
   cy.get('#post-product-form').click();
+  cy.wait(1000);
 });
 When('the user navigates to their product page', () => {
   cy.get('.cancel-upload-button').click();
@@ -40,7 +41,7 @@ When('the user navigates to their product page', () => {
 });
 
 Then('the user should see a list of their uploaded products', () => {
-  cy.wait(500); // utan detta kraschar testet
+  cy.wait(1000); // utan detta kraschar testet
   cy.visit('/dashboard');
   cy.get('#open-dashboard-drawer').click();
   cy.get('.nav-upload-menu-item').click();

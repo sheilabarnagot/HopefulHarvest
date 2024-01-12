@@ -1,4 +1,4 @@
-import { client } from '../server';
+import { client } from './server';
 import { Request, Response } from 'express';
 
 export const userProfile = async (req: Request, res: Response) => {

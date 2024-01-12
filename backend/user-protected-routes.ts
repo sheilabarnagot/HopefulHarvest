@@ -8,10 +8,10 @@ import {
   uploadImageModel,
   getUserProducts,
   getAllProducts,
-} from '../models/user-models';
+} from './user-models';
 import { Request, Response } from 'express';
-import { upload } from '../server';
-import { pass } from '../passport.auth';
+import { upload } from './server';
+import { pass } from './passport.auth';
 declare global {
   namespace Express {
     interface User {
