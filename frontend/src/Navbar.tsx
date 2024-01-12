@@ -90,7 +90,9 @@ const Navbar: React.FC = () => {
                     ))}
                 </div>
               </div>
-              <div onClick={() => navigate('/checkout')} className="flex">
+              <div
+                onClick={() => navigate('/checkout')}
+                className="flex cursor-pointer">
                 <ShoppingBagIcon height={30} color="white" />
                 <p id="shopping-icon" className="text-red-400 text-lg">
                   {shoppingCartItems.length}
