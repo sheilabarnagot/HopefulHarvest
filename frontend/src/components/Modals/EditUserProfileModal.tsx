@@ -22,6 +22,8 @@ import 'react-toastify/dist/ReactToastify.css';
 interface EditUserProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
+  cypress?: boolean;
+  authorization?: string;
 }
 
 interface IFormInput {
@@ -33,6 +35,8 @@ interface IFormInput {
 export default function EditUserProfileModal({
   isOpen,
   onClose,
+  cypress,
+  authorization,
 }: EditUserProfileModalProps) {
   const initialRef = useRef(null);
   const [userInfo, setUserInfo] = useState<IFormInput | undefined>();
@@ -83,7 +87,9 @@ export default function EditUserProfileModal({
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        Authorization: cypress
+          ? (authorization as string)
+          : `Bearer ${Cookies.get('token')}`,
       },
       body: JSON.stringify({
         username: values.username || userInfo?.username,
@@ -95,13 +101,15 @@ export default function EditUserProfileModal({
     reset();
     notifySuccess();
   };
-
+  console.log(authorization);
   const getUserInformation = async () => {
     const response = await fetch('http:///185.112.144.228:8000/protected', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        Authorization: cypress
+          ? (authorization as string)
+          : `Bearer ${Cookies.get('token')}`,
       },
     });
     const result = await response.json();
@@ -123,7 +131,10 @@ export default function EditUserProfileModal({
 
   return (
     <>
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        initialFocusRef={initialRef}
+        isOpen={cypress ? true : isOpen}
+        onClose={onClose}>
         <ModalOverlay />
         <form onSubmit={handleSubmit(onSubmit)} id="edit-user-profile-form">
           <ModalContent>

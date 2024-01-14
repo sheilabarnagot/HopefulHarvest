@@ -14,14 +14,42 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/react18'
+import { mount } from 'cypress/react18';
 
-Cypress.Commands.add('mount', mount)
-
+Cypress.Commands.add('mount', mount);
 // Example use:
 // cy.mount(<MyComponent />)
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.request({
+    method: 'POST',
+    url: 'http://185.112.144.228:8000/auth/login',
+    body: {
+      username,
+      password,
+    },
+  })
+    .as('loginResponse')
+    .then(response => {
+      Cypress.env('token', response.body.token); // either this or some global var but remember that this will only work in one test case
+      return response;
+    })
+    .its('status')
+    .should('eq', 200);
+});
+
+Cypress.Commands.add('authenticatedRequest', (method, url, token, body) => {
+  const options = {
+    method: method,
+    url: url,
+    headers: {
+      Authorization: token,
+    },
+    body: JSON.stringify(body),
+  };
+});
