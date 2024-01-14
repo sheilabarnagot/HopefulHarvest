@@ -3,7 +3,6 @@ import Navbar from '../../../src/Navbar';
 import { useShoppingCartItems } from '../../../src/zustand/customHooks';
 import { BrowserRouter as Router } from 'react-router-dom';
 import '../../../dist/index.css';
-
 describe('UserProduct´s buttons', () => {
   beforeEach(() => {
     cy.login('hyperslap', '1234');

@@ -1,6 +1,6 @@
 import '../../../src/index.css';
 import EditUserProfileModal from '../../../src/components/Modals/EditUserProfileModal';
-
+// console.log(test)
 describe('EditUserProfileModal.cy.jsx', () => {
   beforeEach(() => {
     cy.login('hyperslap', '1234');
