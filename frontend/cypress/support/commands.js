@@ -24,3 +24,33 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.request({
+    method: 'POST',
+    url: 'http://185.112.144.228:8000/auth/login',
+    body: {
+      username,
+      password,
+    },
+  })
+    .as('loginResponse')
+    .then(response => {
+      Cypress.env('token', response.body.token);
+      return response;
+    })
+    .its('status')
+    .should('eq', 200);
+});
+
+Cypress.Commands.add('authenticatedRequest', (method, url, token, body) => {
+  const options = {
+    method: method,
+    url: url,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  };
+  cy.request(options).as('authenticatedRequest');
+});
