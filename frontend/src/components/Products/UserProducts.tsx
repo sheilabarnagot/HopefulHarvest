@@ -20,6 +20,7 @@ export default function UserProducts({
   setTest,
   product,
 }: ProductProps) {
+  console.log(product.product_id);
   return (
     <div className="flex flex-col items-center">
       <div>
@@ -39,14 +40,17 @@ export default function UserProducts({
           </p>
         </div>
         <Button
-          id="remove-item"
+          id={`remove-item-${product.product_id}`}
           onClick={() => removeTest(product.product_id)}
           colorScheme="blue">
           Remove from cart
         </Button>
         <Button
-          id="add-item"
-          onClick={() => setTest(product)}
+          id={`add-item-${product.product_id}`}
+          onClick={() => {
+            console.log(`add-item-${product.product_id}`);
+            setTest(product);
+          }}
           colorScheme="blue">
           Add to cart
         </Button>
