@@ -1,8 +1,7 @@
-import { Button } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useShoppingCartItems } from '../zustand/customHooks';
-
+import UserProducts from '../components/Products/UserProducts';
 interface Product {
   category_id: string;
   description: string;
@@ -70,37 +69,11 @@ export default function ProductPage() {
                   height={300}
                   onLoad={() => URL.revokeObjectURL(product.image)}
                 />
-                <div>
-                  <div className="flex my-3 justify-between">
-                    <p>{product.username}</p>
-                    <p>{product.upload_date.split('T')[0]}</p>
-                  </div>
-                  <div className="w-80 text-justify">
-                    <p>Description</p>
-                    <p className="font-serif">{product.description}</p>
-                  </div>
-                  <div className="flex mt-3 justify-between">
-                    <p>Price: €{product.price}</p>
-                    <p>
-                      In stock:{' '}
-                      <span className="font-bold">
-                        {product.stock_quantity}
-                      </span>
-                    </p>
-                  </div>
-                  <Button
-                    id="remove-item"
-                    onClick={() => removeTest(product.product_id)}
-                    colorScheme="blue">
-                    Remove from cart
-                  </Button>
-                  <Button
-                    id="add-item"
-                    onClick={() => setTest(product)}
-                    colorScheme="blue">
-                    Add to cart
-                  </Button>
-                </div>
+                <UserProducts
+                  product={product}
+                  removeTest={removeTest}
+                  setTest={setTest}
+                />
               </div>
             </div>
           );
