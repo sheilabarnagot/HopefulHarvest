@@ -1,5 +1,6 @@
 import '../../../src/index.css';
 import EditUserProfileModal from '../../../src/components/Modals/EditUserProfileModal';
+import React from 'react';
 // console.log(test)
 describe('EditUserProfileModal.cy.jsx', () => {
   beforeEach(() => {
@@ -10,7 +11,9 @@ describe('EditUserProfileModal.cy.jsx', () => {
     const authorization = `Bearer ${token}`;
     console.log(authorization);
 
-    cy.mount(<EditUserProfileModal cypress authorization={authorization} />);
+    /*unknown*/ cy.mount(
+      <EditUserProfileModal /*sad ;(*/ cypress authorization={authorization} />
+    );
     cy.get('#edit-user-username').type('hyperslap');
     cy.get('.edit-user-modal-save').click();
     cy.get('#edit-user-username-error').should('exist');
