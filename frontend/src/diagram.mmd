@@ -1,10 +1,6 @@
 sequenceDiagram
-  participant User as U
-  participant Frontend as F
-  participant Backend as B
-  participant Database as DB
 
-  U->>F: Open the application
+    U->>F: Open the application
   F->>B: Request registration form
   B-->>F: Send empty form
   F->>U: Display registration form
