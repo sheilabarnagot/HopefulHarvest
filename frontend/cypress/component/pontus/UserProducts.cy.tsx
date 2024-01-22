@@ -2,7 +2,7 @@ import UserProducts from '../../../src/components/Products/UserProducts';
 import Navbar from '../../../src/Navbar';
 import { useShoppingCartItems } from '../../../src/zustand/customHooks';
 import { BrowserRouter as Router } from 'react-router-dom';
-import '../../support/index';
+import '../../support/index.d';
 import '../../../dist/index.css';
 import React from 'react';
 describe('UserProduct´s buttons', () => {

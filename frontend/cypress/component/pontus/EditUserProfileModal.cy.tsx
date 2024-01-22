@@ -1,6 +1,8 @@
 import '../../../src/index.css';
 import EditUserProfileModal from '../../../src/components/Modals/EditUserProfileModal';
 import React from 'react';
+import '../../support/index.d';
+
 // console.log(test)
 describe('EditUserProfileModal.cy.jsx', () => {
   beforeEach(() => {

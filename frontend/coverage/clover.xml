@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1705057315434" clover="3.2.0">
+  <project timestamp="1705057315434" name="All files">
+    <metrics statements="379" coveredstatements="198" conditionals="219" coveredconditionals="107" methods="145" coveredmethods="67" elements="743" coveredelements="372" complexity="0" loc="379" ncloc="379" packages="8" files="26" classes="26"/>
+    <package name="src">
+      <metrics statements="168" coveredstatements="86" conditionals="109" coveredconditionals="43" methods="59" coveredmethods="36"/>
+      <file name="About.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/About.tsx">
+        <metrics statements="5" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="77" count="3" type="stmt"/>
+      </file>
+      <file name="App.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/App.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+      </file>
+      <file name="Contact.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/Contact.tsx">
+        <metrics statements="28" coveredstatements="4" conditionals="25" coveredconditionals="3" methods="7" coveredmethods="1"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="138" count="3" type="stmt"/>
+        <line num="140" count="3" type="stmt"/>
+      </file>
+      <file name="Footer.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/Footer.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+      </file>
+      <file name="Home.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/Home.tsx">
+        <metrics statements="12" coveredstatements="11" conditionals="5" coveredconditionals="4" methods="7" coveredmethods="6"/>
+        <line num="1" count="24" type="cond" truecount="4" falsecount="1"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="30" count="80" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+      </file>
+      <file name="Navbar.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/Navbar.tsx">
+        <metrics statements="19" coveredstatements="17" conditionals="19" coveredconditionals="13" methods="13" coveredmethods="11"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="20" count="220" type="stmt"/>
+        <line num="22" count="12" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="24" count="12" type="stmt"/>
+        <line num="25" count="12" type="stmt"/>
+        <line num="27" count="12" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="45" count="12" type="stmt"/>
+        <line num="49" count="26" type="stmt"/>
+        <line num="64" count="110" type="stmt"/>
+        <line num="67" count="110" type="stmt"/>
+        <line num="79" count="110" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="118" count="110" type="stmt"/>
+        <line num="121" count="110" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="146" count="3" type="stmt"/>
+        <line num="148" count="3" type="stmt"/>
+      </file>
+      <file name="UserRegistration.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/UserRegistration.tsx">
+        <metrics statements="51" coveredstatements="5" conditionals="38" coveredconditionals="3" methods="13" coveredmethods="1"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="91" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="100" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="118" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="200" count="0" type="stmt"/>
+        <line num="214" count="0" type="stmt"/>
+        <line num="228" count="0" type="stmt"/>
+        <line num="247" count="3" type="stmt"/>
+        <line num="249" count="3" type="stmt"/>
+      </file>
+      <file name="login.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/login.tsx">
+        <metrics statements="25" coveredstatements="22" conditionals="7" coveredconditionals="5" methods="6" coveredmethods="6"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="4" count="28" type="stmt"/>
+        <line num="5" count="28" type="stmt"/>
+        <line num="6" count="28" type="stmt"/>
+        <line num="7" count="28" type="stmt"/>
+        <line num="8" count="28" type="stmt"/>
+        <line num="10" count="28" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="28" type="stmt"/>
+        <line num="52" count="9" type="stmt"/>
+        <line num="64" count="4" type="stmt"/>
+        <line num="83" count="3" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+      </file>
+      <file name="logout.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/logout.tsx">
+        <metrics statements="12" coveredstatements="7" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="3"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="5" count="36" type="stmt"/>
+        <line num="6" count="36" type="stmt"/>
+        <line num="8" count="36" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="36" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+      <file name="main.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/main.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+      </file>
+      <file name="openModal.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/openModal.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Cart">
+      <metrics statements="49" coveredstatements="23" conditionals="32" coveredconditionals="13" methods="25" coveredmethods="4"/>
+      <file name="CartItem.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Cart/CartItem.tsx">
+        <metrics statements="12" coveredstatements="7" conditionals="3" coveredconditionals="3" methods="8" coveredmethods="1"/>
+        <line num="1" count="33" type="cond" truecount="3" falsecount="0"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="45" count="6" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="98" count="3" type="stmt"/>
+      </file>
+      <file name="CartOrderSummary.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Cart/CartOrderSummary.tsx">
+        <metrics statements="14" coveredstatements="6" conditionals="11" coveredconditionals="4" methods="10" coveredmethods="1"/>
+        <line num="1" count="27" type="cond" truecount="4" falsecount="1"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+      </file>
+      <file name="CartProductMeta.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Cart/CartProductMeta.tsx">
+        <metrics statements="5" coveredstatements="3" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+      </file>
+      <file name="PriceTag.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Cart/PriceTag.tsx">
+        <metrics statements="18" coveredstatements="7" conditionals="12" coveredconditionals="3" methods="5" coveredmethods="1"/>
+        <line num="1" count="30" type="cond" truecount="3" falsecount="0"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="74" count="9" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Charts">
+      <metrics statements="6" coveredstatements="3" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="1"/>
+      <file name="DashboardSoldPerMonthChart.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Charts/DashboardSoldPerMonthChart.tsx">
+        <metrics statements="6" coveredstatements="3" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Drawers">
+      <metrics statements="36" coveredstatements="34" conditionals="14" coveredconditionals="12" methods="8" coveredmethods="8"/>
+      <file name="DashboardDrawer.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Drawers/DashboardDrawer.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="40" count="26" type="stmt"/>
+        <line num="41" count="26" type="stmt"/>
+        <line num="43" count="26" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="125" count="3" type="stmt"/>
+      </file>
+      <file name="UploadProductDrawer.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Drawers/UploadProductDrawer.tsx">
+        <metrics statements="28" coveredstatements="26" conditionals="8" coveredconditionals="6" methods="5" coveredmethods="5"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="34" count="44" type="stmt"/>
+        <line num="35" count="44" type="stmt"/>
+        <line num="36" count="44" type="stmt"/>
+        <line num="37" count="44" type="stmt"/>
+        <line num="44" count="44" type="stmt"/>
+        <line num="49" count="44" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="66" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="78" count="44" type="stmt"/>
+        <line num="79" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="80" count="5" type="stmt"/>
+        <line num="83" count="44" type="stmt"/>
+        <line num="120" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Forms">
+      <metrics statements="5" coveredstatements="5" conditionals="13" coveredconditionals="11" methods="3" coveredmethods="3"/>
+      <file name="UploadProductForm.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Forms/UploadProductForm.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="13" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <line num="1" count="24" type="cond" truecount="3" falsecount="0"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="36" count="20" type="stmt"/>
+        <line num="104" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="115" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Modals">
+      <metrics statements="33" coveredstatements="4" conditionals="17" coveredconditionals="3" methods="9" coveredmethods="1"/>
+      <file name="EditUserProfileModal.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/components/Modals/EditUserProfileModal.tsx">
+        <metrics statements="33" coveredstatements="4" conditionals="17" coveredconditionals="3" methods="9" coveredmethods="1"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="188" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="70" coveredstatements="41" conditionals="30" coveredconditionals="22" methods="31" coveredmethods="13"/>
+      <file name="CartCheckout.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/pages/CartCheckout.tsx">
+        <metrics statements="7" coveredstatements="4" conditionals="7" coveredconditionals="4" methods="5" coveredmethods="1"/>
+        <line num="1" count="24" type="cond" truecount="4" falsecount="1"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+      </file>
+      <file name="ProductPage.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/pages/ProductPage.tsx">
+        <metrics statements="21" coveredstatements="4" conditionals="5" coveredconditionals="3" methods="11" coveredmethods="1"/>
+        <line num="1" count="27" type="cond" truecount="3" falsecount="0"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="110" count="3" type="stmt"/>
+      </file>
+      <file name="UploadedProducts.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/pages/UploadedProducts.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="5" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <line num="1" count="24" type="cond" truecount="4" falsecount="1"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="31" count="10" type="stmt"/>
+        <line num="35" count="78" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+      </file>
+      <file name="UserDashboard.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/pages/UserDashboard.tsx">
+        <metrics statements="17" coveredstatements="16" conditionals="8" coveredconditionals="7" methods="5" coveredmethods="5"/>
+        <line num="1" count="24" type="cond" truecount="4" falsecount="1"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="21" count="26" type="stmt"/>
+        <line num="26" count="26" type="stmt"/>
+        <line num="27" count="26" type="stmt"/>
+        <line num="29" count="26" type="stmt"/>
+        <line num="30" count="26" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="26" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="56" count="26" type="stmt"/>
+        <line num="77" count="3" type="stmt"/>
+      </file>
+      <file name="UserProfile.tsx" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/pages/UserProfile.tsx">
+        <metrics statements="12" coveredstatements="4" conditionals="5" coveredconditionals="4" methods="5" coveredmethods="1"/>
+        <line num="1" count="24" type="cond" truecount="4" falsecount="1"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.zustand">
+      <metrics statements="12" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="8" coveredmethods="1"/>
+      <file name="customHooks.ts" path="/media/disk/development/labbar/typescript-testing/labb-3/HopefulHarvest/frontend/src/zustand/customHooks.ts">
+        <metrics statements="12" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="8" coveredmethods="1"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
