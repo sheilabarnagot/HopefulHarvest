@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .nyc_output
-
+coverage
 
 # Editor directories and files
 .vscode/*
