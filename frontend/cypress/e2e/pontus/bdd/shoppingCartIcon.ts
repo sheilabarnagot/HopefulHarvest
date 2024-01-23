@@ -22,7 +22,7 @@ Given('I am on the product page', () => {
 });
 
 When('I add an item to the cart', () => {
-  cy.get('#add-item').click();
+  cy.get('#add-item-1').click();
 });
 
 Then(
@@ -35,11 +35,11 @@ Then(
 Given('I have items in my cart', () => {
   cy.wait(500);
   cy.visit('/shop');
-  cy.get('#add-item').click();
+  cy.get('#add-item-1').click();
 });
 
 When('I remove an item from the cart', () => {
-  cy.get('#remove-item').click();
+  cy.get('#remove-item-1').click();
 });
 
 Then(

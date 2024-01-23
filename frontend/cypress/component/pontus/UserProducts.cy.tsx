@@ -38,10 +38,10 @@ describe('UserProduct´s buttons', () => {
           })}
         </>
       );
-      cy.get('#add-item-18').click().click();
-      cy.get('#remove-item-18').click().click();
-      cy.get('#add-item-17').click().click();
-      cy.get('#remove-item-17').click().click();
+      cy.get('#add-item-1').click().click();
+      cy.get('#remove-item-1').click().click();
+      cy.get('#add-item-2').click().click();
+      cy.get('#remove-item-2').click().click();
     });
   });
 });

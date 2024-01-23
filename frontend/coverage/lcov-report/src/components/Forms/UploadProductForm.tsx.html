@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
@@ -178,7 +178,7 @@
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">24x</span>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">72x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,7 +204,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,7 +213,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,7 +281,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,7 +292,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   Input,
   FormControl,
@@ -334,7 +334,7 @@ export default function UploadProductForm({
         &lt;FormControl isInvalid={!!errors.product_name}&gt;
           &lt;FormLabel&gt;Produkt namn&lt;/FormLabel&gt;
           &lt;FormErrorMessage id="edit-user-product_name-error"&gt;
-            {errors.product_name &amp;&amp; errors.product_name.message}
+            {errors.product_name &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >errors.product_name.message}</span>
           &lt;/FormErrorMessage&gt;
           &lt;Input
             id="edit-user-product_name"
@@ -372,7 +372,7 @@ export default function UploadProductForm({
         &lt;FormControl isInvalid={!!errors.description}&gt;
           &lt;FormLabel marginTop={2}&gt;Beskrivning&lt;/FormLabel&gt;
           &lt;FormErrorMessage id="edit-user-description-error"&gt;
-            {errors.description &amp;&amp; errors.description.message}
+            {errors.description &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >errors.description.message}</span>
           &lt;/FormErrorMessage&gt;
           &lt;Textarea
             id="edit-user-description"
@@ -396,7 +396,7 @@ export default function UploadProductForm({
               file:bg-stone-50 file:text-stone-700
               hover:file:cursor-pointer hover:file:bg-blue-50
               hover:file:text-blue-700 border-0"
-          onChange={e =&gt; e.target.files &amp;&amp; setFile(e.target.files[0])}
+          onChange={<span class="fstat-no" title="function not covered" >e =&gt; <span class="cstat-no" title="statement not covered" >e</span>.target.files &amp;&amp; setFile(e.target.files[0])}</span>
           placeholder="Here is a sample placeholder"
           type="file"
         /&gt;
@@ -415,7 +415,7 @@ export default function UploadProductForm({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-12T11:01:54.698Z
+                at 2024-01-23T17:21:40.101Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
